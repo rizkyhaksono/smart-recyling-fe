@@ -1,4 +1,4 @@
-export default function NotFound() {
+export default function NotFoundPage() {
   return (
     <>
       <div className="mx-auto w-auto text-center justify-items-center justify-self-center h-screen flex flex-col items-center justify-center">

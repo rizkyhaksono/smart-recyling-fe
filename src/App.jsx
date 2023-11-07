@@ -3,7 +3,7 @@
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/home";
-import NotFound from "./pages/not_found";
+import NotFoundPage from "./pages/not_found";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -19,7 +19,7 @@ function App() {
           <Route path="/sign_up" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} /> */}
 
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
     </>
