@@ -4,7 +4,8 @@ export default function HomePage() {
   return (
     <>
       <NavbarComponent />
-      <div className="mt-20">
+
+      <div className="mt-20 container mx-auto">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui ipsam natus sequi quasi, eum earum ipsum, tempore asperiores aliquid laborum quibusdam commodi distinctio. Excepturi, necessitatibus unde. Eveniet dolor et ratione! Iusto,
         excepturi doloremque culpa aspernatur atque temporibus dolores eaque quia suscipit doloribus quam saepe consequuntur similique beatae ipsum laudantium magnam mollitia veniam natus nam voluptas. Obcaecati quam sunt mollitia qui
         distinctio nihil quos temporibus voluptatibus saepe. A, consequuntur. Veniam sequi temporibus id error nesciunt. Aspernatur temporibus reiciendis aliquid ducimus ullam voluptate illo accusamus recusandae iusto inventore? Facere
