@@ -4,6 +4,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/home";
 import NotFoundPage from "./pages/not_found";
+import AboutPage from "./pages/about";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -14,8 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
-          {/* <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          {/* <Route path="/contact" element={<ContactPage />} />
           <Route path="/sign_up" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} /> */}
 
