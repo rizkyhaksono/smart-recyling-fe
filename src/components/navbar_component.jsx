@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function NavbarComponent() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const location = useLocation();
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
@@ -39,31 +41,32 @@ export default function NavbarComponent() {
         <div className={`w-full md:block md:w-auto ${isDropdownOpen ? "block" : "hidden"}`}>
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
             <li>
-              <a href="/" className="block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0" aria-current="page">
+              <a href="/" className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/" ? "text-primary" : ""}`} aria-current="page">
                 Home
               </a>
             </li>
             <li>
-              <button onClick={toggleDropdown} data-dropdown-toggle="dropdownNavbar" className="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:p-0 md:w-auto">
+              <button onClick={toggleDropdown} data-dropdown-toggle="dropdownNavbar" className="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:text-primary md:p-0 md:w-auto">
                 Services{" "}
                 <svg className={`w-2.5 h-2.5 ml-2.5 ${isDropdownOpen ? "rotate-0" : "rotate-180"}`} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                 </svg>
               </button>
-              <div className={`z-10 ${isDropdownOpen ? "block" : "hidden"} font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44`}>
+
+              <div id="dropdownNavbar" className={`absolute z-10 ${isDropdownOpen ? "block" : "hidden"} font-normal bg-white divide-y divide-gray-100 rounded-lg shadow mt-2`}>
                 <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownNavbarLink">
                   <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                    <a href="/report" className="block px-4 py-2 hover:bg-gray-100 hover:text-primary">
                       Report Trash
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="block px-4 py-2 hover-bg-gray-100">
+                    <a href="/mobile" className="block px-4 py-2 hover:bg-gray-100 hover:text-primary">
                       Mobile App
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="block px-4 py-2 hover-bg-gray-100">
+                    <a href="/event" className="block px-4 py-2 hover:bg-gray-100 hover:text-primary">
                       Event
                     </a>
                   </li>
@@ -71,12 +74,12 @@ export default function NavbarComponent() {
               </div>
             </li>
             <li>
-              <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded  md:p-0">
+              <a href="/blog" className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/blog" ? "text-primary" : ""}`}>
                 Blog
               </a>
             </li>
             <li>
-              <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0">
+              <a href="/about" className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/about" ? "text-primary" : ""}`}>
                 About
               </a>
             </li>
