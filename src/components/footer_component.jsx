@@ -49,7 +49,7 @@ export default function FooterComponent() {
               </div>
             </div>
           </div>
-          <Footer.Divider className="xl:pt-12 lg:pt-10 md:pt-8 sm:pt-8 pt-8 text-white" style={{ color: "white" }} />
+          <hr className="rounded xl:pt-12 lg:pt-10 md:pt-8 sm:pt-8 pt-8"></hr>
           <div className="w-full sm:flex sm:items-center sm:justify-between">
             <Footer.Copyright by="Smart Recycling™" href="https://github.com/Smart-Recycling" year={2023} style={{ color: "white" }} />
             <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
