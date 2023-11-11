@@ -1,17 +1,49 @@
+/* eslint-disable no-unused-vars */
+"use client";
+
+import * as React from "react";
 import NavbarComponent from "../components/navbar_component";
-import BreadCrumbComponent from "../components/bread_crumbs";
+import FooterComponent from "../components/footer_component";
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box } from "@chakra-ui/react";
 
 export default function AboutPage() {
   return (
     <>
       <NavbarComponent />
-      <div className="mt-20 container mx-auto">
-        <BreadCrumbComponent />
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est aliquam inventore dolore repellendus rem voluptatibus, a at distinctio beatae officiis, obcaecati ipsum ab omnis odio? Doloremque nam consequatur quae distinctio totam
-        eveniet dolorem officiis laborum ipsum. Quae quo quas enim ipsum eum quasi odio provident debitis laborum atque temporibus mollitia consequatur quam non nisi quidem soluta veritatis, quia aliquam quis cupiditate totam officia! Vel
-        quos ratione ipsam dicta est placeat eius quia quo perferendis consequatur quasi dignissimos quisquam eum unde a et ab asperiores, deserunt odit! Aut alias est, voluptatem qui ipsa inventore consequuntur nam numquam excepturi maxime
-        et eaque!
+      <div className="container mx-auto mt-20 mb-10">
+        <Accordion>
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                <Box as="span" flex="1" textAlign="left">
+                  Section 1 title
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat.
+            </AccordionPanel>
+          </AccordionItem>
+
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                <Box as="span" flex="1" textAlign="left">
+                  Section 2 title
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat.
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
       </div>
+      <FooterComponent />
     </>
   );
 }

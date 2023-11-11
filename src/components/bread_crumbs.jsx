@@ -1,3 +1,5 @@
+"use client";
+
 export default function BreadCrumbComponent() {
   return (
     <nav className="flex px-5 py-3 border border-gray-200 rounded-lg bg-gray-50 text-black" aria-label="Breadcrumb">

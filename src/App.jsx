@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 // import { useState } from "react";
 
+"use client";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/home";
 import NotFoundPage from "./pages/not_found";
