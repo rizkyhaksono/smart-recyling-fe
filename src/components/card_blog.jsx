@@ -18,7 +18,7 @@ export default function CardBlog() {
         <CardHeader>
           <Flex spacing="4">
             <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-              <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
+              <Avatar name="Profile User" src="/illustration.png" />
 
               <Box>
                 <Heading size="sm">Segun Adebayo</Heading>
