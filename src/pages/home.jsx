@@ -1,7 +1,10 @@
+/* eslint-disable no-unused-vars */
 "use client";
 
 import NavbarComponent from "../components/navbar_component";
 import FooterComponent from "../components/footer_component";
+import Marquee from "react-fast-marquee";
+import { Box, Heading, Highlight, Image } from "@chakra-ui/react";
 
 export default function HomePage() {
   return (
@@ -12,8 +15,9 @@ export default function HomePage() {
           <div className="grid max-w-screen-xl mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-8 xl:pt-12 justify-items-end justify-end items-center justify-self-end">
             <div className="lg:col-span-7 sm:pt-16 sm:text-center md:text-center lg:text-start xl:text-start pt-12 max-[640px]:px-12">
               <div className="font-black text-primary sm:text-5xl md:text-5xl lg:text-7xl xl:text-7xl text-5xl">Recycling Made Easier</div>
-              <div className="mt-8 text-primary sm:text-lg md:text-xl lg:text-xl xl:text-xl xl:px-0 lg:px-0 md:px-0 sm:px-12">
-                Welcome to our homepage, a place where we inspire positive change through recycling waste to keep our earth green and sustainable.
+
+              <div className="mt-8 text-primary font-normal sm:text-lg md:text-xl lg:text-xl xl:text-xl xl:px-0 lg:px-0 md:px-0 sm:px-12">
+                Welcome to our website, a space where we encourage positive transformation by repurposing waste, contributing to the preservation of our planets green and sustainable future.
               </div>
             </div>
 
@@ -21,15 +25,23 @@ export default function HomePage() {
               <img src="/illustration.png" alt="Smart Recycling Logo" width={700} height={700} />
             </div>
           </div>
-          <section className="bg-white">
-            {/* <div className="max-w-screen-xl px-4 mx-auto lg:pb-16">
-              <div className="flex gap-12 text-gray-500 justify-around items-center max-[640px]:px-12">
-                <img src="/lingkungan-batam.png" alt="Collab" width={100} height={100} />
-                <img src="/lingkungan-batam2.png" alt="Collab" width={100} height={100} />
-                <img src="/freethesea.webp" alt="Collab" width={100} height={100} />
-              </div>
-            </div> */}
-          </section>
+          <Marquee className="mb-20 mx-auto" gradient={20} speed={40} play>
+            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
+            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
+            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
+            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
+            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
+            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
+            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
+            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
+            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
+            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
+            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
+            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
+            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
+            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
+            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
+          </Marquee>
           <section className="bg-gray-50">
             <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-24 lg:px-6">
               <figure className="max-w-screen-md mx-auto">
