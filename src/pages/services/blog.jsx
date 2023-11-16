@@ -34,13 +34,18 @@ const responsive = {
 export default function BlogPage() {
   return (
     <>
-      <NavbarComponent />
-      <div className="pt-20">
-        <p className="font-extrabold text-6xl text-center text-primary">Contact Us</p>
-        <p className="font-normal text-center mt-5 text-gray-500 text-xl">Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>
+      <div className="mt-10 pt-20">
+        <p className="font-extrabold text-6xl text-center text-primary">Blogs</p>
+        <p className="font-normal text-center mt-5 text-gray-500 text-xl">Here at Smart Recycling a collection of the latest news from us.</p>
       </div>
-
-      <FooterComponent />
+      <div className="container mx-auto py-5 px-5">
+        <Carousel responsive={responsive} autoPlaySpeed={1000} itemClass="carousel-item-padding-40-px">
+          <CardBlog />
+          <CardBlog />
+          <CardBlog />
+          <CardBlog />
+        </Carousel>
+      </div>
     </>
   );
 }

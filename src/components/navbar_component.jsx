@@ -23,7 +23,7 @@ export default function NavbarComponent() {
               Sign Up
             </button>
           </a>
-          <a href="/login">
+          <a href="/signin">
             <button type="button" className="py-2 px-4 mr-2 text-sm font-medium text-white focus:outline-none bg-primary rounded-lg border border-primary hover:bg-green-700 hover:text-white focus:ring-4 focus:ring-gray-200">
               Login
             </button>
@@ -73,7 +73,7 @@ export default function NavbarComponent() {
                     </a>
                   </li>
                   <li>
-                    <a href="/event" className="block px-4 py-2 hover:bg-gray-100 hover:text-primary">
+                    <a href="/exchange" className="block px-4 py-2 hover:bg-gray-100 hover:text-primary">
                       Exchange Points
                     </a>
                   </li>
@@ -81,7 +81,7 @@ export default function NavbarComponent() {
               </div>
             </li>
             <li>
-              <a href="/blog" className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/blog" ? "text-primary" : ""}`}>
+              <a href="/contact" className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/contact" ? "text-primary" : ""}`}>
                 Contact
               </a>
             </li>

@@ -9,7 +9,7 @@ import { Box, Heading, Highlight, Image } from "@chakra-ui/react";
 export default function HomePage() {
   return (
     <>
-      <main className="min-h-screen bg-bgGreen">
+      <main className="min-h-screen">
         <NavbarComponent />
         <div className="container mx-auto my-10">
           <div className="grid max-w-screen-xl mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-8 xl:pt-12">
@@ -25,7 +25,7 @@ export default function HomePage() {
               <img src="/illustration.png" alt="Smart Recycling Logo" width={700} height={700} />
             </div>
           </div>
-          <Marquee className="mb-20 mx-auto" speed={40} play>
+          <Marquee className="mb-20 mx-auto" gradient={20} speed={40} play>
             <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
             <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
             <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
@@ -42,27 +42,28 @@ export default function HomePage() {
             <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
             <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
           </Marquee>
-          <section className="bg-gray-50 rounded-3xl">
-            <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-24 lg:px-6">
-              <figure className="max-w-screen-md mx-auto">
-                <svg className="h-12 mx-auto mb-3 text-gray-400" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-                <p className="text-xl font-medium text-textColor md:text-2xl">It is horrifying that we have to fight our own government to save the environment.</p>
-                <figcaption className="flex items-center justify-center mt-6 space-x-3">
-                  <img src={"https://cdn.shopify.com/s/files/1/0251/0939/7584/files/1-Ansel-Adams-479x500_large.jpg?v=1570145018?"} alt="Picture of the author" width={100} height={100} className="w-10 h-10 rounded-full" />
-                  <div className="flex items-center divide-x-2 divide-gray-500">
-                    <div className="pr-3 font-medium text-textColor">Ansel Adam</div>
-                    <div className="pl-3 text-sm font-light text-gray-500">American landscape photographer</div>
-                  </div>
-                </figcaption>
-              </figure>
-            </div>
-          </section>
         </div>
+
+        <section className="bg-gray-50">
+          <div className=" text-center py-24 px-6">
+            <figure className="">
+              <svg className="h-12 mx-auto mb-3 text-gray-400" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <p className="text-xl font-medium text-textColor md:text-2xl">It is horrifying that we have to fight our own government to save the environment.</p>
+              <figcaption className="flex items-center justify-center mt-6 space-x-3">
+                <img src={"https://cdn.shopify.com/s/files/1/0251/0939/7584/files/1-Ansel-Adams-479x500_large.jpg?v=1570145018?"} alt="Picture of the author" width={100} height={100} className="w-10 h-10 rounded-full" />
+                <div className="flex items-center divide-x-2 divide-gray-500">
+                  <div className="pr-3 font-medium text-textColor">Ansel Adam</div>
+                  <div className="pl-3 text-sm font-light text-gray-500">American landscape photographer</div>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+        </section>
 
         <section className="object-none bg-[url('https://assets.ayobandung.com/crop/0x0:0x0/750x500/webp/photo/2023/05/28/Desain-tanpa-judul-2023-05-28T115130481-2054438804.png')] bg-gray-700 bg-blend-multiply">
           <div className="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
