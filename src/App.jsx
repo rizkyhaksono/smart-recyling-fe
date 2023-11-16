@@ -8,9 +8,9 @@ import NotFoundPage from "./pages/not_found";
 import AboutPage from "./pages/about/page";
 import BlogPage from "./pages/services/blog";
 import ReportPage from "./pages/services/report";
-import SignUpPage from "./pages/sign_up";
+import SignUpPage from "./pages/auth/sign_up";
 import ContactPage from "./pages/contact/page";
-import SignInPage from "./pages/sign_in";
+import SignInPage from "./pages/auth/sign_in";
 
 function App() {
   return (
