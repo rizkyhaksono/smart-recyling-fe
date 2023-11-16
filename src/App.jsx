@@ -3,16 +3,16 @@
 "use client";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/home";
+import HomePage from "./pages/home/home";
 import NotFoundPage from "./pages/not_found";
-import AboutPage from "./pages/about";
-import BlogPage from "./pages/blog";
-import ReportPage from "./pages/report";
+import AboutPage from "./pages/about/about";
+import BlogPage from "./pages/services/blog";
+import ReportPage from "./pages/services/report";
 import SignUpPage from "./pages/sign_up";
 
 function App() {
   return (
-    <>
+    <div className="bg-bgGreen">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -27,7 +27,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

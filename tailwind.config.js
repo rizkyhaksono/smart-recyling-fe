@@ -7,6 +7,8 @@ export default {
         primary: "#00AF5C",
         darkBlue: "#688089",
         secondary: "#26a57d",
+        textColor: "#595959",
+        bgGreen: "#ECEFE9",
       },
     },
   },

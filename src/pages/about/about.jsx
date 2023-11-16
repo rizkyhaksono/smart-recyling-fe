@@ -2,8 +2,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import NavbarComponent from "../components/navbar_component";
-import FooterComponent from "../components/footer_component";
+import NavbarComponent from "../../components/navbar_component";
+import FooterComponent from "../../components/footer_component";
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box } from "@chakra-ui/react";
 import { Galleria } from "primereact/galleria";
 
@@ -72,7 +72,7 @@ export default function AboutPage() {
   return (
     <>
       <NavbarComponent />
-      <div className="container mx-auto mt-20 mb-10 flex">
+      <div className="container mx-auto pt-20 mb-10">
         <Accordion defaultIndex={[0]} allowMultiple>
           <AccordionItem>
             <h2>

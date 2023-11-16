@@ -5,8 +5,8 @@ export default function NotFoundPage() {
     <>
       <div className="mx-auto w-auto text-center justify-items-center justify-self-center h-screen flex flex-col items-center justify-center">
         <p className="font-bold text-4xl mb-6">Sorry, Page Not Found!</p>
-        <p className="font-medium text-darkBlue">{`Sorry, we couldn't find the page you're looking for.`}</p>
-        <p className="font-medium text-darkBlue mb-6">{`Perhaps you've mistyped the URL? Be sure to check your spelling.`}</p>
+        <p className="font-medium text-textColor">{`Sorry, we couldn't find the page you're looking for.`}</p>
+        <p className="font-medium text-textColor mb-6">{`Perhaps you've mistyped the URL? Be sure to check your spelling.`}</p>
 
         <svg className="w-96" viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg">
           <defs>

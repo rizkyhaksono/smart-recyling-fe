@@ -14,7 +14,7 @@ export default function NavbarComponent() {
   return (
     <nav className="fixed w-full z-20 top-0 left-0 border-b border-gray-300 bg-white">
       <div className="max-w-screen-xl flex flex-wrap items-center mx-auto p-4 justify-between">
-        <a href="#" className="flex items-center">
+        <a href="/" className="flex items-center">
           <img src="/logo.png" className="h-8 mr-3" alt="Smart Recycling Logo" />
         </a>
         <div className="flex md:order-2">
@@ -69,7 +69,12 @@ export default function NavbarComponent() {
                   </li>
                   <li>
                     <a href="/event" className="block px-4 py-2 hover:bg-gray-100 hover:text-primary">
-                      Event
+                      Blog & Event
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/event" className="block px-4 py-2 hover:bg-gray-100 hover:text-primary">
+                      Exchange Points
                     </a>
                   </li>
                 </ul>
@@ -77,7 +82,7 @@ export default function NavbarComponent() {
             </li>
             <li>
               <a href="/blog" className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/blog" ? "text-primary" : ""}`}>
-                Blog
+                Contact
               </a>
             </li>
             <li>

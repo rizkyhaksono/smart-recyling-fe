@@ -1,6 +1,6 @@
 import { Table, TableCaption, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
 
-export default function EventPage() {
+export default function ServicesPage() {
   return (
     <>
       <TableContainer>
