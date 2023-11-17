@@ -11,6 +11,8 @@ import ReportPage from "./pages/services/report";
 import SignUpPage from "./pages/auth/sign_up";
 import ContactPage from "./pages/contact/page";
 import SignInPage from "./pages/auth/sign_in";
+import MobilePage from "./pages/services/mobile";
+import ExchangePage from "./pages/services/exchange";
 
 function App() {
   return (
@@ -21,7 +23,6 @@ function App() {
         <Route path="/" element={<HomePage />} index />
         <Route path="/home" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/blog_events" element={<BlogPage />} />
         <Route path="/contact" element={<ContactPage />} />
 
         {/* Auth */}
@@ -30,6 +31,9 @@ function App() {
 
         {/* Services */}
         <Route path="/report" element={<ReportPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/mobile" element={<MobilePage />} />
+        <Route path="/exchange" element={<ExchangePage />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFoundPage />} />

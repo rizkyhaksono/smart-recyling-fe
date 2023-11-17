@@ -68,7 +68,7 @@ export default function NavbarComponent() {
                     </a>
                   </li>
                   <li>
-                    <a href="/event" className="block px-4 py-2 hover:bg-gray-100 hover:text-primary">
+                    <a href="/blog" className="block px-4 py-2 hover:bg-gray-100 hover:text-primary">
                       Blog & Event
                     </a>
                   </li>

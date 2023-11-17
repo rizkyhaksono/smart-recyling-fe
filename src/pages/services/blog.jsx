@@ -34,6 +34,7 @@ const responsive = {
 export default function BlogPage() {
   return (
     <>
+      <NavbarComponent />
       <div className="mt-10 pt-20">
         <p className="font-extrabold text-6xl text-center text-primary">Blogs</p>
         <p className="font-normal text-center mt-5 text-gray-500 text-xl">Here at Smart Recycling a collection of the latest news from us.</p>
@@ -46,6 +47,7 @@ export default function BlogPage() {
           <CardBlog />
         </Carousel>
       </div>
+      <FooterComponent />
     </>
   );
 }
