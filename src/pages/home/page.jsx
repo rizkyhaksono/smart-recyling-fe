@@ -12,9 +12,9 @@ export default function HomePage() {
       <main className="min-h-screen">
         <NavbarComponent />
         <div className="container mx-auto my-10">
-          <div className="grid max-w-screen-xl mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-8 xl:pt-12">
+          <div className="grid max-w-screen-xl mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-8 xl:pt-24">
             <div className="lg:col-span-7 sm:pt-16 sm:text-center md:text-center lg:text-start xl:text-start pt-12 max-[640px]:px-12">
-              <div className="font-black text-textColor sm:text-5xl md:text-5xl lg:text-7xl xl:text-7xl text-5xl">Recycling Made Easier</div>
+              <div className="font-black text-primary sm:text-5xl md:text-5xl lg:text-7xl xl:text-7xl text-5xl">Recycling Made Easier</div>
 
               <div className="mt-8 text-textColor font-normal sm:text-lg md:text-xl lg:text-xl xl:text-xl xl:px-0 lg:px-0 md:px-0 sm:px-12">
                 Welcome to our website, a space where we encourage positive transformation by repurposing waste, contributing to the preservation of our planets green and sustainable future.
@@ -77,7 +77,7 @@ export default function HomePage() {
         <section>
           <div className="py-8 px-12 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
             <div className="flex flex-col justify-center">
-              <h1 className="mb-6 text-4xl font-extrabold tracking-tight leading-none text-textColor md:text-5xl lg:text-6xl">We help people dispose of rubbish</h1>
+              <h1 className="mb-6 text-4xl font-extrabold tracking-tight leading-none text-primary md:text-5xl lg:text-6xl">We help people dispose of rubbish</h1>
               <p className="mb-8 text-lg font-normal text-textColor lg:text-xl">
                 {
                   "At Smart Recycling, we`re dedicated to transforming the way you handle waste management, making it easier and more convenient for you to dispose of rubbish. Our innovative solutions are designed to simplify the process, ensuring a cleaner and more sustainable environment for all."
