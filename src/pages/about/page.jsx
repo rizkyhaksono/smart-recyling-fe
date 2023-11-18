@@ -10,31 +10,38 @@ import { Col, Row } from "antd";
 import { Card } from "antd";
 const { Meta } = Card;
 
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
 const items = [
   {
     key: "1",
-    label: "Apa itu daur ulang?",
-    children: <p>Daur ulang adalah proses mengumpulkan, memproses, dan mengubah material bekas menjadi produk baru untuk mengurangi dampak lingkungan. Praktik ini bertujuan untuk mengurangi limbah dan melestarikan sumber daya alam.</p>,
+    label: "Apa itu Smart Recycling?",
+    children: (
+      <p>{`Inovasi terdepan yang memberikan solusi berkelanjutan untuk keberlanjutan digital. Dengan memanfaatkan prinsip daur ulang, kami memberikan pengalaman online yang ramah lingkungan tanpa mengorbankan kualitas dan fungsionalitas.`}</p>
+    ),
   },
   {
     key: "2",
-    label: "This is panel header 2",
-    children: <p>{text}</p>,
+    label: "Bagaimana cara menukarkan points?",
+    children: <p>{`Anda dapat menukarkan pada halaman Services > Exchange Points.`}</p>,
   },
   {
     key: "3",
-    label: "This is panel header 3",
-    children: <p>{text}</p>,
+    label: "Apakah bisa membeli points menggunakan uang?",
+    children: <p>{`Anda hanya bisa mendapatkan points dengan cara membuang sampah menggunakan fasilitas kami.`}</p>,
+  },
+  {
+    key: "4",
+    label: "Apakah bisa membeli points menggunakan uang?",
+    children: <p>{`Anda hanya bisa mendapatkan points dengan cara membuang sampah menggunakan fasilitas kami.`}</p>,
+  },
+  {
+    key: "5",
+    label: "Apakah bisa membeli points menggunakan uang?",
+    children: <p>{`Anda hanya bisa mendapatkan points dengan cara membuang sampah menggunakan fasilitas kami.`}</p>,
   },
 ];
 
 const contentStyle = {
-  height: "160px",
+  height: "320px",
   color: "#fff",
   lineHeight: "160px",
   textAlign: "center",
@@ -57,18 +64,24 @@ export default function AboutPage() {
         <Col span={10}>
           <Carousel autoplay>
             <div>
-              <h3 style={contentStyle}>
+              <div style={contentStyle} className="flex items-center justify-center">
                 <img src="/illustration.png" alt="" style={contentStyle} />
-              </h3>
+              </div>
             </div>
             <div>
-              <h3 style={contentStyle}>2</h3>
+              <div style={contentStyle} className="flex items-center justify-center">
+                <img src="/illustration.png" alt="" style={contentStyle} />
+              </div>
             </div>
             <div>
-              <h3 style={contentStyle}>3</h3>
+              <div style={contentStyle} className="flex items-center justify-center">
+                <img src="/illustration.png" alt="" style={contentStyle} />
+              </div>
             </div>
             <div>
-              <h3 style={contentStyle}>4</h3>
+              <div style={contentStyle} className="flex items-center justify-center">
+                <img src="/illustration.png" alt="" style={contentStyle} />
+              </div>
             </div>
           </Carousel>
         </Col>
