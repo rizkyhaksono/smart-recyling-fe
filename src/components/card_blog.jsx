@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { Avatar, List, Space, Card } from "antd";
 import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
+import PropTypes from "prop-types";
 
 const data = Array.from({
   length: 23,
@@ -18,6 +20,11 @@ const IconText = ({ icon, text }) => (
     {text}
   </Space>
 );
+
+IconText.propTypes = {
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
+  text: PropTypes.string.isRequired,
+};
 
 export default function CardBlog() {
   return (
