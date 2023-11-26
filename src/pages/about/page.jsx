@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
 "use client";
 
-import React, { useState, useEffect } from "react";
 import NavbarComponent from "../../components/navbar_component";
 import FooterComponent from "../../components/footer_component";
 import { Carousel } from "antd";

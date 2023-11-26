@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
 "use client";
 
 import NavbarComponent from "../../components/navbar_component";
 import FooterComponent from "../../components/footer_component";
-import Marquee from "react-fast-marquee";
-import { Box, Heading, Highlight, Image } from "@chakra-ui/react";
+import MarqueLogo from "../../components/marque_logo";
 
 export default function HomePage() {
   return (
@@ -25,23 +23,7 @@ export default function HomePage() {
               <img src="/illustration.png" alt="Smart Recycling Logo" width={700} height={700} />
             </div>
           </div>
-          <Marquee className="mb-20 mx-auto" gradient={20} speed={40} play>
-            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
-            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
-            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
-            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
-            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
-            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
-            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
-            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
-            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
-            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
-            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
-            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
-            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
-            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
-            <img src="/vite.svg" alt="Smart Recycling Logo" width={150} height={150} className="mr-10" />
-          </Marquee>
+          <MarqueLogo />
         </div>
 
         <section className="bg-gray-50">

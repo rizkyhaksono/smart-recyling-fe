@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function SignInPage() {
   return (
     <>
@@ -8,13 +10,13 @@ export default function SignInPage() {
               <img src="/logo.png" alt="Logo" width={40} height={40} />
               <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-textColor md:text-5xl lg:text-6xl">Welcome Back!</h1>
             </div>
-            <p className="mb-6 text-lg font-normal text-gray-500 lg:text-xl">Let us sign you in</p>
-            <a href="/" className="text-textColor hover:underline font-medium text-lg inline-flex items-center">
+            <p className="mb-4 mt-2 text-lg font-normal text-gray-500 lg:text-xl">Let us sign you in</p>
+            <Link to={"/"} className="text-textColor hover:underline font-medium text-lg inline-flex items-center">
               Back to Home
               <svg className="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
               </svg>
-            </a>
+            </Link>
           </div>
           <div>
             <div className="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl">

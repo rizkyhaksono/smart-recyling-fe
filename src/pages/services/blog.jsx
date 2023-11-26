@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import NavbarComponent from "../../components/navbar_component";
 import FooterComponent from "../../components/footer_component";
 import CardBlog from "../../components/card_blog";
@@ -42,7 +41,6 @@ export default function BlogPage() {
           }}
           tabList={tabListNoTitle}
           activeTabKey={activeTabKey}
-          // tabBarExtraContent={<a href="#">More</a>}
           onTabChange={onTabChange}
           tabProps={{
             size: "middle",

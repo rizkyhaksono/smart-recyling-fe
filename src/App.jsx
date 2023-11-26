@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 "use client";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -19,7 +17,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* Menu */}
-
         <Route path="/" element={<HomePage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
