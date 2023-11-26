@@ -5,7 +5,7 @@ import Cookies from "universal-cookie";
 import { authApi } from "../../redux/api/authApi";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
-import { yupResolver } from "@hook"
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function SignInPage() {
   return (
