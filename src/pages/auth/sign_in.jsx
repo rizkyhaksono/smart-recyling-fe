@@ -3,13 +3,63 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useSigninMutation } from "../../redux/api/authApi";
 import { Link } from "react-router-dom";
-import { authApi } from "../../redux/api/authApi";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Cookies from "universal-cookie";
 import { setCredentials } from "../../redux/authSlice";
 
+const SigninSchema = Yup.object().shape({
+  email: Yup.string().required("Email is required"),
+  password: Yup.string().required("Password is required"),
+});
+
+const defaultValues = {
+  email: "",
+  password: "",
+};
+
+const cookies = new Cookies();
+
 export default function SignInPage() {
+  const [signinMutation] = useSigninMutation();
+  const [buttonLoading, setButtonLoading] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const methods = useForm({
+    resolver: yupResolver(SigninSchema),
+    defaultValues,
+  });
+
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = methods;
+
+  const onSubmit = async (data) => {
+    setButtonLoading(true);
+    signinMutation({ data })
+      .unwrap()
+      .then((res) => {
+        dispatch(
+          setCredentials({
+            ACCESS_TOKEN: res.access_token,
+            REFRESH_TOKEN: res.refresh_token,
+          })
+        );
+        cookies.set("ACCESS-TOKEN", res.access_token, {
+          path: "/",
+        });
+        cookies.set("REFRESH-TOKEN", res.refresh_token, {
+          path: "/",
+        });
+        window.location.href = "/";
+      })
+      .finally(() => {
+        setButtonLoading(false);
+      });
+  };
+
   return (
     <>
       <div className="min-h-screen flex items-center justify-center">

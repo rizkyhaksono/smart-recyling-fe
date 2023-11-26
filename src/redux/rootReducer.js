@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
-import authReducer from "./authSlices";
+import authReducer from "./authSlice.js";
 import { baseApi } from "./axiosBaseQuery";
 
 export const createNoopStorage = () => ({
