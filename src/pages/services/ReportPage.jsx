@@ -1,7 +1,7 @@
 "use client";
 
-import NavbarComponent from "../../components/navbar_component";
-import FooterComponent from "../../components/footer_component";
+import NavbarComponent from "../../components/NavbarComponent";
+import FooterComponent from "../../components/FooterComponent";
 
 export default function ReportPage() {
   return (

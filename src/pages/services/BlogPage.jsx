@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import NavbarComponent from "../../components/navbar_component";
-import FooterComponent from "../../components/footer_component";
-import CardBlog from "../../components/card_blog";
+import NavbarComponent from "../../components/NavbarComponent";
+import FooterComponent from "../../components/FooterComponent";
+import CardBlog from "../../components/CardBlog";
 import { Card } from "antd";
 
 const tabListNoTitle = [

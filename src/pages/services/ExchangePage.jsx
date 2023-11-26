@@ -1,9 +1,9 @@
 "use client";
 
-import NavbarComponent from "../../components/navbar_component";
-import FooterComponent from "../../components/footer_component";
+import NavbarComponent from "../../components/NavbarComponent";
+import FooterComponent from "../../components/FooterComponent";
 import { Col, Row } from "antd";
-import CardExchange from "../../components/card_exchange";
+import CardExchange from "../../components/CardExchange";
 
 export default function ExchangePage() {
   return (

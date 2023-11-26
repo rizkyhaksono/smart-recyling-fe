@@ -1,8 +1,8 @@
 "use client";
 
-import NavbarComponent from "../../components/navbar_component";
-import FooterComponent from "../../components/footer_component";
-import MarqueLogo from "../../components/marque_logo";
+import NavbarComponent from "../../components/NavbarComponent";
+import FooterComponent from "../../components/FooterComponent";
+import MarqueLogo from "../../components/MarqueeLogo";
 
 export default function HomePage() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
-import NavbarComponent from "../../components/navbar_component";
-import FooterComponent from "../../components/footer_component";
+import NavbarComponent from "../../components/NavbarComponent";
+import FooterComponent from "../../components/FooterComponent";
 import { Carousel, Collapse, Col, Row, Card } from "antd";
 const { Meta } = Card;
 

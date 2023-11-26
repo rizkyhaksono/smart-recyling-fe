@@ -1,16 +1,16 @@
 "use client";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/home/page";
-import NotFoundPage from "./pages/not_found";
-import AboutPage from "./pages/about/page";
-import BlogPage from "./pages/services/blog";
-import ReportPage from "./pages/services/report";
-import SignUpPage from "./pages/auth/sign_up";
-import ContactPage from "./pages/contact/page";
-import SignInPage from "./pages/auth/sign_in";
-import MobilePage from "./pages/services/mobile";
-import ExchangePage from "./pages/services/exchange";
+import HomePage from "./pages/home/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
+import AboutPage from "./pages/about/AboutPage";
+import BlogPage from "./pages/services/BlogPage";
+import ReportPage from "./pages/services/ReportPage";
+import SignUpPage from "./pages/auth/SignUpPage";
+import ContactPage from "./pages/contact/ContactPage";
+import SignInPage from "./pages/auth/SignInPage";
+import MobilePage from "./pages/services/MobilePage";
+import ExchangePage from "./pages/services/ExchangePage";
 
 function App() {
   return (
