@@ -8,7 +8,7 @@ export default function SignUpPage() {
           <div className="flex flex-col justify-center">
             <div className="flex flex-row gap-5 items-center">
               <img src="/logo.png" alt="Logo" width={40} height={40} />
-              <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-textColor md:text-5xl lg:text-6xl">Welcome</h1>
+              <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-textColor md:text-5xl lg:text-6xl">Join Us!</h1>
             </div>
             <p className="mb-4 mt-2 text-lg font-normal text-gray-500 lg:text-xl">Please register your account first</p>
             <Link to={"/"} className="text-textColor hover:underline font-medium text-lg inline-flex items-center">
