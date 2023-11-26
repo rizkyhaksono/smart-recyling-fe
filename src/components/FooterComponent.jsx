@@ -50,7 +50,7 @@ export default function FooterComponent() {
             </div>
           </div>
           <hr className="rounded xl:pt-12 lg:pt-10 md:pt-8 sm:pt-8 pt-8"></hr>
-          <div className="w-full sm:flex sm:items-center sm:justify-between">
+          <div className="w-full sm:flex sm:items-center sm:justify-between sm:mb-20 md:mb-0 lg-mb-0 xl:mb-0 max-[640px]:mb-20">
             <Footer.Copyright by="Smart Recycling™" href="https://github.com/Smart-Recycling" year={2023} style={{ color: "white" }} />
             <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
               <Footer.Icon className="text-white" href="https://facebook.com" icon={BsFacebook} />
