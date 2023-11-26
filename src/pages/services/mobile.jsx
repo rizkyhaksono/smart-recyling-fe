@@ -12,18 +12,17 @@ export default function MobilePage() {
       <NavbarComponent />
       <Row className="container mx-auto mt-20 mb-10" align="middle" justify={"center"}>
         <Col span={14}>
-          <div className="font-extrabold text-6xl text-primary">Integrated Apps System</div>
-          <div className="font-normal text-xl text-textColor mt-10">
+          <div className="font-extrabold text-primary xl:text-start lg:text-start md:text-start sm:text-center max-[640px]:text-center xl:text-5xl lg:text-3xl md:text-3xl sm:text-5xl max-[640px]:text-4xl">Integrated Apps System</div>
+          <div className="font-normal xl:text-xl lg:text-xl md:text-xl sm:text-base max-[640px]:text-base text-textColor mt-10">
             The Smart Recycling app is designed to offer practical and innovative solutions for promoting a sustainable environment. A User-friendly interface and a wide range of services make waste management easy and convenient. Users can
             actively participate in waste reduction and proper disposal efforts, leading to a healthier and sustainable environment.
           </div>
-          <div className="my-5">
-            <Link to={"#"}>
-              <button className="flex gap-2 justify-center items-center rounded-full bg-primary pl-4 pr-4 pt-2 pb-2 text-white font-medium text-base hover:bg-green-500">
-                PlayStore <BsAndroid size={20} />
-              </button>
-            </Link>
-          </div>
+
+          <Link to={"#"}>
+            <button className="my-5 flex gap-2 justify-center items-center rounded-full bg-primary pl-4 pr-4 pt-2 pb-2 text-white font-medium text-base hover:bg-green-500">
+              PlayStore <BsAndroid size={20} />
+            </button>
+          </Link>
         </Col>
         <div span={12}>
           <img src="/mobile.png" />

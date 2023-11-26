@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useSigninMutation } from "../../redux/api/authApi";
-import Cookies from "universal-cookie";
-import { authApi } from "../../redux/api/authApi";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { useSigninMutation } from "../../redux/api/authApi";
+import { Link } from "react-router-dom";
+import { authApi } from "../../redux/api/authApi";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Cookies from "universal-cookie";
+import { setCredentials } from "../../redux/authSlice";
 
 export default function SignInPage() {
   return (

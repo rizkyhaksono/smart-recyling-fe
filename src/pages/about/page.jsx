@@ -2,10 +2,7 @@
 
 import NavbarComponent from "../../components/navbar_component";
 import FooterComponent from "../../components/footer_component";
-import { Carousel } from "antd";
-import { Collapse } from "antd";
-import { Col, Row } from "antd";
-import { Card } from "antd";
+import { Carousel, Collapse, Col, Row, Card } from "antd";
 const { Meta } = Card;
 
 const items = [
@@ -43,7 +40,7 @@ const contentStyle = {
   color: "#fff",
   lineHeight: "160px",
   textAlign: "center",
-  background: "#808080",
+  background: "#F3F3F3",
 };
 
 export default function AboutPage() {
@@ -60,7 +57,7 @@ export default function AboutPage() {
 
       <Row justify={"center"} className="container mx-auto my-5 gap-5">
         <Col span={10}>
-          <Carousel autoplay>
+          <Carousel autoplay dotPosition="left" dots easing="linear" autoplaySpeed={3000}>
             <div>
               <div style={contentStyle} className="flex items-center justify-center">
                 <img src="/illustration.png" alt="" style={contentStyle} />
@@ -97,7 +94,7 @@ export default function AboutPage() {
           <Card
             hoverable
             style={{
-              width: 240,
+              width: "auto",
             }}
             cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
           >
@@ -108,7 +105,7 @@ export default function AboutPage() {
           <Card
             hoverable
             style={{
-              width: 240,
+              width: "auto",
             }}
             cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
           >
@@ -119,7 +116,7 @@ export default function AboutPage() {
           <Card
             hoverable
             style={{
-              width: 240,
+              width: "auto",
             }}
             cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
           >
@@ -130,7 +127,7 @@ export default function AboutPage() {
           <Card
             hoverable
             style={{
-              width: 240,
+              width: "auto",
             }}
             cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
           >
@@ -141,7 +138,7 @@ export default function AboutPage() {
           <Card
             hoverable
             style={{
-              width: 240,
+              width: "auto",
             }}
             cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
           >
@@ -159,7 +156,7 @@ export default function AboutPage() {
           <Card
             hoverable
             style={{
-              width: 240,
+              width: "auto",
             }}
             cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
           >
@@ -170,7 +167,7 @@ export default function AboutPage() {
           <Card
             hoverable
             style={{
-              width: 240,
+              width: "auto",
             }}
             cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
           >
@@ -181,7 +178,7 @@ export default function AboutPage() {
           <Card
             hoverable
             style={{
-              width: 240,
+              width: "auto",
             }}
             cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
           >
@@ -192,7 +189,7 @@ export default function AboutPage() {
           <Card
             hoverable
             style={{
-              width: 240,
+              width: "auto",
             }}
             cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
           >
@@ -203,7 +200,7 @@ export default function AboutPage() {
           <Card
             hoverable
             style={{
-              width: 240,
+              width: "auto",
             }}
             cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
           >
