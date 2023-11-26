@@ -1,4 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSigninMutation } from "../../redux/api/authApi";
+import Cookies from "universal-cookie";
+import { authApi } from "../../redux/api/authApi";
+import { useForm } from "react-hook-form";
 
 export default function SignInPage() {
   return (
@@ -21,7 +26,7 @@ export default function SignInPage() {
           <div>
             <div className="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl">
               <h2 className="text-2xl font-bold text-textColor">Sign In to Your Account</h2>
-              <form className="mt-8 space-y-6" action="#">
+              <form className="mt-8 space-y-6">
                 <div>
                   <label htmlFor="email" className="block mb-2 text-sm font-medium text-textColor">
                     Your email

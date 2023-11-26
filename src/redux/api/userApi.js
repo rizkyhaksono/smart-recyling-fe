@@ -14,3 +14,5 @@ export const userApi = baseApi.enhanceEndpoints({}).injectEndpoints({
     };
   },
 });
+
+export const { useGetUserQuery } = userApi;

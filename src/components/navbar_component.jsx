@@ -1,7 +1,28 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { HomeOutlined, PhoneOutlined, AppstoreOutlined, TeamOutlined } from "@ant-design/icons";
+import { Dropdown } from "antd";
+
+const items = [
+  {
+    key: "1",
+    label: <Link to={"/report"}>Report Trash</Link>,
+  },
+  {
+    key: "2",
+    label: <Link to={"/mobile"}>Mobile App</Link>,
+  },
+  {
+    key: "3",
+    label: <Link to={"/blog"}>Blog & Event</Link>,
+  },
+  {
+    key: "4",
+    label: <Link to={"/exchange"}>Exchange Points</Link>,
+  },
+];
 
 export default function NavbarComponent() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -103,12 +124,29 @@ export default function NavbarComponent() {
         </div>
       </div>
       {isMobileView && (
-        <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-300">
-          <div className="p-5">
-            <a href="/" className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/" ? "text-primary" : ""}`} aria-current="page">
-              Home
-            </a>
+        <div className="fixed bottom-0 left-0 w-full flex justify-between pt-2 pb-2 pl-6 pr-6 bg-white border-t border-gray-300">
+          <Link to={"/"} className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/" ? "text-primary" : ""}`}>
+            <HomeOutlined style={{ fontSize: "24px", color: "#00AF5C" }} />
+          </Link>
+          <div className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/" ? "text-primary" : ""}`}>
+            <Dropdown
+              menu={{
+                items,
+              }}
+              placement="top"
+              arrow={{
+                pointAtCenter: true,
+              }}
+            >
+              <AppstoreOutlined style={{ fontSize: "24px", color: "#00AF5C" }} />
+            </Dropdown>
           </div>
+          <Link to={"/contact"} className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/" ? "text-primary" : ""}`}>
+            <PhoneOutlined style={{ fontSize: "24px", color: "#00AF5C" }} />
+          </Link>
+          <Link to={"/about"} className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/" ? "text-primary" : ""}`}>
+            <TeamOutlined style={{ fontSize: "24px", color: "#00AF5C" }} />
+          </Link>
         </div>
       )}
     </nav>
