@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 
 export default function SignUpPage() {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <>
       <div className="min-h-screen flex items-center justify-center">
@@ -20,7 +24,7 @@ export default function SignUpPage() {
           </div>
           <div>
             <div className="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl">
-              <h2 className="text-2xl font-bold text-textColor">Create your Account</h2>
+              <h2 className="text-2xl font-bold text-textColor">Create Your Account</h2>
               <form className="mt-8 space-y-6" action="#">
                 <div>
                   <label htmlFor="email" className="block mb-2 text-sm font-medium text-textColor">
@@ -32,28 +36,20 @@ export default function SignUpPage() {
                   <label htmlFor="password" className="block mb-2 text-sm font-medium text-textColor">
                     Your password
                   </label>
-                  <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-textColor text-sm rounded-lg block w-full p-2.5" required />
-                </div>
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input id="remember" aria-describedby="remember" name="remember" type="checkbox" className="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3" required />
+                  <div className="relative">
+                    <input type={showPassword ? "text" : "password"} name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-textColor text-sm rounded-lg pr-10 block w-full p-2.5" required />
+                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 px-3 pb-2 cursor-pointer text-textColor">
+                      {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+                    </button>
                   </div>
-                  <div className="ml-3 text-sm">
-                    <label htmlFor="remember" className="font-medium text-gray-500">
-                      Remember this device
-                    </label>
-                  </div>
-                  <a href="#" className="ml-auto text-sm font-medium text-primary hover:underline">
-                    Forgot Password?
-                  </a>
                 </div>
-                <button type="submit" className="w-full px-5 py-3 text-base font-medium text-center bg-primary hover:bg-secondary text-white bg-backgroundAbout rounded-lg focus:ring-4 focus:ring-blue-300 sm:w-auto">
+                <button type="submit" className="w-full px-5 py-3 text-base font-medium text-center bg-primary hover:bg-green-700 text-white rounded-lg">
                   Sign Up your account
                 </button>
                 <div className="text-sm font-medium text-gray-900">
                   Already have account?{" "}
                   <a className="text-primary hover:underline" href="/signin">
-                    Log in account
+                    Sign in account
                   </a>
                 </div>
               </form>

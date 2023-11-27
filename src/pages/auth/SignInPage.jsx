@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Cookies from "universal-cookie";
 import { setCredentials } from "../../redux/authSlice";
 import RHFProvider from "../../components/hook-form/RHFProvider";
+import RHFTextField from "../../components/hook-form/RHFTextField";
 
 const SigninSchema = Yup.object().shape({
   email: Yup.string().required("Email is required"),
@@ -32,33 +33,31 @@ export default function SignInPage() {
     defaultValues,
   });
 
-  const {
-    handleSubmit,
-    formState: { errors },
-  } = methods;
+  const { handleSubmit } = methods;
 
   const onSubmit = async (data) => {
+    console.log(data);
     setButtonLoading(true);
-    signinMutation({ data })
-      .unwrap()
-      .then((res) => {
-        dispatch(
-          setCredentials({
-            ACCESS_TOKEN: res.access_token,
-            REFRESH_TOKEN: res.refresh_token,
-          })
-        );
-        cookies.set("access_token", res.access_token, {
-          path: "/",
-        });
-        cookies.set("refresh_token", res.refresh_token, {
-          path: "/",
-        });
-        window.location.href = "/";
-      })
-      .finally(() => {
-        setButtonLoading(false);
+    try {
+      const res = await signinMutation({ data }).unwrap();
+      dispatch(
+        setCredentials({
+          ACCESS_TOKEN: res.access_token,
+          REFRESH_TOKEN: res.refresh_token,
+        })
+      );
+      cookies.set("access_token", res.access_token, {
+        path: "/",
       });
+      cookies.set("refresh_token", res.refresh_token, {
+        path: "/",
+      });
+      window.location.href = "/";
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setButtonLoading(false);
+    }
   };
 
   return (
@@ -80,35 +79,12 @@ export default function SignInPage() {
           </div>
           <div>
             <div className="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl">
-              <h2 className="text-2xl font-bold text-textColor">Sign In to Your Account</h2>
-              <RHFProvider>
-                <div>
-                  <label htmlFor="email" className="block mb-2 text-sm font-medium text-textColor">
-                    Your email
-                  </label>
-                  <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-textColor text-sm rounded-lg-blue-500 block w-full p-2.5" placeholder="name@gmail.com" required />
-                </div>
-                <div>
-                  <label htmlFor="password" className="block mb-2 text-sm font-medium text-textColor">
-                    Your password
-                  </label>
-                  <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-textColor text-sm rounded-lg block w-full p-2.5" required />
-                </div>
-                {/* <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input id="remember" aria-describedby="remember" name="remember" type="checkbox" className="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3" required />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label htmlFor="remember" className="font-medium text-gray-500">
-                      Remember this device
-                    </label>
-                  </div>
-                  <a href="#" className="ml-auto text-sm font-medium text-primary hover:underline">
-                    Forgot Password?
-                  </a>
-                </div> */}
-                <button type="submit" className="w-full px-5 py-3 text-base font-medium text-center bg-primary hover:bg-text-green-700 text-white bg-backgroundAbout rounded-lg focus:ring-4 focus:ring-blue-300 sm:w-auto">
-                  Sign in your account
+              <h2 className="text-2xl font-bold text-textColor">Sign In Your Account</h2>
+              <RHFProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+                <RHFTextField name="email" label="Your email" type="email" helperText="name@gmail.com" />
+                <RHFTextField name="password" label="Your password" type="password" helperText="••••••••" />
+                <button type="submit" className="w-full px-5 py-3 text-base font-medium text-center bg-primary hover:bg-green-700 text-white rounded-lg" disabled={buttonLoading}>
+                  {buttonLoading ? "Signing In..." : "Sign in your account"}
                 </button>
                 <div className="text-sm font-medium text-gray-900">
                   {`Don't have account? `}

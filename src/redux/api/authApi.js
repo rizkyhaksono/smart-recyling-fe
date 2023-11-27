@@ -9,7 +9,7 @@ export const authApi = baseApi.enhanceEndpoints({}).injectEndpoints({
           method: "POST",
           body: {
             email: data.email,
-            passowrd: data.passowrd,
+            password: data.password,
           },
         }),
       }),
