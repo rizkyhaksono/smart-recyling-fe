@@ -15,6 +15,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 import SignInPage from "./pages/public/auth/SignInPage";
 import SignUpPage from "./pages/public/auth/SignUpPage";
 import DashboardAdminPage from "./pages/admin/dashboard/DashboardAdminPage";
+import DashboardUserPage from "./pages/user/dashboard/DashboardUserPage";
+import { Navigate } from "react-router-dom";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,6 +29,10 @@ function App() {
     }
   }, []);
 
+  const PrivateRoute = ({ element, path }) => {
+    return isLoggedIn ? element : <Navigate to="/signin" />;
+  };
+
   return (
     <BrowserRouter>
       <Routes>
@@ -37,13 +43,17 @@ function App() {
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
 
-        <Route path="/report" element={<ReportPage />} />
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/mobile" element={<MobilePage />} />
-        <Route path="/exchange" element={<ExchangePage />} />
+        {/* Use PrivateRoute for routes that require authentication */}
+        <Route path="/report" element={<PrivateRoute element={<ReportPage />} />} />
+        <Route path="/blog" element={<PrivateRoute element={<BlogPage />} />} />
+        <Route path="/mobile" element={<PrivateRoute element={<MobilePage />} />} />
+        <Route path="/exchange" element={<PrivateRoute element={<ExchangePage />} />} />
 
-        <Route path="/admin/dashboard" element={<DashboardAdminPage />} />
+        {/* Admin dashboard only accessible if logged in */}
+        <Route path="/admin/dashboard" element={<PrivateRoute element={<DashboardAdminPage />} />} />
 
+        {/* User dashboard only accessible if logged in */}
+        <Route path="/dashboard" element={<PrivateRoute element={<DashboardUserPage />} />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
