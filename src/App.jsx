@@ -14,6 +14,7 @@ import ReportPage from "./pages/public/services/ReportPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import SignInPage from "./pages/public/auth/SignInPage";
 import SignUpPage from "./pages/public/auth/SignUpPage";
+import DashboardAdminPage from "./pages/admin/dashboard/DashboardAdminPage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,7 +30,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
 
@@ -40,6 +41,8 @@ function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/mobile" element={<MobilePage />} />
         <Route path="/exchange" element={<ExchangePage />} />
+
+        <Route path="/admin/dashboard" element={<DashboardAdminPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

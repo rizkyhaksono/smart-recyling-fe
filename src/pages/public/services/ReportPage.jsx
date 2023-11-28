@@ -11,7 +11,7 @@ export default function ReportPage() {
         <p className="font-extrabold text-6xl text-center text-primary">Report Trash</p>
         <p className="font-normal text-center mt-5 text-gray-500 text-xl">Report trash in the area around you</p>
       </div>
-      <div className="container mx-auto max-[640px]:my-5 sm:my-5 md:my-5 lg:my-5 xl:my-5">
+      <div className="container mx-auto max-[640px]:my-10 sm:my-10 md:my-10 lg:my-10 xl:my-10">
         <div className="max-w-screen-xl px-4 mx-auto">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63824.949709079265!2d104.0606994!3d1.1175794499999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d988dc34cd0ecb%3A0xe373ee32cae6412!2sBatam%20Kota%2C%20Batam%20City%2C%20Riau%20Islands!5e0!3m2!1sen!2sid!4v1696926080530!5m2!1sen!2sid"

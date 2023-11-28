@@ -1,9 +1,48 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useSignupMutation } from "../../../redux/api/authApi";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import RHFProvider from "../../../components/hook-form/RHFProvider";
+import RHFTextField from "../../../components/hook-form/RHFTextField";
 import { Link } from "react-router-dom";
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
+// import { useRedirect } from "react-router-dom";
+
+const SignupSchema = Yup.object().shape({
+  name: Yup.string().required("Nama diperlukan"),
+  email: Yup.string().required("Email diperlukan"),
+  password: Yup.string().required("Password diperlukan"),
+});
+
+const defaultValues = {
+  name: "",
+  email: "",
+  password: "",
+};
 
 export default function SignUpPage() {
+  const [signupMutation] = useSignupMutation();
   const [showPassword, setShowPassword] = useState(false);
+  // const redirect = useRedirect();
+
+  const methods = useForm({
+    resolver: yupResolver(SignupSchema),
+    defaultValues,
+  });
+
+  const { handleSubmit } = methods;
+
+  // const onSubmit = async (data) => {
+  //   setButtonLoading(true);
+  //   signupMutation({ data })
+  //     .then(() => {
+  //       navigate("/auth/signin");
+  //     })
+  //     .finally(() => {
+  //       setButtonLoading(false);
+  //     });
+  // };
 
   return (
     <>

@@ -6,11 +6,11 @@ export default function ContactPage() {
   return (
     <>
       <NavbarComponent />
-      <div className="mt-10 pt-20">
+      <div className="mt-10 pt-20 px-10">
         <p className="font-extrabold text-6xl text-center text-primary">Contact Us</p>
         <p className="font-normal text-center mt-5 text-gray-500 text-xl">Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>
       </div>
-      <section className="">
+      <section className="px-5">
         <div className="py-8 px-4 mx-auto max-w-screen-xl">
           <form action="#" className="space-y-8">
             <div>
