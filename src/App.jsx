@@ -1,38 +1,46 @@
 "use client";
 
+import Cookies from "universal-cookie";
+import { useEffect, useState } from "react";
+import { useGetUserQuery } from "./redux/api/userApi";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/home/HomePage";
+import HomePage from "./pages/public/home/HomePage";
+import ContactPage from "./pages/public/contact/ContactPage";
+import AboutPage from "./pages/public/about/AboutPage";
+import BlogPage from "./pages/public/services/BlogPage";
+import ExchangePage from "./pages/public/services/ExchangePage";
+import MobilePage from "./pages/public/services/MobilePage";
+import ReportPage from "./pages/public/services/ReportPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import AboutPage from "./pages/about/AboutPage";
-import BlogPage from "./pages/services/BlogPage";
-import ReportPage from "./pages/services/ReportPage";
-import SignUpPage from "./pages/auth/SignUpPage";
-import ContactPage from "./pages/contact/ContactPage";
-import SignInPage from "./pages/auth/SignInPage";
-import MobilePage from "./pages/services/MobilePage";
-import ExchangePage from "./pages/services/ExchangePage";
+import SignInPage from "./pages/public/auth/SignInPage";
+import SignUpPage from "./pages/public/auth/SignUpPage";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { data: userData, isSuccess: userSuccess } = useGetUserQuery();
+  const cookies = new Cookies();
+
+  useEffect(() => {
+    if (cookies.get("ACCESS_TOKEN") && cookies.get("REFRESH_TOKEN")) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
-        {/* Menu */}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route index path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
 
-        {/* Auth */}
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
 
-        {/* Services */}
         <Route path="/report" element={<ReportPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/mobile" element={<MobilePage />} />
         <Route path="/exchange" element={<ExchangePage />} />
 
-        {/* 404 */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

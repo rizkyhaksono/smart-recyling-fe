@@ -1,8 +1,8 @@
 "use client";
 
-import NavbarComponent from "../../components/NavbarComponent";
-import FooterComponent from "../../components/FooterComponent";
-import MarqueLogo from "../../components/MarqueeLogo";
+import NavbarComponent from "../../../components/NavbarComponent";
+import FooterComponent from "../../../components/FooterComponent";
+import MarqueLogo from "../../../components/MarqueeLogo";
 
 export default function HomePage() {
   return (
@@ -13,13 +13,12 @@ export default function HomePage() {
           <div className="grid max-w-screen-xl mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-8 xl:pt-24">
             <div className="lg:col-span-7 sm:pt-16 sm:text-center md:text-center lg:text-start xl:text-start pt-12 max-[640px]:px-12">
               <div className="font-black text-primary sm:text-5xl md:text-5xl lg:text-7xl xl:text-7xl text-5xl max-[640px]:text-center">Recycling Made Easier</div>
-
               <div className="mt-8 text-textColor font-normal sm:text-xl md:text-xl lg:text-xl xl:text-xl xl:px-0 lg:px-0 md:px-0 sm:px-12 max-[640px]:text-center max-[640px]:text-xl">
                 Welcome to our website, a space where we encourage positive transformation by repurposing waste, contributing to the preservation of our planets green and sustainable future.
               </div>
             </div>
 
-            <div className="md:my-12 sm:mx-12 sm:my-12 md:mx-12 lg:mx-12 xl:mx-12 lg:mt-0 lg:col-span-5 max-[640px]:px-12 max-[640px]:pb-8">
+            <div className="flex justify-center items-center justify-items-center justify-self-center md:my-12 sm:mx-12 sm:my-12 md:mx-12 lg:mx-12 xl:mx-12 lg:mt-0 lg:col-span-5 max-[640px]:px-12 max-[640px]:pb-8">
               <img src="/illustration.png" alt="Smart Recycling Logo" width={700} height={700} />
             </div>
           </div>

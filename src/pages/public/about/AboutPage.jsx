@@ -1,12 +1,11 @@
 "use client";
 
-import NavbarComponent from "../../components/NavbarComponent";
-import FooterComponent from "../../components/FooterComponent";
+import NavbarComponent from "../../../components/NavbarComponent";
+import FooterComponent from "../../../components/FooterComponent";
 import { Collapse } from "antd";
-import { Carousel } from "flowbite-react";
 import ScrollCarousel from "scroll-carousel-react";
-import CardTeamWeb from "../../components/CardTeanWeb";
-import CardTeamMobile from "../../components/CardTeamMobile";
+import CardTeamWeb from "../../../components/CardTeanWeb";
+import CardTeamMobile from "../../../components/CardTeamMobile";
 
 const items = [
   {

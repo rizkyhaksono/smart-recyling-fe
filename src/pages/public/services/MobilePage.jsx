@@ -1,7 +1,7 @@
 "use client";
 
-import NavbarComponent from "../../components/NavbarComponent";
-import FooterComponent from "../../components/FooterComponent";
+import NavbarComponent from "../../../components/NavbarComponent";
+import FooterComponent from "../../../components/FooterComponent";
 import { Col, Row } from "antd";
 import { BsAndroid } from "react-icons/bs";
 import { Link } from "react-router-dom";
