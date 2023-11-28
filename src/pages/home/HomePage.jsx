@@ -14,7 +14,7 @@ export default function HomePage() {
             <div className="lg:col-span-7 sm:pt-16 sm:text-center md:text-center lg:text-start xl:text-start pt-12 max-[640px]:px-12">
               <div className="font-black text-primary sm:text-5xl md:text-5xl lg:text-7xl xl:text-7xl text-5xl max-[640px]:text-center">Recycling Made Easier</div>
 
-              <div className="mt-8 text-textColor font-normal sm:text-lg md:text-xl lg:text-xl xl:text-xl xl:px-0 lg:px-0 md:px-0 sm:px-12 max-[640px]:text-center max-[640px]:text-xl">
+              <div className="mt-8 text-textColor font-normal sm:text-xl md:text-xl lg:text-xl xl:text-xl xl:px-0 lg:px-0 md:px-0 sm:px-12 max-[640px]:text-center max-[640px]:text-xl">
                 Welcome to our website, a space where we encourage positive transformation by repurposing waste, contributing to the preservation of our planets green and sustainable future.
               </div>
             </div>

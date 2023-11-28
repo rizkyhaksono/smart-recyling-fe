@@ -11,7 +11,7 @@ export default function ContactPage() {
         <p className="font-normal text-center mt-5 text-gray-500 text-xl">Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>
       </div>
       <section className="">
-        <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-xl">
+        <div className="py-8 px-4 mx-auto max-w-screen-xl">
           <form action="#" className="space-y-8">
             <div>
               <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">

@@ -2,8 +2,11 @@
 
 import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
-import { Carousel, Collapse, Col, Row, Card } from "antd";
-const { Meta } = Card;
+import { Collapse } from "antd";
+import { Carousel } from "flowbite-react";
+import ScrollCarousel from "scroll-carousel-react";
+import CardTeamWeb from "../../components/CardTeanWeb";
+import CardTeamMobile from "../../components/CardTeamMobile";
 
 const items = [
   {
@@ -35,14 +38,6 @@ const items = [
   },
 ];
 
-const contentStyle = {
-  height: "320px",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  background: "#F3F3F3",
-};
-
 export default function AboutPage() {
   return (
     <>
@@ -55,159 +50,29 @@ export default function AboutPage() {
         </p>
       </div>
 
-      <Row justify={"center"} className="container mx-auto my-5 gap-5">
-        <Col span={10}>
-          <Carousel autoplay dotPosition="left" dots easing="linear" autoplaySpeed={3000}>
-            <div>
-              <div style={contentStyle} className="flex items-center justify-center">
-                <img src="/illustration.png" alt="" style={contentStyle} />
-              </div>
-            </div>
-            <div>
-              <div style={contentStyle} className="flex items-center justify-center">
-                <img src="/illustration.png" alt="" style={contentStyle} />
-              </div>
-            </div>
-            <div>
-              <div style={contentStyle} className="flex items-center justify-center">
-                <img src="/illustration.png" alt="" style={contentStyle} />
-              </div>
-            </div>
-            <div>
-              <div style={contentStyle} className="flex items-center justify-center">
-                <img src="/illustration.png" alt="" style={contentStyle} />
-              </div>
-            </div>
-          </Carousel>
-        </Col>
-        <Col span={10}>
-          <Collapse accordion items={items} className="font-normal text-textColor text-lg" />
-        </Col>
-      </Row>
+      <ScrollCarousel autoplay autoplaySpeed={1} speed={7} className="container mx-auto pt-5">
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((item) => (
+          <div key={item} className="bg-green-300/20 border-2 border-green-300/70 rounded">
+            {/* {item} */}
+            <img src="/illustration.png" alt="Carousel" />
+          </div>
+        ))}
+      </ScrollCarousel>
 
-      <div className="container mx-auto flex justify-center mt-10">
-        <p className="font-semibold text-4xl text-center text-primary">Our Website Team</p>
+      <div className="container mx-auto px-5 my-5">
+        <p className="font-bold text-4xl text-center text-textColor pb-5">Frequently Asked Questions</p>
+        <Collapse accordion items={items} className="font-normal text-textColor text-lg" />
       </div>
 
-      <Row justify={"center"} className="container mx-auto mt-5 mb-5">
-        <Col span={4}>
-          <Card
-            hoverable
-            style={{
-              width: "auto",
-            }}
-            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-          >
-            <Meta title="Europe Street beat" description="Rizky Haksono" />
-          </Card>
-        </Col>
-        <Col span={4}>
-          <Card
-            hoverable
-            style={{
-              width: "auto",
-            }}
-            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-          >
-            <Meta title="Europe Street beat" description="Rizky Haksono" />
-          </Card>
-        </Col>
-        <Col span={4}>
-          <Card
-            hoverable
-            style={{
-              width: "auto",
-            }}
-            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-          >
-            <Meta title="Europe Street beat" description="Rizky Haksono" />
-          </Card>
-        </Col>
-        <Col span={4}>
-          <Card
-            hoverable
-            style={{
-              width: "auto",
-            }}
-            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-          >
-            <Meta title="Europe Street beat" description="Rizky Haksono" />
-          </Card>
-        </Col>
-        <Col span={4}>
-          <Card
-            hoverable
-            style={{
-              width: "auto",
-            }}
-            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-          >
-            <Meta title="Europe Street beat" description="Rizky Haksono" />
-          </Card>
-        </Col>
-      </Row>
+      <div className="container mx-auto flex justify-center mt-10">
+        <p className="font-bold text-4xl text-center text-textColor">Our Website Team</p>
+      </div>
+      <CardTeamWeb />
 
       <div className="container mx-auto flex justify-center mt-10">
-        <p className="font-semibold text-4xl text-center text-primary">Our Mobile Team</p>
+        <p className="font-bold text-4xl text-center text-textColor">Our Mobile Team</p>
       </div>
-
-      <Row justify={"center"} className="container mx-auto mt-5 mb-5">
-        <Col span={4}>
-          <Card
-            hoverable
-            style={{
-              width: "auto",
-            }}
-            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-          >
-            <Meta title="Europe Street beat" description="Rizky Haksono" />
-          </Card>
-        </Col>
-        <Col span={4}>
-          <Card
-            hoverable
-            style={{
-              width: "auto",
-            }}
-            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-          >
-            <Meta title="Europe Street beat" description="Rizky Haksono" />
-          </Card>
-        </Col>
-        <Col span={4}>
-          <Card
-            hoverable
-            style={{
-              width: "auto",
-            }}
-            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-          >
-            <Meta title="Europe Street beat" description="Rizky Haksono" />
-          </Card>
-        </Col>
-        <Col span={4}>
-          <Card
-            hoverable
-            style={{
-              width: "auto",
-            }}
-            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-          >
-            <Meta title="Europe Street beat" description="Rizky Haksono" />
-          </Card>
-        </Col>
-        <Col span={4}>
-          <Card
-            hoverable
-            style={{
-              width: "auto",
-            }}
-            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-          >
-            <Meta title="Europe Street beat" description="Rizky Haksono" />
-          </Card>
-        </Col>
-      </Row>
+      <CardTeamMobile />
 
       <FooterComponent />
     </>
