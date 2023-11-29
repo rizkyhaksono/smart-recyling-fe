@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { List, Modal, Input } from "antd";
+import { List, Modal, Input, Button } from "antd";
 import { useLocation } from "react-router-dom";
 import { BsCoin } from "react-icons/bs";
 
 const data = Array.from({
   length: 10,
 }).map((_, i) => ({
+  id: i,
   imgUrl: `/exchange-${i}.png`,
   title: `T-shirt`,
   description:
@@ -17,6 +18,23 @@ const data = Array.from({
 export default function CardExchange() {
   const location = useLocation();
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalIndex, setModalIndex] = useState(0);
+  const [modalName, setModalName] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const showModal = () => {
+    setOpen(true);
+  };
+  const handleOk = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setOpen(false);
+    }, 3000);
+  };
+  const handleCancel = () => {
+    setOpen(false);
+  };
   return (
     <>
       <List
@@ -61,7 +79,7 @@ export default function CardExchange() {
 
               <div class="flex space-x-4 mb-6 text-sm font-medium pt-4">
                 <div class="flex-auto flex space-x-4">
-                  <a href="/exchange/0">
+                  <a href={"/exchange/" + item.id}>
                     <button
                       class="h-10 px-6 font-semibold rounded-md bg-primary text-white"
                       type="button"
@@ -73,21 +91,30 @@ export default function CardExchange() {
                   <button
                     class="h-10 px-6 font-semibold rounded-md border border-primary text-primary"
                     type="button"
-                    onClick={() => setModalOpen(true)}
+                    onClick={showModal}
                   >
                     Detail
                   </button>
                   {/* Start modal */}
                   <Modal
-                    title={item.title}
+                    open={open}
+                    title="Title"
+                    onOk={handleOk}
                     centered
-                    open={modalOpen}
-                    onOk={() => setModalOpen(false)}
-                    onCancel={() => setModalOpen(false)}
+                    onCancel={handleCancel}
+                    footer={[
+                      <Button
+                        class="h-10 px-6 font-semibold rounded-md bg-primary text-white"
+                        key="back"
+                        onClick={handleCancel}
+                      >
+                        Return
+                      </Button>,
+                    ]}
                   >
                     <div class="flex-none  h-[300px] relative items-center">
                       <img
-                        src={item.imgUrl}
+                        src={`/exchange-${modalIndex}.png`}
                         alt=""
                         class="absolute inset-0 w-full h-full object-cover rounded-lg"
                         loading="lazy"
@@ -96,6 +123,27 @@ export default function CardExchange() {
                     <p className="mt-3">Stok</p>
                     <Input size="large" placeholder="10" />
                   </Modal>
+                  {/* <Modal
+                    title={modalName}
+                    centered
+                    open={modalOpen}
+                    footer={[
+                      <Button key="back" onClick={() => setModalOpen(false)}>
+                        Return
+                      </Button>,
+                    ]}
+                  >
+                    <div class="flex-none  h-[300px] relative items-center">
+                      <img
+                        src={`/exchange-${modalIndex}.png`}
+                        alt=""
+                        class="absolute inset-0 w-full h-full object-cover rounded-lg"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p className="mt-3">Stok</p>
+                    <Input size="large" placeholder="10" />
+                  </Modal> */}
                   {/* end */}
                 </div>
                 <button
