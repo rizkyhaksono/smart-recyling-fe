@@ -1,15 +1,35 @@
 import { useState } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from "@ant-design/icons";
-import { Layout, Menu, Button, theme } from "antd";
+import { Layout, Menu, Button, theme, Avatar, Dropdown } from "antd";
 import FooterComponent from "../../../components/FooterComponent";
 import { Link } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
+
+const items = [
+  {
+    key: "1",
+    label: (
+      <a target="_blank" rel="noopener noreferrer" href="/user/profile">
+        Profile
+      </a>
+    ),
+  },
+  {
+    key: "2",
+    label: (
+      <a target="_blank" rel="noopener noreferrer" href="/">
+        Logout
+      </a>
+    ),
+  },
+];
 
 export default function DashboardAdminPage() {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed} className="bg-white">
@@ -47,20 +67,16 @@ export default function DashboardAdminPage() {
       <Layout>
         <Header
           style={{
-            padding: 0,
+            padding: 10,
             background: colorBgContainer,
+            display: "flex",
+            justifyContent: "space-between",
           }}
         >
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
-          />
+          <Button type="text" icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />} onClick={() => setCollapsed(!collapsed)} />
+          <Dropdown menu={{ items }} placement="bottom" arrow={{ pointAtCenter: true }}>
+            <Avatar size="large" icon={<UserOutlined />} />
+          </Dropdown>
         </Header>
         <Content
           style={{

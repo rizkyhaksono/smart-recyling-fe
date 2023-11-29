@@ -1,6 +1,6 @@
 "use client";
 
-import NavbarLogged from "../../../components/NavbarLogged";
+import NavbarComponent from "../../../components/NavbarComponent";
 import FooterComponent from "../../../components/FooterComponent";
 import MarqueLogo from "../../../components/MarqueeLogo";
 
@@ -8,7 +8,7 @@ export default function DashboardUserPage() {
   return (
     <>
       <main className="min-h-screen">
-        <NavbarLogged />
+        <NavbarComponent />
         <div className="container mx-auto my-10">
           <div className="grid max-w-screen-xl mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-8 xl:pt-24">
             <div className="lg:col-span-7 sm:pt-16 sm:text-center md:text-center lg:text-start xl:text-start pt-12 max-[640px]:px-12">

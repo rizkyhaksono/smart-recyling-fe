@@ -9,6 +9,7 @@ import Cookies from "universal-cookie";
 import { setCredentials } from "../../../redux/authSlice";
 import RHFProvider from "../../../components/hook-form/RHFProvider";
 import RHFTextField from "../../../components/hook-form/RHFTextField";
+import { Alert } from "antd";
 
 const SigninSchema = Yup.object().shape({
   email: Yup.string().required("Email is required"),
@@ -25,6 +26,7 @@ const cookies = new Cookies();
 export default function SignInPage() {
   const [signinMutation] = useSigninMutation();
   const [buttonLoading, setButtonLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -60,6 +62,55 @@ export default function SignInPage() {
     }
   };
 
+  // const onSubmit = async (data) => {
+  //   console.log(data);
+  //   setButtonLoading(true);
+
+  //   try {
+  //     const response = await signinMutation({ data });
+
+  //     if (response.status === 200) {
+  //       setShowAlert({
+  //         type: "success",
+  //         message: "Sign in successful",
+  //         description: "You have successfully signed in.",
+  //       });
+
+  //       dispatch(
+  //         setCredentials({
+  //           ACCESS_TOKEN: response.data.access_token,
+  //           REFRESH_TOKEN: response.data.refresh_token,
+  //         })
+  //       );
+
+  //       cookies.set("access_token", response.data.access_token, {
+  //         path: "/",
+  //       });
+
+  //       cookies.set("refresh_token", response.data.refresh_token, {
+  //         path: "/",
+  //       });
+  //       window.location.href = "/";
+  //     } else {
+  //       console.log("Error");
+
+  //       setShowAlert({
+  //         type: "error",
+  //         message: "Error",
+  //         description: "An error occurred. Please try again later.",
+  //       });
+  //     }
+  //   } catch (error) {
+  //     setShowAlert({
+  //       type: "error",
+  //       message: "Error",
+  //       description: "An error occurred. Please try again later.",
+  //     });
+  //   } finally {
+  //     setButtonLoading(false);
+  //   }
+  // };
+
   return (
     <>
       <div className="min-h-screen flex items-center justify-center">
@@ -80,6 +131,7 @@ export default function SignInPage() {
           <div>
             <div className="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl">
               <h2 className="text-2xl font-bold text-textColor">Sign In Your Account</h2>
+              {/* {showAlert && <Alert message={showAlert.message} description={showAlert.description} type={showAlert.type} showIcon closable onClose={() => setShowAlert(null)} />} */}
               <RHFProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <RHFTextField name="email" label="Your email" type="email" helperText="name@gmail.com" />
                 <RHFTextField name="password" label="Your password" type="password" helperText="••••••••" />

@@ -24,7 +24,7 @@ function App() {
   const cookies = new Cookies();
 
   useEffect(() => {
-    if (cookies.get("ACCESS_TOKEN") && cookies.get("REFRESH_TOKEN")) {
+    if (cookies.get("access_token") && cookies.get("refresh_token")) {
       setIsLoggedIn(true);
     }
   }, []);
@@ -43,17 +43,38 @@ function App() {
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
 
+        {isLoggedIn && userSuccess ? (
+          <>
+            {userData.user.role === "ADMIN" ? <Route path="/admin/dashboard" element={<DashboardAdminPage />} /> : <Route path="/dashboard" element={<DashboardUserPage />} />}
+            {/* <Route path="/dashboard/profile" element={<ProfilePage />} /> */}
+            {/* <Route path="/report" element={<ReportPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/mobile" element={<MobilePage />} />
+            <Route path="/exchange" element={<ExchangePage />} /> */}
+          </>
+        ) : (
+          <Route path="*" element={<NotFoundPage />} />
+        )}
+
+        {/* <Route path="/report" element={<ReportPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/mobile" element={<MobilePage />} />
+        <Route path="/exchange" element={<ExchangePage />} />
+
+        <Route path="/admin/dashboard" element={<DashboardAdminPage />} />
+        <Route path="/dashboard" element={<DashboardUserPage />} /> */}
+
         {/* Use PrivateRoute for routes that require authentication */}
-        <Route path="/report" element={<PrivateRoute element={<ReportPage />} />} />
+        {/* <Route path="/report" element={<PrivateRoute element={<ReportPage />} />} />
         <Route path="/blog" element={<PrivateRoute element={<BlogPage />} />} />
         <Route path="/mobile" element={<PrivateRoute element={<MobilePage />} />} />
-        <Route path="/exchange" element={<PrivateRoute element={<ExchangePage />} />} />
+        <Route path="/exchange" element={<PrivateRoute element={<ExchangePage />} />} /> */}
 
         {/* Admin dashboard only accessible if logged in */}
-        <Route path="/admin/dashboard" element={<PrivateRoute element={<DashboardAdminPage />} />} />
+        {/* <Route path="/admin/dashboard" element={<PrivateRoute element={<DashboardAdminPage />} />} /> */}
 
         {/* User dashboard only accessible if logged in */}
-        <Route path="/dashboard" element={<PrivateRoute element={<DashboardUserPage />} />} />
+        {/* <Route path="/dashboard" element={<PrivateRoute element={<DashboardUserPage />} />} /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

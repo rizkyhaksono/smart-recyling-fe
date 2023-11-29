@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HomeOutlined, PhoneOutlined, AppstoreOutlined, TeamOutlined } from "@ant-design/icons";
 import { Dropdown } from "antd";
+import Cookies from "universal-cookie";
 
 const items = [
   {
@@ -24,10 +25,24 @@ const items = [
   },
 ];
 
+const itemsProfile = [
+  {
+    key: "1",
+    label: <a href="/user/profile">Profile</a>,
+  },
+  {
+    key: "2",
+    label: <a href="/">Logout</a>,
+  },
+];
+
 export default function NavbarComponent() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const location = useLocation();
+  const cookies = new Cookies();
+
+  const isLoggedIn = cookies.get("access_token") && cookies.get("refresh_token");
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
@@ -54,16 +69,31 @@ export default function NavbarComponent() {
           <img src="/logo.png" className="h-8 mr-3" alt="Smart Recycling Logo" />
         </a>
         <div className="flex md:order-2">
-          <a href="/signup">
-            <button type="button" className="py-2 px-4 mr-2 text-sm font-medium text-primary focus:outline-none bg-white rounded-lg border hover:bg-gray-200 hover:text-green-700 focus:ring-4 focus:ring-gray-200">
-              Sign Up
-            </button>
-          </a>
-          <a href="/signin">
-            <button type="button" className="py-2 px-4 mr-2 text-sm font-medium text-white focus:outline-none bg-primary rounded-lg border border-primary hover:bg-green-700 hover:text-white focus:ring-4 focus:ring-gray-200">
-              Login
-            </button>
-          </a>
+          {isLoggedIn ? (
+            <>
+              <a href="/">
+                <button type="button" className="py-2 px-4 mr-2 text-sm font-medium text-primary focus:outline-none bg-white rounded-lg border hover:bg-gray-200 hover:text-green-700 focus:ring-4 focus:ring-gray-200">
+                  Logout
+                </button>
+              </a>
+              <Dropdown menu={{ items: itemsProfile }} placement="bottom" arrow>
+                <p className="py-2 px-4 mr-2 text-sm font-medium text-primary focus:outline-none rounded-lg hover:text-green-700">Rizky Haksono</p>
+              </Dropdown>
+            </>
+          ) : (
+            <>
+              <a href="/signup">
+                <button type="button" className="py-2 px-4 mr-2 text-sm font-medium text-primary focus:outline-none bg-white rounded-lg border hover:bg-gray-200 hover:text-green-700 focus:ring-4 focus:ring-gray-200">
+                  Sign Up
+                </button>
+              </a>
+              <a href="/signin">
+                <button type="button" className="py-2 px-4 mr-2 text-sm font-medium text-white focus:outline-none bg-primary rounded-lg border border-primary hover:bg-green-700 hover:text-white focus:ring-4 focus:ring-gray-200">
+                  Login
+                </button>
+              </a>
+            </>
+          )}
         </div>
         <div className={`w-full md:block md:w-auto ${isDropdownOpen ? "block" : "hidden"}`}>
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white items-center">

@@ -5,9 +5,8 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import RHFProvider from "../../../components/hook-form/RHFProvider";
 import RHFTextField from "../../../components/hook-form/RHFTextField";
-import { Link } from "react-router-dom";
-import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
-// import { useRedirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Alert } from "antd";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string().required("Nama diperlukan"),
@@ -23,8 +22,8 @@ const defaultValues = {
 
 export default function SignUpPage() {
   const [signupMutation] = useSignupMutation();
-  const [showPassword, setShowPassword] = useState(false);
-  // const redirect = useRedirect();
+  const [buttonLoading, setButtonLoading] = useState(false);
+  const navigate = useNavigate();
 
   const methods = useForm({
     resolver: yupResolver(SignupSchema),
@@ -33,16 +32,16 @@ export default function SignUpPage() {
 
   const { handleSubmit } = methods;
 
-  // const onSubmit = async (data) => {
-  //   setButtonLoading(true);
-  //   signupMutation({ data })
-  //     .then(() => {
-  //       navigate("/auth/signin");
-  //     })
-  //     .finally(() => {
-  //       setButtonLoading(false);
-  //     });
-  // };
+  const onSubmit = async (data) => {
+    setButtonLoading(true);
+    signupMutation({ data })
+      .then(() => {
+        navigate("/signin");
+      })
+      .finally(() => {
+        setButtonLoading(false);
+      });
+  };
 
   return (
     <>
@@ -64,34 +63,22 @@ export default function SignUpPage() {
           <div>
             <div className="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl">
               <h2 className="text-2xl font-bold text-textColor">Create Your Account</h2>
-              <form className="mt-8 space-y-6" action="#">
-                <div>
-                  <label htmlFor="email" className="block mb-2 text-sm font-medium text-textColor">
-                    Your email
-                  </label>
-                  <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-textColor text-sm rounded-lg-blue-500 block w-full p-2.5" placeholder="name@gmail.com" required />
-                </div>
-                <div>
-                  <label htmlFor="password" className="block mb-2 text-sm font-medium text-textColor">
-                    Your password
-                  </label>
-                  <div className="relative">
-                    <input type={showPassword ? "text" : "password"} name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-textColor text-sm rounded-lg pr-10 block w-full p-2.5" required />
-                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 px-3 pb-2 cursor-pointer text-textColor">
-                      {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
-                    </button>
-                  </div>
-                </div>
-                <button type="submit" className="w-full px-5 py-3 text-base font-medium text-center bg-primary hover:bg-green-700 text-white rounded-lg">
-                  Sign Up your account
+              <Alert message="Success Tips" type="success" showIcon />
+              <Alert message="Error" type="error" showIcon />
+              <RHFProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+                <RHFTextField name="name" label="Your name" type="text" helperText="username" />
+                <RHFTextField name="email" label="Your email" type="email" helperText="name@gmail.com" />
+                <RHFTextField name="password" label="Your password" type="password" helperText="••••••••" />
+                <button type="submit" className="w-full px-5 py-3 text-base font-medium text-center bg-primary hover:bg-green-700 text-white rounded-lg" disabled={buttonLoading}>
+                  {buttonLoading ? "Create your account..." : "Sign up your account"}
                 </button>
                 <div className="text-sm font-medium text-gray-900">
-                  Already have account?{" "}
+                  {`Already have account? `}
                   <a className="text-primary hover:underline" href="/signin">
-                    Sign in account
+                    Sign in your account
                   </a>
                 </div>
-              </form>
+              </RHFProvider>
             </div>
           </div>
         </div>
