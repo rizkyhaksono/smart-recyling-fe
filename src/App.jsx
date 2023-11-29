@@ -13,6 +13,7 @@ import ContactPage from "./pages/contact/page";
 import SignInPage from "./pages/auth/sign_in";
 import MobilePage from "./pages/services/mobile";
 import ExchangePage from "./pages/services/exchange";
+import FillExchangePage from "./pages/services/fill_exchange";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/mobile" element={<MobilePage />} />
         <Route path="/exchange" element={<ExchangePage />} />
+        <Route path="/exchange/*" element={<FillExchangePage />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFoundPage />} />
