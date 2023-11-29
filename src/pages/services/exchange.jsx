@@ -8,6 +8,8 @@ import { Card } from "antd";
 import CardExchange from "../../components/card_exchange";
 
 export default function ExchangePage() {
+  var coins = 100000;
+
   return (
     <>
       <NavbarComponent />
@@ -23,8 +25,13 @@ export default function ExchangePage() {
         justify={"space-around"}
       >
         <Col span={12}>
-          <div className="flex items-center gap-2 font-normal text-2xl text-textColor mt-10  ">
-            <img src="./exchange-price.png" alt="" />
+          <div className="flex gap-2 font-bold text-6xl text-textColor mt-10  ">
+            <span>
+              <img src="./icons/coin.png" alt="" />
+            </span>
+            <h1 className="text-bold text-primary">
+              {coins} coin <br /> = <br /> Rp {coins} ,-
+            </h1>
           </div>
         </Col>
         <Col span={12}>
