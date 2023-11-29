@@ -56,12 +56,12 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         )}
 
-        {/* <Route path="/report" element={<ReportPage />} />
+        <Route path="/report" element={<ReportPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/mobile" element={<MobilePage />} />
         <Route path="/exchange" element={<ExchangePage />} />
 
-        <Route path="/admin/dashboard" element={<DashboardAdminPage />} />
+        {/* <Route path="/admin/dashboard" element={<DashboardAdminPage />} />
         <Route path="/dashboard" element={<DashboardUserPage />} /> */}
 
         {/* Use PrivateRoute for routes that require authentication */}
