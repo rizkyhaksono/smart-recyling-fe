@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HomeOutlined, PhoneOutlined, AppstoreOutlined, TeamOutlined } from "@ant-design/icons";
-import { Dropdown } from "antd";
+import { Dropdown, Avatar } from "antd";
+import { useGetUserQuery } from "../redux/api/userApi";
 import Cookies from "universal-cookie";
 
 const items = [
@@ -25,24 +26,25 @@ const items = [
   },
 ];
 
-const itemsProfile = [
-  {
-    key: "1",
-    label: <a href="/user/profile">Profile</a>,
-  },
-  {
-    key: "2",
-    label: <a href="/">Logout</a>,
-  },
-];
-
 export default function NavbarComponent() {
+  const { data: userData, isSuccess: userSuccess } = useGetUserQuery();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const location = useLocation();
   const cookies = new Cookies();
 
-  const isLoggedIn = cookies.get("access_token") && cookies.get("refresh_token");
+  const [state, setState] = useState({
+    ACCESS_TOKEN: cookies.get("access_token"),
+    REFRESH_TOKEN: cookies.get("refresh_token"),
+  });
+
+  const isLoggedIn = state.ACCESS_TOKEN && state.REFRESH_TOKEN;
+
+  const logOut = () => {
+    cookies.remove("access_token");
+    cookies.remove("refresh_token");
+    setState({ ACCESS_TOKEN: null, REFRESH_TOKEN: null });
+  };
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
@@ -51,6 +53,25 @@ export default function NavbarComponent() {
   const checkMobileView = () => {
     setIsMobileView(window.innerWidth < 768);
   };
+
+  const itemsProfile = [
+    {
+      key: "1",
+      label: <p className="font-bold text-textColor">Hello {userData && userData.user ? userData.user.name || "User" : "User"}!</p>,
+    },
+    {
+      key: "2",
+      label: <a href="/user/profile">My Profile</a>,
+    },
+    {
+      key: "3",
+      label: (
+        <a href="/" onClick={logOut}>
+          Logout
+        </a>
+      ),
+    },
+  ];
 
   useEffect(() => {
     checkMobileView();
@@ -71,13 +92,8 @@ export default function NavbarComponent() {
         <div className="flex md:order-2">
           {isLoggedIn ? (
             <>
-              <a href="/">
-                <button type="button" className="py-2 px-4 mr-2 text-sm font-medium text-primary focus:outline-none bg-white rounded-lg border hover:bg-gray-200 hover:text-green-700 focus:ring-4 focus:ring-gray-200">
-                  Logout
-                </button>
-              </a>
               <Dropdown menu={{ items: itemsProfile }} placement="bottom" arrow>
-                <p className="py-2 px-4 mr-2 text-sm font-medium text-primary focus:outline-none rounded-lg hover:text-green-700">Rizky Haksono</p>
+                <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
               </Dropdown>
             </>
           ) : (

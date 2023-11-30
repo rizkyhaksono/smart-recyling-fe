@@ -15,7 +15,6 @@ import NotFoundPage from "./pages/NotFoundPage";
 import SignInPage from "./pages/public/auth/SignInPage";
 import SignUpPage from "./pages/public/auth/SignUpPage";
 import DashboardAdminPage from "./pages/admin/dashboard/DashboardAdminPage";
-import DashboardUserPage from "./pages/user/dashboard/DashboardUserPage";
 import { Navigate } from "react-router-dom";
 
 function App() {
@@ -29,52 +28,29 @@ function App() {
     }
   }, []);
 
-  const PrivateRoute = ({ element, path }) => {
-    return isLoggedIn ? element : <Navigate to="/signin" />;
-  };
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route index path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
-
-        <Route path="/signin" element={<SignInPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-
         {isLoggedIn && userSuccess ? (
           <>
-            {userData.user.role === "ADMIN" ? <Route path="/admin/dashboard" element={<DashboardAdminPage />} /> : <Route path="/dashboard" element={<DashboardUserPage />} />}
-            {/* <Route path="/dashboard/profile" element={<ProfilePage />} /> */}
-            {/* <Route path="/report" element={<ReportPage />} />
+            {userData.user.role === "ADMIN" ? <Route path="/dashboard" element={<DashboardAdminPage />} /> : <Route path="/dashboard" element={<HomePage />} />}
+            <Route path="/report" element={<ReportPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/mobile" element={<MobilePage />} />
-            <Route path="/exchange" element={<ExchangePage />} /> */}
+            <Route path="/exchange" element={<ExchangePage />} />
           </>
         ) : (
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path="*" element={<Navigate to="/signin" />} />
         )}
-
-        <Route path="/report" element={<ReportPage />} />
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/mobile" element={<MobilePage />} />
-        <Route path="/exchange" element={<ExchangePage />} />
-
-        {/* <Route path="/admin/dashboard" element={<DashboardAdminPage />} />
-        <Route path="/dashboard" element={<DashboardUserPage />} /> */}
-
-        {/* Use PrivateRoute for routes that require authentication */}
-        {/* <Route path="/report" element={<PrivateRoute element={<ReportPage />} />} />
-        <Route path="/blog" element={<PrivateRoute element={<BlogPage />} />} />
-        <Route path="/mobile" element={<PrivateRoute element={<MobilePage />} />} />
-        <Route path="/exchange" element={<PrivateRoute element={<ExchangePage />} />} /> */}
-
-        {/* Admin dashboard only accessible if logged in */}
-        {/* <Route path="/admin/dashboard" element={<PrivateRoute element={<DashboardAdminPage />} />} /> */}
-
-        {/* User dashboard only accessible if logged in */}
-        {/* <Route path="/dashboard" element={<PrivateRoute element={<DashboardUserPage />} />} /> */}
+        {!cookies.get("access_token") && !cookies.get("refresh_token") && (
+          <>
+            <Route path="/signin" element={<SignInPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+          </>
+        )}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

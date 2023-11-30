@@ -63,8 +63,6 @@ export default function SignUpPage() {
           <div>
             <div className="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl">
               <h2 className="text-2xl font-bold text-textColor">Create Your Account</h2>
-              <Alert message="Success Tips" type="success" showIcon />
-              <Alert message="Error" type="error" showIcon />
               <RHFProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <RHFTextField name="name" label="Your name" type="text" helperText="username" />
                 <RHFTextField name="email" label="Your email" type="email" helperText="name@gmail.com" />

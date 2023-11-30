@@ -2,7 +2,7 @@
 
 import NavbarComponent from "../../../components/NavbarComponent";
 import FooterComponent from "../../../components/FooterComponent";
-import MarqueLogo from "../../../components/MarqueeLogo";
+import MarqueeComponent from "../../../components/MarqueeComponent";
 
 export default function HomePage() {
   return (
@@ -22,7 +22,7 @@ export default function HomePage() {
               <img src="/illustration.png" alt="Smart Recycling Logo" width={700} height={700} />
             </div>
           </div>
-          <MarqueLogo />
+          <MarqueeComponent />
         </div>
 
         <section className="bg-gray-50">
