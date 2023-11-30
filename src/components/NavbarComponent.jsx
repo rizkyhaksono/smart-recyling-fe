@@ -43,7 +43,14 @@ export default function NavbarComponent() {
   const logOut = () => {
     cookies.remove("access_token");
     cookies.remove("refresh_token");
-    setState({ ACCESS_TOKEN: null, REFRESH_TOKEN: null });
+
+    setState((prevState) => ({
+      ...prevState,
+      ACCESS_TOKEN: null,
+      REFRESH_TOKEN: null,
+    }));
+
+    window.location.reload();
   };
 
   const toggleDropdown = () => {
