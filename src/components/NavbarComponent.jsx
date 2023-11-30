@@ -61,14 +61,18 @@ export default function NavbarComponent() {
     },
     {
       key: "2",
-      label: <a href="/user/profile">My Profile</a>,
+      label: (
+        <Link to={"/user/profile"}>
+          <p>My Profile</p>,
+        </Link>
+      ),
     },
     {
       key: "3",
       label: (
-        <a href="/" onClick={logOut}>
-          Logout
-        </a>
+        <Link to={"/"} onClick={logOut}>
+          <p>Logout</p>
+        </Link>
       ),
     },
   ];

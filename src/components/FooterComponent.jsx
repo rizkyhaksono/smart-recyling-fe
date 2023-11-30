@@ -2,6 +2,7 @@
 
 import { Footer } from "flowbite-react";
 import { BsFacebook, BsGithub, BsInstagram, BsTwitter } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 export default function FooterComponent() {
   return (
@@ -9,10 +10,12 @@ export default function FooterComponent() {
       <footer className="bg-primary">
         <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
           <div className="sm:flex sm:items-center sm:justify-between">
-            <a href="#" className="flex items-center mb-4 sm:mb-0">
-              <img src="/logo.png" alt="Smart Recycling Logo" className="h-8 mr-3 bg-white rounded p-1" width={30} height={30} />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Smart Recycling</span>
-            </a>
+            <Link to={"#"}>
+              <div className="flex items-center mb-4 sm:mb-0">
+                <img src="/logo.png" alt="Smart Recycling Logo" className="h-8 mr-3 bg-white rounded p-1" width={30} height={30} />
+                <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Smart Recycling</span>
+              </div>
+            </Link>
             <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6 xl:pb-12 lg:pb-10 md:pb-8 sm:pb-8 pb-8">
               <div>
                 <Footer.Title title="About" className="text-white" />

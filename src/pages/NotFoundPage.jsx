@@ -1,5 +1,7 @@
 "use client";
 
+import { Link } from "react-router-dom";
+
 export default function NotFoundPage() {
   return (
     <>
@@ -41,9 +43,9 @@ export default function NotFoundPage() {
             </linearGradient>
           </defs>
         </svg>
-        <a href="/">
+        <Link to={"/"}>
           <button className="rounded-lg bg-primary pl-4 pr-4 pt-2 pb-2 font-bold text-white mt-6  hover:bg-secondary">Back to Home</button>
-        </a>
+        </Link>
       </div>
     </>
   );
