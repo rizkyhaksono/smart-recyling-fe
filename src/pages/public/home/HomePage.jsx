@@ -4,6 +4,7 @@ import NavbarComponent from "../../../components/NavbarComponent";
 import FooterComponent from "../../../components/FooterComponent";
 import MarqueeComponent from "../../../components/MarqueeComponent";
 import { Link } from "react-router-dom";
+import { FloatButton } from "antd";
 
 export default function HomePage() {
   return (
@@ -93,6 +94,7 @@ export default function HomePage() {
           </div>
         </section>
       </main>
+      <FloatButton.BackTop />
       <FooterComponent />
     </>
   );

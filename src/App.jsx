@@ -15,6 +15,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import SignInPage from "./pages/public/auth/SignInPage";
 import SignUpPage from "./pages/public/auth/SignUpPage";
 import DashboardAdminPage from "./pages/admin/dashboard/DashboardAdminPage";
+import ProfileUserPage from "./pages/user/ProfileUserPage";
 import { Navigate } from "react-router-dom";
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
     if (cookies.get("access_token") && cookies.get("refresh_token")) {
       setIsLoggedIn(true);
     }
-  }, []);
+  }, [cookies]);
 
   return (
     <BrowserRouter>
@@ -41,6 +42,7 @@ function App() {
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/mobile" element={<MobilePage />} />
             <Route path="/exchange" element={<ExchangePage />} />
+            <Route path="/user/profile" element={<ProfileUserPage />} />
           </>
         ) : (
           <Route path="*" element={<Navigate to="/signin" />} />

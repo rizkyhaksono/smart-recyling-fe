@@ -2,6 +2,7 @@
 
 import NavbarComponent from "../../../components/NavbarComponent";
 import FooterComponent from "../../../components/FooterComponent";
+
 export default function ContactPage() {
   return (
     <>
@@ -54,6 +55,7 @@ export default function ContactPage() {
           </form>
         </div>
       </section>
+
       <FooterComponent />
     </>
   );

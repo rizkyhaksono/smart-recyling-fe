@@ -2,7 +2,7 @@
 
 import NavbarComponent from "../../../components/NavbarComponent";
 import FooterComponent from "../../../components/FooterComponent";
-import { Col, Row } from "antd";
+import { Col, Row, FloatButton } from "antd";
 import { BsAndroid } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
@@ -28,6 +28,7 @@ export default function MobilePage() {
           <img src="/mobile.png" />
         </div>
       </Row>
+      <FloatButton.BackTop />
       <FooterComponent />
     </>
   );

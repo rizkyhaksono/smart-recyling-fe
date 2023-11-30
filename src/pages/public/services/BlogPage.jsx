@@ -4,7 +4,7 @@ import { useState } from "react";
 import NavbarComponent from "../../../components/NavbarComponent";
 import FooterComponent from "../../../components/FooterComponent";
 import CardBlog from "../../../components/CardBlog";
-import { Card } from "antd";
+import { Card, FloatButton } from "antd";
 
 const tabListNoTitle = [
   {
@@ -49,6 +49,7 @@ export default function BlogPage() {
           {contentListNoTitle[activeTabKey]}
         </Card>
       </div>
+      <FloatButton.BackTop />
       <FooterComponent />
     </>
   );

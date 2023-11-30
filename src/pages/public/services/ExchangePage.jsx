@@ -2,7 +2,7 @@
 
 import NavbarComponent from "../../../components/NavbarComponent";
 import FooterComponent from "../../../components/FooterComponent";
-import { Col, Row } from "antd";
+import { Col, Row, FloatButton } from "antd";
 import CardExchange from "../../../components/CardExchange";
 
 export default function ExchangePage() {
@@ -37,7 +37,7 @@ export default function ExchangePage() {
         </div>
         <CardExchange />
       </div>
-
+      <FloatButton.BackTop />
       <FooterComponent />
     </>
   );

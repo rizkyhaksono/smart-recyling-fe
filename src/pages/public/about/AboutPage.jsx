@@ -6,6 +6,7 @@ import { Collapse } from "antd";
 import ScrollCarousel from "scroll-carousel-react";
 import CardTeamWeb from "../../../components/CardTeanWeb";
 import CardTeamMobile from "../../../components/CardTeamMobile";
+import { FloatButton } from "antd";
 
 const items = [
   {
@@ -73,6 +74,7 @@ export default function AboutPage() {
       </div>
       <CardTeamMobile />
 
+      <FloatButton.BackTop />
       <FooterComponent />
     </>
   );

@@ -2,6 +2,7 @@
 
 import NavbarComponent from "../../../components/NavbarComponent";
 import FooterComponent from "../../../components/FooterComponent";
+import { FloatButton } from "antd";
 
 export default function ReportPage() {
   return (
@@ -73,6 +74,7 @@ export default function ReportPage() {
           <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-0 lg:space-y-0"></div>
         </div>
       </div>
+      <FloatButton.BackTop />
       <FooterComponent />
     </>
   );
