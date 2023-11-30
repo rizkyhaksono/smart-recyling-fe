@@ -63,7 +63,7 @@ export default function NavbarComponent() {
       key: "2",
       label: (
         <Link to={"/user/profile"}>
-          <p>My Profile</p>,
+          <p>My Profile</p>
         </Link>
       ),
     },
