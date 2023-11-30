@@ -36,7 +36,7 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         {isLoggedIn && userSuccess ? (
           <>
-            {userData.user.role === "ADMIN" ? <Route path="/dashboard" element={<DashboardAdminPage />} /> : <Route path="/dashboard" element={<HomePage />} />}
+            {userData.user.role === "ADMIN" ? <Route path="/" element={<DashboardAdminPage />} /> : <Route path="/" element={<HomePage />} />}
             <Route path="/report" element={<ReportPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/mobile" element={<MobilePage />} />

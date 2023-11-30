@@ -86,9 +86,9 @@ export default function NavbarComponent() {
   return (
     <nav className={`fixed w-full z-20 top-0 left-0 border-b border-gray-300 bg-white ${isMobileView ? "md:hidden" : ""}`}>
       <div className="max-w-screen-xl flex flex-wrap items-center mx-auto p-4 justify-between">
-        <a href="/" className="flex items-center">
-          <img src="/logo.png" className="h-8 mr-3" alt="Smart Recycling Logo" />
-        </a>
+        <Link>
+          <img src="/logo.png" className="flex items-start h-8 mr-3" alt="Smart Recycling Logo" />
+        </Link>
         <div className="flex md:order-2">
           {isLoggedIn ? (
             <>
@@ -98,25 +98,27 @@ export default function NavbarComponent() {
             </>
           ) : (
             <>
-              <a href="/signup">
+              <Link to={"/signup"}>
                 <button type="button" className="py-2 px-4 mr-2 text-sm font-medium text-primary focus:outline-none bg-white rounded-lg border hover:bg-gray-200 hover:text-green-700 focus:ring-4 focus:ring-gray-200">
                   Sign Up
                 </button>
-              </a>
-              <a href="/signin">
+              </Link>
+              <Link to={"/signin"}>
                 <button type="button" className="py-2 px-4 mr-2 text-sm font-medium text-white focus:outline-none bg-primary rounded-lg border border-primary hover:bg-green-700 hover:text-white focus:ring-4 focus:ring-gray-200">
                   Login
                 </button>
-              </a>
+              </Link>
             </>
           )}
         </div>
         <div className={`w-full md:block md:w-auto ${isDropdownOpen ? "block" : "hidden"}`}>
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white items-center">
             <li>
-              <a href="/" className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/" ? "text-primary" : ""}`} aria-current="page">
-                Home
-              </a>
+              <Link to={"/"}>
+                <p className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/" ? "text-primary" : ""}`} aria-current="page">
+                  Home
+                </p>
+              </Link>
             </li>
             <li>
               <button
@@ -134,37 +136,37 @@ export default function NavbarComponent() {
               <div id="dropdownNavbar" className={`absolute z-10 ${isDropdownOpen ? "block" : "hidden"} font-normal bg-white divide-y divide-gray-100 rounded-lg shadow mt-2`}>
                 <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownNavbarLink">
                   <li>
-                    <a href="/report" className={`block px-4 py-2 hover:bg-gray-100 text-gray-900 hover:text-primary ${location.pathname === "/report" ? "text-primary" : ""}`}>
-                      Report Trash
-                    </a>
+                    <Link to={"/report"}>
+                      <p className={`block px-4 py-2 hover:bg-gray-100 text-gray-900 hover:text-primary ${location.pathname === "/report" ? "text-primary" : ""}`}>Report Trash</p>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/mobile" className={`block px-4 py-2 hover:bg-gray-100 text-gray-900 hover:text-primary ${location.pathname === "/mobile" ? "text-primary" : ""}`}>
-                      Mobile App
-                    </a>
+                    <Link to={"/mobile"}>
+                      <p className={`block px-4 py-2 hover:bg-gray-100 text-gray-900 hover:text-primary ${location.pathname === "/mobile" ? "text-primary" : ""}`}>Mobile App</p>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/blog" className={`block px-4 py-2 hover:bg-gray-100 text-gray-900 hover:text-primary ${location.pathname === "/blog" ? "text-primary" : ""}`}>
-                      Blog & Event
-                    </a>
+                    <Link to={"/blog"}>
+                      <p className={`block px-4 py-2 hover:bg-gray-100 text-gray-900 hover:text-primary ${location.pathname === "/blog" ? "text-primary" : ""}`}>Blog & Event</p>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/exchange" className={`block px-4 py-2 hover:bg-gray-100 text-gray-900 hover:text-primary ${location.pathname === "/exchange" ? "text-primary" : ""}`}>
-                      Exchange Points
-                    </a>
+                    <Link to={"/exchange"}>
+                      <p className={`block px-4 py-2 hover:bg-gray-100 text-gray-900 hover:text-primary ${location.pathname === "/exchange" ? "text-primary" : ""}`}>Exchange Points</p>
+                    </Link>
                   </li>
                 </ul>
               </div>
             </li>
             <li>
-              <a href="/contact" className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/contact" ? "text-primary" : ""}`}>
-                Contact
-              </a>
+              <Link to={"/contact"}>
+                <p className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/contact" ? "text-primary" : ""}`}>Contact</p>
+              </Link>
             </li>
             <li>
-              <a href="/about" className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/about" ? "text-primary" : ""}`}>
-                About
-              </a>
+              <Link to={"/about"}>
+                <p className={`block py-2 pl-3 pr-4 text-gray-900 hover:text-primary rounded md:p-0 ${location.pathname === "/about" ? "text-primary" : ""}`}>About</p>
+              </Link>
             </li>
           </ul>
         </div>

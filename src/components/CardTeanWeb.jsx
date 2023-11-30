@@ -1,4 +1,5 @@
 import { Col, Row, Card } from "antd";
+import { Link } from "react-router-dom";
 const { Meta } = Card;
 
 export default function CardTeamWeb() {
@@ -6,9 +7,11 @@ export default function CardTeamWeb() {
     <>
       <Row justify={"center"} className="my-5 container mx-auto px-5 text-center">
         <Col xs={24} sm={12} md={8} lg={6} xl={4} className="pr-2 pb-5">
-          <Card hoverable cover={<img alt="profile" src="/team/web1.jpg" />}>
-            <Meta title="Rizky Haksono" description="Hipster" />
-          </Card>
+          <Link to={"https://github.com/rizkyhaksono"} target="_blank">
+            <Card hoverable cover={<img alt="profile" src="/team/web1.jpg" />}>
+              <Meta title="Rizky Haksono" description="Hacker" />
+            </Card>
+          </Link>
         </Col>
         <Col xs={24} sm={12} md={8} lg={6} xl={4} className="pr-2 pb-5">
           <Card hoverable cover={<img alt="profile" src="/team/default.png" />}>
