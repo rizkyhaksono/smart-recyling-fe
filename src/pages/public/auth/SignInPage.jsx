@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useSigninMutation } from "../../../redux/api/authApi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Cookies from "universal-cookie";
@@ -28,6 +28,7 @@ export default function SignInPage() {
   const [buttonLoading, setButtonLoading] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -49,13 +50,10 @@ export default function SignInPage() {
           REFRESH_TOKEN: res.refresh_token,
         })
       );
-      cookies.set("access_token", res.access_token, {
-        path: "/",
-      });
-      cookies.set("refresh_token", res.refresh_token, {
-        path: "/",
-      });
-      window.location.href = "/";
+      cookies.set("access_token", res.access_token);
+      cookies.set("refresh_token", res.refresh_token);
+      // window.location.href = "/";
+      navigate("/");
       setShowSuccessAlert(true);
     } catch (error) {
       console.log(error);

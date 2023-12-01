@@ -16,7 +16,7 @@ import SignInPage from "./pages/public/auth/SignInPage";
 import SignUpPage from "./pages/public/auth/SignUpPage";
 import DashboardAdminPage from "./pages/admin/dashboard/DashboardAdminPage";
 import ProfileUserPage from "./pages/user/ProfileUserPage";
-import { Navigate } from "react-router-dom";
+import ProfileAdminPage from "./pages/admin/profile/ProfileAdmin";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,6 +27,7 @@ function App() {
     if (cookies.get("access_token") && cookies.get("refresh_token")) {
       setIsLoggedIn(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -36,25 +37,28 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
 
-        {isLoggedIn && userSuccess ? (
+        {isLoggedIn && userSuccess && userData.user.role === "ADMIN" ? (
           <>
-            {userData.user.role === "ADMIN" ? <Route path="/admin/dashboard" element={<DashboardAdminPage />} /> : <Route path="/" element={<HomePage />} />}
             <Route path="/admin/dashboard" element={<DashboardAdminPage />} />
+            <Route path="/admin/profile" element={<ProfileAdminPage />} />
+          </>
+        ) : (
+          <>
             <Route path="/report" element={<ReportPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/mobile" element={<MobilePage />} />
             <Route path="/exchange" element={<ExchangePage />} />
             <Route path="/user/profile" element={<ProfileUserPage />} />
           </>
-        ) : (
-          <Route path="*" element={<Navigate to="/signin" />} />
         )}
-        {!cookies.get("access_token") && !cookies.get("refresh_token") && (
+
+        {!isLoggedIn && (
           <>
             <Route path="/signin" element={<SignInPage />} />
             <Route path="/signup" element={<SignUpPage />} />
           </>
         )}
+
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

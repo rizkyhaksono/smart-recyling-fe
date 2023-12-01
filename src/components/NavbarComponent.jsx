@@ -27,7 +27,7 @@ const items = [
 ];
 
 export default function NavbarComponent() {
-  const { data: userData, isSuccess: userSuccess } = useGetUserQuery();
+  const { data: userData } = useGetUserQuery();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const location = useLocation();
@@ -96,8 +96,8 @@ export default function NavbarComponent() {
 
   return (
     <nav className={`fixed w-full z-20 top-0 left-0 border-b border-gray-300 bg-white ${isMobileView ? "md:hidden" : ""}`}>
-      <div className="max-w-screen-xl flex flex-wrap items-center mx-auto p-4 justify-between">
-        <Link>
+      <div className="max-w-screen-xl flex flex-wrap items-center mx-4 p-4 justify-between">
+        <Link to={"/"}>
           <img src="/logo.png" className="flex items-start h-8 mr-3" alt="Smart Recycling Logo" />
         </Link>
         <div className="flex md:order-2">

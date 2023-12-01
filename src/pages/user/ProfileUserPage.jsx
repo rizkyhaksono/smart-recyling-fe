@@ -6,7 +6,7 @@ import FooterComponent from "../../components/FooterComponent";
 import { useGetUserQuery } from "../../redux/api/userApi";
 
 export default function ProfileUserPage() {
-  const { data: userData, isSuccess: userSuccess } = useGetUserQuery();
+  const { data: userData } = useGetUserQuery();
 
   const dataProfile = [
     {
