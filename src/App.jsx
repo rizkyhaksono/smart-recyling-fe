@@ -27,7 +27,7 @@ function App() {
     if (cookies.get("access_token") && cookies.get("refresh_token")) {
       setIsLoggedIn(true);
     }
-  }, [cookies]);
+  }, []);
 
   return (
     <BrowserRouter>
@@ -35,9 +35,11 @@ function App() {
         <Route index path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+
         {isLoggedIn && userSuccess ? (
           <>
-            {userData.user.role === "ADMIN" ? <Route path="/" element={<DashboardAdminPage />} /> : <Route path="/" element={<HomePage />} />}
+            {userData.user.role === "ADMIN" ? <Route path="/admin/dashboard" element={<DashboardAdminPage />} /> : <Route path="/" element={<HomePage />} />}
+            <Route path="/admin/dashboard" element={<DashboardAdminPage />} />
             <Route path="/report" element={<ReportPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/mobile" element={<MobilePage />} />
