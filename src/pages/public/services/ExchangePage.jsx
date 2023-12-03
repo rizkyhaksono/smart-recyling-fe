@@ -12,8 +12,8 @@ export default function ExchangePage() {
     <>
       <NavbarComponent />
       <div className="container mx-auto mt-10 pt-20 text-center">
-        <div className="font-extrabold text-6xl text-primary">Exchange</div>
-        <div className="font-normal text-xl text-textColor mt-5">Information points to exchange good items</div>
+        <div className="font-extrabold text-6xl text-primary max-[640px]:text-4xl">Exchange</div>
+        <div className="font-normal text-xl text-textColor mt-5 max-[640px]:text-lg">Information points to exchange good items</div>
       </div>
       <Row className="container mx-auto mt-5 mb-10 " align="middle" justify={"space-around"}>
         <Col span={12}>

@@ -36,6 +36,7 @@ export default function NavbarComponent() {
   const [state, setState] = useState({
     ACCESS_TOKEN: cookies.get("access_token"),
     REFRESH_TOKEN: cookies.get("refresh_token"),
+    USER_ROLE: cookies.get("user_role"),
   });
 
   const isLoggedIn = state.ACCESS_TOKEN && state.REFRESH_TOKEN;
@@ -43,11 +44,13 @@ export default function NavbarComponent() {
   const logOut = () => {
     cookies.remove("access_token");
     cookies.remove("refresh_token");
+    cookies.remove("user_role");
 
     setState((prevState) => ({
       ...prevState,
       ACCESS_TOKEN: null,
       REFRESH_TOKEN: null,
+      USER_ROLE: null,
     }));
 
     window.location.reload();
@@ -86,6 +89,7 @@ export default function NavbarComponent() {
 
   useEffect(() => {
     checkMobileView();
+    console.log(userSuccess);
 
     window.addEventListener("resize", checkMobileView);
 

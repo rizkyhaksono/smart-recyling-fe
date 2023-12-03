@@ -7,9 +7,9 @@ export default function ContactPage() {
   return (
     <>
       <NavbarComponent />
-      <div className="container mx-auto mt-10 pt-20 px-10">
-        <p className="font-extrabold text-6xl text-center text-primary">Contact Us</p>
-        <p className="font-normal text-center mt-5 text-gray-500 text-xl">Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>
+      <div className="container mx-auto my-10 px-10 sm:pt-14 lg:pt-8 xl:pt-24 max-[640px]:pt-10">
+        <p className="font-extrabold text-6xl text-center text-primary max-[640px]:text-4xl">Contact Us</p>
+        <p className="font-normal text-center mt-5 text-gray-500 text-xl max-[640px]:text-lg">Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>
       </div>
       <section className="container mx-auto px-5">
         <div className="py-8 px-4 mx-auto max-w-screen-xl">

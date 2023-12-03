@@ -42,9 +42,9 @@ export default function AboutPage() {
   return (
     <>
       <NavbarComponent />
-      <div className="container mx-auto mt-10 pt-20">
-        <p className="font-extrabold text-6xl text-center text-primary">About Us</p>
-        <p className="font-normal text-center mt-5 text-textColor text-xl mx-10">
+      <div className="container mx-auto my-10 sm:pt-14 lg:pt-8 xl:pt-24 max-[640px]:pt-10">
+        <p className="font-extrabold text-6xl text-center text-primary max-[640px]:text-4xl">About Us</p>
+        <p className="font-normal text-center mt-5 text-textColor text-xl mx-10 max-[640px]:text-lg">
           At Smart Recycling, we are passionate about promoting a sustainable future and making recycling an effortless part of your daily routine. Our mission is simple yet impactful: to inspire, educate, and empower individuals and
           businesses to embrace recycling practices that benefit both our environment and our communities.
         </p>

@@ -17,6 +17,7 @@ import SignUpPage from "./pages/public/auth/SignUpPage";
 import DashboardAdminPage from "./pages/admin/dashboard/DashboardAdminPage";
 import ProfileUserPage from "./pages/user/ProfileUserPage";
 import ProfileAdminPage from "./pages/admin/profile/ProfileAdmin";
+import { Navigate } from "react-router-dom";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,19 +31,95 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (userSuccess) {
+      cookies.set("user_role", userData.user.role);
+    }
+  }, [userSuccess, userData, cookies]);
+
   return (
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route index path="/" element={<HomePage />} />
+    //     <Route path="/about" element={<AboutPage />} />
+    //     <Route path="/contact" element={<ContactPage />} />
+
+    //     {isLoggedIn && userSuccess ? (
+    //       <>
+    //         {userData.user.role === "ADMIN" ? <Route path="/admin/dashboard" element={<DashboardAdminPage />} /> : <Route path="/" element={<HomePage />} />}
+    //         <Route path="/admin/dashboard" element={<DashboardAdminPage />} />
+    //         <Route path="/admin/profile" element={<ProfileAdminPage />} />
+    //         <Route path="/report" element={<ReportPage />} />
+    //         <Route path="/blog" element={<BlogPage />} />
+    //         <Route path="/mobile" element={<MobilePage />} />
+    //         <Route path="/exchange" element={<ExchangePage />} />
+    //         <Route path="/user/profile" element={<ProfileUserPage />} />
+    //       </>
+    //     ) : (
+    //       <Route path="*" element={<Navigate to="/signin" />} />
+    //     )}
+    //     {!cookies.get("access_token") && !cookies.get("refresh_token") && (
+    //       <>
+    //         <Route path="/signin" element={<SignInPage />} />
+    //         <Route path="/signup" element={<SignUpPage />} />
+    //       </>
+    //     )}
+    //     <Route path="*" element={<NotFoundPage />} />
+    //   </Routes>
+    // </BrowserRouter>
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route index path="/" element={<HomePage />} />
+    //     <Route path="/about" element={<AboutPage />} />
+    //     <Route path="/contact" element={<ContactPage />} />
+
+    //     {isLoggedIn && userSuccess ? (
+    //       <>
+    //         {cookies.get("user_role") === "ADMIN" ? <Route path="/admin/dashboard" element={<DashboardAdminPage />} /> : <Route path="/" element={<HomePage />} />}
+    //         <Route path="/admin/dashboard" element={<DashboardAdminPage />} />
+    //         <Route path="/admin/profile" element={<ProfileAdminPage />} />
+    //       </>
+    //     ) : (
+    //       <>
+    //         <Route path="/report" element={<ReportPage />} />
+    //         <Route path="/blog" element={<BlogPage />} />
+    //         <Route path="/mobile" element={<MobilePage />} />
+    //         <Route path="/exchange" element={<ExchangePage />} />
+    //         <Route path="/user/profile" element={<ProfileUserPage />} />
+    //       </>
+    //     )}
+
+    //     {!isLoggedIn && (
+    //       <>
+    //         <Route path="/signin" element={<SignInPage />} />
+    //         <Route path="/signup" element={<SignUpPage />} />
+    //       </>
+    //     )}
+
+    //     <Route path="*" element={<NotFoundPage />} />
+    //   </Routes>
+    // </BrowserRouter>
     <BrowserRouter>
       <Routes>
         <Route index path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
 
-        {isLoggedIn && userSuccess && userData.user.role === "ADMIN" ? (
+        {isLoggedIn && userSuccess ? (
           <>
-            <Route path="/admin/dashboard" element={<DashboardAdminPage />} />
-            <Route path="/admin/profile" element={<ProfileAdminPage />} />
+            {cookies.get("user_role") === "ADMIN" ? (
+              <>
+                <Route path="/admin/dashboard" element={<DashboardAdminPage />} />
+                <Route path="/admin/profile" element={<ProfileAdminPage />} />
+              </>
+            ) : (
+              // If the user is not an admin, redirect to the home page
+              <Route path="/" element={<HomePage />} />
+            )}
           </>
-        ) : (
+        ) : null}
+
+        {isLoggedIn ? (
           <>
             <Route path="/report" element={<ReportPage />} />
             <Route path="/blog" element={<BlogPage />} />
@@ -50,7 +127,7 @@ function App() {
             <Route path="/exchange" element={<ExchangePage />} />
             <Route path="/user/profile" element={<ProfileUserPage />} />
           </>
-        )}
+        ) : null}
 
         {!isLoggedIn && (
           <>
