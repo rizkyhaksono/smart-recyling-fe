@@ -4,6 +4,11 @@ import { Layout, Menu, theme, Avatar, Dropdown } from "antd";
 import FooterComponent from "../../../components/FooterComponent";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
+import DashboardContent from "../components/DashboardContent";
+import ManageUsersContent from "../components/ManageUser";
+import ManageEventsContent from "../components/ManageEvent";
+import ManageReportsContent from "../components/ManageReport";
+import ManageExchangeContent from "../components/ManageExchange";
 const { Header, Sider, Content } = Layout;
 
 const itemSidebar = [
@@ -33,12 +38,6 @@ const itemSidebar = [
     label: "Manage Exchange",
   },
 ];
-
-const DashboardContent = () => <div>Dashboard Content</div>;
-const ManageUsersContent = () => <div>Manage Users Content</div>;
-const ManageEventsContent = () => <div>Manage Events Content</div>;
-const ManageReportsContent = () => <div>Manage Reports Content</div>;
-const ManageExchangeContent = () => <div>Manage Exchange Content</div>;
 
 export default function DashboardAdminPage() {
   const {
@@ -126,7 +125,7 @@ export default function DashboardAdminPage() {
         </Header>
         <Content
           style={{
-            margin: "24px 16px 0",
+            margin: "20px",
           }}
         >
           <div
