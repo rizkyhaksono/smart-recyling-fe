@@ -7,17 +7,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/public/home/HomePage";
 import ContactPage from "./pages/public/contact/ContactPage";
 import AboutPage from "./pages/public/about/AboutPage";
-import BlogPage from "./pages/public/services/BlogPage";
-import ExchangePage from "./pages/public/services/ExchangePage";
-import MobilePage from "./pages/public/services/MobilePage";
-import ReportPage from "./pages/public/services/ReportPage";
+import BlogPage from "./pages/services/BlogPage";
+import ExchangePage from "./pages/services/ExchangePage";
+import MobilePage from "./pages/services/MobilePage";
+import ReportPage from "./pages/services/ReportPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import SignInPage from "./pages/public/auth/SignInPage";
 import SignUpPage from "./pages/public/auth/SignUpPage";
 import DashboardAdminPage from "./pages/admin/dashboard/DashboardAdminPage";
 import ProfileUserPage from "./pages/user/ProfileUserPage";
 import ProfileAdminPage from "./pages/admin/profile/ProfileAdmin";
-import { Navigate } from "react-router-dom";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

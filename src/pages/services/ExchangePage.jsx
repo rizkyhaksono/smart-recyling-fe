@@ -1,9 +1,9 @@
 "use client";
 
-import NavbarComponent from "../../../components/NavbarComponent";
-import FooterComponent from "../../../components/FooterComponent";
+import NavbarComponent from "../../components/NavbarComponent";
+import FooterComponent from "../../components/FooterComponent";
 import { Col, Row, FloatButton } from "antd";
-import CardExchange from "../../../components/CardExchange";
+import CardExchange from "../../components/CardExchange";
 
 export default function ExchangePage() {
   var coins = 100000;
