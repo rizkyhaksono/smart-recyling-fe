@@ -1,9 +1,8 @@
-/* eslint-disable no-unused-vars */
 "use client";
 
-import React, { useState, useEffect } from "react";
 import NavbarComponent from "../../components/navbar_component";
 import FooterComponent from "../../components/footer_component";
+
 export default function FillExchangePage() {
   var path = window.location.pathname;
   var index = path.substr(path.length - 1);
