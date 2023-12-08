@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ProjectOutlined, CopyrightOutlined, BookOutlined, TeamOutlined, AppstoreOutlined } from "@ant-design/icons";
+import { ProjectOutlined, CopyrightOutlined, BookOutlined, AppstoreOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme, Avatar, Dropdown } from "antd";
 import FooterComponent from "../../../components/FooterComponent";
 import { Link } from "react-router-dom";

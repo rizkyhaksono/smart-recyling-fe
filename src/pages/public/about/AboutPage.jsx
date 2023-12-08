@@ -28,13 +28,19 @@ const items = [
   },
   {
     key: "4",
-    label: "Apakah bisa membeli points menggunakan uang?",
-    children: <p>{`Anda hanya bisa mendapatkan points dengan cara membuang sampah menggunakan fasilitas kami.`}</p>,
+    label: "Apakah bisa melakukan transaksi melalui mobile?",
+    children: <p>{`Anda bisa menukarkan sampah anda dengan point di Mobile App, lalu Anda bisa menukarkan point dengan barang melalui website kami.`}</p>,
   },
   {
     key: "5",
-    label: "Apakah bisa membeli points menggunakan uang?",
-    children: <p>{`Anda hanya bisa mendapatkan points dengan cara membuang sampah menggunakan fasilitas kami.`}</p>,
+    label: "Bagaimana cara berkontribusi di platform kami?",
+    children: (
+      <p style={{ whiteSpace: "pre-line" }}>
+        {`- Anda bisa menukarkan sampah anda dengan point.
+
+      - Anda bisa mengikuti kegiatan sosial di laman event`}
+      </p>
+    ),
   },
 ];
 
