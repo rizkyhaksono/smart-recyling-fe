@@ -11,8 +11,15 @@ export const exchangeApi = baseApi.enhanceEndpoints({}).injectEndpoints({
           headers: getUserAuthHeaderApi(),
         }),
       }),
+      getExchangeById: builder.query({
+        query: (uuid) => ({
+          url: `exchange/${uuid}`,
+          method: "GET",
+          headers: getUserAuthHeaderApi(),
+        }),
+      }),
     };
   },
 });
 
-export const { useGetExchangeQuery } = exchangeApi;
+export const { useGetExchangeQuery, useGetExchangeByIdQuery } = exchangeApi;
