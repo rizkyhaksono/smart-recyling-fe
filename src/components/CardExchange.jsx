@@ -32,7 +32,7 @@ export default function CardExchange() {
           </div>
         }
         renderItem={(item) => (
-          <div className="flex font-sans py-2">
+          <div className="container mx-auto flex font-sans py-2">
             <div className="flex-none w-[217px] h-[245px] relative">
               <img src={item.imgUrl} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
             </div>

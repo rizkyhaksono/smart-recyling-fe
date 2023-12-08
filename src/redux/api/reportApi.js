@@ -1,12 +1,12 @@
 import { getUserAuthHeaderApi } from "../apiHelper";
 import { baseApi } from "../axiosBaseQuery";
 
-export const exchangeApi = baseApi.enhanceEndpoints({}).injectEndpoints({
+export const reportApi = baseApi.enhanceEndpoints({}).injectEndpoints({
   endpoints(builder) {
     return {
-      getExchange: builder.query({
+      getReports: builder.query({
         query: () => ({
-          url: `exchange`,
+          url: `/reports`,
           method: "GET",
           headers: getUserAuthHeaderApi(),
         }),
@@ -15,4 +15,4 @@ export const exchangeApi = baseApi.enhanceEndpoints({}).injectEndpoints({
   },
 });
 
-export const { useGetExchangeQuery } = exchangeApi;
+export const { useGetReportsQuery } = reportApi;

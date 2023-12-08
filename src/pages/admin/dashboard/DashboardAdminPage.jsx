@@ -5,7 +5,6 @@ import FooterComponent from "../../../components/FooterComponent";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import DashboardContent from "../components/DashboardContent";
-import ManageUsersContent from "../components/ManageUser";
 import ManageEventsContent from "../components/ManageEvent";
 import ManageReportsContent from "../components/ManageReport";
 import ManageExchangeContent from "../components/ManageExchange";
@@ -19,21 +18,16 @@ const itemSidebar = [
   },
   {
     key: "2",
-    icon: <TeamOutlined />,
-    label: "Manage Users",
-  },
-  {
-    key: "3",
     icon: <BookOutlined />,
     label: "Manage Events",
   },
   {
-    key: "4",
+    key: "3",
     icon: <ProjectOutlined />,
     label: "Manage Reports",
   },
   {
-    key: "5",
+    key: "4",
     icon: <CopyrightOutlined />,
     label: "Manage Exchange",
   },
@@ -88,62 +82,64 @@ export default function DashboardAdminPage() {
   ];
 
   return (
-    <Layout>
-      <Sider
-        breakpoint="lg"
-        collapsedWidth="0"
-        collapsed={collapsed}
-        onBreakpoint={(broken) => {
-          console.log(broken);
-        }}
-        onCollapse={(collapsed, type) => {
-          setCollapsed(collapsed);
-          console.log(collapsed, type);
-        }}
-      >
-        <div className="demo-logo-vertical" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]} items={itemSidebar} onClick={handleMenuClick} selectedKeys={[selectedTab]} />
-      </Sider>
+    <>
       <Layout>
-        <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer,
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            paddingLeft: 20,
-            paddingRight: 20,
+        <Sider
+          breakpoint="lg"
+          collapsedWidth="0"
+          collapsed={collapsed}
+          onBreakpoint={(broken) => {
+            console.log(broken);
           }}
-        >
-          <Link to={"/admin/dashboard"}>
-            <img src="/logo.png" className="flex items-start h-8 mr-3" alt="Smart Recycling Logo" />
-          </Link>
-          <Dropdown menu={{ items: itemsAdmin }} placement="bottom" arrow={{ pointAtCenter: true }}>
-            <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
-          </Dropdown>
-        </Header>
-        <Content
-          style={{
-            margin: "20px",
+          onCollapse={(collapsed, type) => {
+            setCollapsed(collapsed);
+            console.log(collapsed, type);
           }}
+          theme="light"
         >
-          <div
+          <div className="demo-logo-vertical" />
+          <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]} items={itemSidebar} onClick={handleMenuClick} selectedKeys={[selectedTab]} />
+        </Sider>
+        <Layout>
+          <Header
             style={{
-              padding: 24,
-              minHeight: 360,
+              padding: 0,
               background: colorBgContainer,
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              paddingLeft: 20,
+              paddingRight: 20,
             }}
           >
-            {selectedTab === "1" && <DashboardContent />}
-            {selectedTab === "2" && <ManageUsersContent />}
-            {selectedTab === "3" && <ManageEventsContent />}
-            {selectedTab === "4" && <ManageReportsContent />}
-            {selectedTab === "5" && <ManageExchangeContent />}
-          </div>
-        </Content>
-        <FooterComponent />
+            <Link to={"/admin/dashboard"}>
+              <img src="/logo.png" className="flex items-start h-8 mr-3" alt="Smart Recycling Logo" />
+            </Link>
+            <Dropdown menu={{ items: itemsAdmin }} placement="bottom" arrow={{ pointAtCenter: true }}>
+              <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+            </Dropdown>
+          </Header>
+          <Content
+            style={{
+              margin: "20px",
+            }}
+          >
+            <div
+              style={{
+                padding: 24,
+                minHeight: 360,
+                background: colorBgContainer,
+              }}
+            >
+              {selectedTab === "1" && <DashboardContent />}
+              {selectedTab === "2" && <ManageEventsContent />}
+              {selectedTab === "3" && <ManageReportsContent />}
+              {selectedTab === "4" && <ManageExchangeContent />}
+            </div>
+          </Content>
+        </Layout>
       </Layout>
-    </Layout>
+      <FooterComponent />
+    </>
   );
 }

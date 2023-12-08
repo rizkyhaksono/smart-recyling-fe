@@ -4,6 +4,7 @@ import { useState } from "react";
 import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
 import CardBlog from "../../components/CardBlog";
+import CardEvent from "../../components/CardEvent";
 import { Card, FloatButton } from "antd";
 
 const tabListNoTitle = [
@@ -18,8 +19,8 @@ const tabListNoTitle = [
 ];
 
 const contentListNoTitle = {
-  blog: <CardBlog />,
-  event: <p>event content</p>,
+  blog: <p>Hai</p>,
+  event: <CardEvent />,
 };
 
 export default function BlogPage() {

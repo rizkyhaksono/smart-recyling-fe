@@ -4,7 +4,7 @@ import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import { useGetEventsQuery } from "../redux/api/eventApi";
 
-export default function CardBlog() {
+export default function CardEvent() {
   const { data: eventData } = useGetEventsQuery();
 
   useState(() => {

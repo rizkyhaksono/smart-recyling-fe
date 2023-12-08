@@ -21,6 +21,7 @@ import ProfileAdminPage from "./pages/admin/profile/ProfileAdmin";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { data: userData, isSuccess: userSuccess } = useGetUserQuery();
+
   const cookies = new Cookies();
 
   useEffect(() => {
@@ -31,7 +32,9 @@ function App() {
     if (userSuccess) {
       cookies.set("user_role", userData.user.role);
     }
-  }, [userSuccess, userData, cookies]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userSuccess, userData]);
 
   return (
     <BrowserRouter>
