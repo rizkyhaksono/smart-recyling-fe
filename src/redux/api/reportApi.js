@@ -11,8 +11,20 @@ export const reportApi = baseApi.enhanceEndpoints({}).injectEndpoints({
           headers: getUserAuthHeaderApi(),
         }),
       }),
+      postReports: builder.mutation({
+        query: ({ data }) => ({
+          url: `/reports`,
+          method: "POST",
+          body: {
+            email: data.email,
+            subject: data.subject,
+            location: data.location,
+            user_id: data.user_id,
+          },
+        }),
+      }),
     };
   },
 });
 
-export const { useGetReportsQuery } = reportApi;
+export const { useGetReportsQuery, usePostReportsMutation } = reportApi;

@@ -5,11 +5,9 @@ import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
 import { useGetUserQuery } from "../../redux/api/userApi";
 import { useGetExchangeByIdQuery } from "../../redux/api/exchangeApi";
-import { useGetEventsQuery } from "../../redux/api/eventApi";
-import { useGetReportsQuery } from "../../redux/api/reportApi";
 
 export default function ProfileUserPage() {
-  const { data: userData, isError, isFetching, isLoading, isSuccess } = useGetUserQuery();
+  const { data: userData, isError, isLoading, isSuccess } = useGetUserQuery();
   const userUuid = userData?.user?.uuid;
   const { data: exchangeData } = useGetExchangeByIdQuery(userUuid);
 

@@ -28,8 +28,8 @@ export default function SignInPage() {
   const [buttonLoading, setButtonLoading] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const methods = useForm({
@@ -52,7 +52,6 @@ export default function SignInPage() {
       );
       cookies.set("access_token", res.access_token);
       cookies.set("refresh_token", res.refresh_token);
-      // window.location.href = "/";
       navigate("/");
       setShowSuccessAlert(true);
     } catch (error) {

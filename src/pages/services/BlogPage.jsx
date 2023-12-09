@@ -19,7 +19,7 @@ const tabListNoTitle = [
 ];
 
 const contentListNoTitle = {
-  blog: <p>Hai</p>,
+  blog: <CardBlog />,
   event: <CardEvent />,
 };
 
