@@ -17,11 +17,10 @@ import SignUpPage from "./pages/public/auth/SignUpPage";
 import DashboardAdminPage from "./pages/admin/dashboard/DashboardAdminPage";
 import ProfileUserPage from "./pages/user/ProfileUserPage";
 import ProfileAdminPage from "./pages/admin/profile/ProfileAdmin";
-import { Spin, Button, Result } from "antd";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { data: userData, isSuccess: userSuccess, isError, isLoading } = useGetUserQuery();
+  const { data: userData, isSuccess: userSuccess } = useGetUserQuery();
 
   const cookies = new Cookies();
 
@@ -36,18 +35,6 @@ function App() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSuccess, userData]);
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Spin size="large" />
-      </div>
-    );
-  }
-
-  {
-    isError && <div>Error loading user data</div>;
-  }
 
   return (
     <BrowserRouter>
