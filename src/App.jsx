@@ -45,13 +45,13 @@ function App() {
     );
   }
 
+  {
+    isError && <div>Error loading user data</div>;
+  }
+
   return (
     <BrowserRouter>
       <Routes>
-        {isLoading && <Spin className="flex justify-center items-center" size="large" />}
-
-        {isError && <div>Error loading user data</div>}
-
         <Route index path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
