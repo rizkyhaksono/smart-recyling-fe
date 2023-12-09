@@ -3,8 +3,8 @@
 import NavbarComponent from "../../../components/NavbarComponent";
 import FooterComponent from "../../../components/FooterComponent";
 import MarqueeComponent from "../../../components/MarqueeComponent";
-import { Link } from "react-router-dom";
 import { FloatButton } from "antd";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   return (
@@ -69,7 +69,7 @@ export default function HomePage() {
               <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
                 <Link to={"/contact"}>
                   <div className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary hover:bg-green-700 focus:ring-4 focus:ring-blue-300">
-                    Sign In
+                    Contact Us
                     <svg className="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
                     </svg>
@@ -94,6 +94,7 @@ export default function HomePage() {
           </div>
         </section>
       </main>
+
       <FloatButton.BackTop />
       <FooterComponent />
     </>

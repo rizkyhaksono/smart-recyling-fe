@@ -1,17 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Avatar, List, Space, Card } from "antd";
-import { LikeOutlined, MessageOutlined, StarOutlined, EditOutlined, EllipsisOutlined, SettingOutlined } from "@ant-design/icons";
 const { Meta } = Card;
 import PropTypes from "prop-types";
-import { useGetEventsQuery } from "../redux/api/eventApi";
 
 export default function CardBlog() {
-  const { data: eventData } = useGetEventsQuery();
-
-  useState(() => {
-    console.log(eventData);
-  });
-
   const data = [
     {
       id: 1,
@@ -34,7 +26,7 @@ export default function CardBlog() {
       title: "Test 3",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eius cumque ducimus distinctio libero sunt, cum amet mollitia ad quibusdam exercitationem architecto quidem minima a debitis voluptas aspernatur reiciendis odio rerum obcaecati iure omnis odit quam laboriosam?",
-      coverImage: "https://asset-2.tstatic.net/suryamalang/foto/bank/images/tumpukan-sampah-yang-berada-di-jalan-muharto-kota-malang.jpg",
+      coverImage: "https://static.gatra.com/foldershared/images/2019/fatikhin/11-Nov/IMG_20191102_183308.jpg",
       avatarImage: "https://xsgames.co/randomusers/avatar.php?g=pixel&key=3",
     },
     {
@@ -42,7 +34,7 @@ export default function CardBlog() {
       title: "Test 4",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eius cumque ducimus distinctio libero sunt, cum amet mollitia ad quibusdam exercitationem architecto quidem minima a debitis voluptas aspernatur reiciendis odio rerum obcaecati iure omnis odit quam laboriosam?",
-      coverImage: "https://asset-2.tstatic.net/suryamalang/foto/bank/images/tumpukan-sampah-yang-berada-di-jalan-muharto-kota-malang.jpg",
+      coverImage: "https://static.republika.co.id/uploads/images/inpicture_slide/pemerintah-kota-pemkot-malang-bersama-sejumlah-instansi-melakukan-bersih-bersih-_191227143207-599.jpg",
       avatarImage: "https://xsgames.co/randomusers/avatar.php?g=pixel&key=4",
     },
     {
@@ -50,13 +42,13 @@ export default function CardBlog() {
       title: "Test 5",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eius cumque ducimus distinctio libero sunt, cum amet mollitia ad quibusdam exercitationem architecto quidem minima a debitis voluptas aspernatur reiciendis odio rerum obcaecati iure omnis odit quam laboriosam?",
-      coverImage: "https://asset-2.tstatic.net/suryamalang/foto/bank/images/tumpukan-sampah-yang-berada-di-jalan-muharto-kota-malang.jpg",
+      coverImage: "https://asset-2.tstatic.net/jogja/foto/bank/images/rahasia-kota-malang-sukses-kelola-sampah-lewat-sistem-yang-diadopsi-dari-warga-bantul.jpg",
       avatarImage: "https://xsgames.co/randomusers/avatar.php?g=pixel&key=5",
     },
   ];
 
   const cardComponents = data.map((item) => (
-    <Card className="flex" key={item.id} cover={<img alt="example" src={item.coverImage} />}>
+    <Card className="flex flex-col items-center justify-center justify-items-center justify-self-center" key={item.id} cover={<img alt="example" src={item.coverImage} />}>
       <Meta avatar={<Avatar src={item.avatarImage} />} title={item.title} description={item.description} />
     </Card>
   ));
