@@ -9,7 +9,7 @@ import { useGetEventsQuery } from "../../redux/api/eventApi";
 import { useGetReportsQuery } from "../../redux/api/reportApi";
 
 export default function ProfileUserPage() {
-  const { data: userData } = useGetUserQuery();
+  const { data: userData, isError, isFetching, isLoading, isSuccess } = useGetUserQuery();
   const userUuid = userData?.user?.uuid;
   const { data: exchangeData } = useGetExchangeByIdQuery(userUuid);
 
@@ -88,15 +88,27 @@ export default function ProfileUserPage() {
       <NavbarComponent />
       <Layout>
         <Card className="mt-28 mx-10 my-10" bordered={true}>
-          <p>{userData.user.name ? <p className="font-bold text-2xl text-center mb-4 text-textColor">My Profile</p> : <Skeleton />}</p>
-          <div className="flex items-center justify-center">
-            <Avatar size={100} src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
-          </div>
-          <Descriptions title="User Info" items={dataProfile} />
+          {isLoading && <Skeleton />}
+          {isError && <p>Error loading user data</p>}
+          {isSuccess && userData?.user && (
+            <>
+              <p className="font-bold text-2xl text-center mb-4 text-textColor">My Profile</p>
+              <div className="flex items-center justify-center">
+                <Avatar size={100} src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+              </div>
+              <Descriptions title="User Info" items={dataProfile} />
+            </>
+          )}
         </Card>
         <Card className="mx-10 mb-10" bordered={true}>
-          <p>{userData.user.name ? <p className="font-bold text-2xl text-center mb-4 text-textColor">Your Activities</p> : <Skeleton />}</p>
-          <Tabs defaultActiveKey="1" items={dataActivities} />
+          {isLoading && <Skeleton />}
+          {isError && <p>Error loading user data</p>}
+          {isSuccess && userData?.user && (
+            <>
+              <p className="font-bold text-2xl text-center mb-4 text-textColor">Your Activities</p>
+              <Tabs defaultActiveKey="1" items={dataActivities} />
+            </>
+          )}
         </Card>
       </Layout>
       <FloatButton.BackTop />

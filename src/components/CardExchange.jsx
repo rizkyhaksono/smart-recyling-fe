@@ -1,18 +1,31 @@
 import { useState } from "react";
-import { List, Modal, Input } from "antd";
+import { List, Modal, Input, Spin } from "antd";
 import { BsCoin } from "react-icons/bs";
-
-const data = Array.from({
-  length: 10,
-}).map((_, i) => ({
-  imgUrl: `/exchange-${i}.png`,
-  title: `T-shirt`,
-  description: "Made from soft and environmentally friendly material, you can get this t-shirt with 100,000 coin.",
-  price: `1${i}0.000`,
-}));
+import { useGetExchangeQuery } from "../redux/api/exchangeApi";
 
 export default function CardExchange() {
   const [modalOpen, setModalOpen] = useState(false);
+  const { data: useExchange, isError, isLoading, isFetching } = useGetExchangeQuery();
+
+  const data = Array.from({
+    length: 10,
+  }).map((_, i) => ({
+    imgUrl: `/exchange-${i}.png`,
+    title: `T-shirt`,
+    description: "Made from soft and environmentally friendly material, you can get this t-shirt with 100,000 coin.",
+    price: `1${i}0.000`,
+  }));
+
+  // Render loading indicator while data is being fetched
+  if (isLoading) {
+    return <Spin size="large" />;
+  }
+
+  // Render an error message if there is an error
+  if (isError) {
+    return <div>Error loading exchange data</div>;
+  }
+
   return (
     <>
       <List

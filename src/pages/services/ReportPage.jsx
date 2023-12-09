@@ -8,7 +8,7 @@ export default function ReportPage() {
   return (
     <>
       <NavbarComponent />
-      <div className="container mx-auto mt-10 pt-20">
+      <div className="container mx-auto mt-20 mb-10">
         <p className="font-extrabold text-6xl text-center text-primary max-[640px]:text-4xl">Report Trash</p>
         <p className="font-normal text-center mt-5 text-gray-500 text-xl max-[640px]:text-lg">Report trash in the area around you</p>
       </div>
