@@ -7,30 +7,30 @@ import { useGetUserQuery } from "../../redux/api/userApi";
 import { useGetExchangeByIdQuery } from "../../redux/api/exchangeApi";
 
 export default function ProfileUserPage() {
-  const { data: userData, isError, isLoading, isSuccess } = useGetUserQuery();
+  const { data: userData, isError, isLoading: userLoading, isSuccess } = useGetUserQuery();
   const userUuid = userData?.user?.uuid;
-  const { data: exchangeData } = useGetExchangeByIdQuery(userUuid);
+  const { data: exchangeData, isLoading: exchangeLoading } = useGetExchangeByIdQuery(userUuid);
 
   const dataProfile = [
     {
       key: "1",
       label: "Username",
-      children: userData.user.name,
+      children: userData?.user?.name || "",
     },
     {
       key: "2",
       label: "Email",
-      children: userData.user.email,
+      children: userData?.user?.email || "",
     },
     {
       key: "3",
       label: "Role",
-      children: userData.user.role,
+      children: userData?.user?.role || "",
     },
     {
       key: "4",
       label: "Points",
-      children: userData.user.points,
+      children: userData?.user?.points || "",
     },
   ];
 
@@ -40,21 +40,16 @@ export default function ProfileUserPage() {
     exchangeItems = exchangeData.data.map((exchangeItem) => (
       <Card key={exchangeItem.id} className="my-5">
         <div className="my-2">
+          <Tag bordered={false}>User ID: {exchangeItem?.user_id}</Tag>
+        </div>
+        <div className="my-2">
+          <Tag bordered={false}>
+            <p>Item Name: {exchangeItem?.items_id || ""}</p>
+          </Tag>
+        </div>
+        <div className="my-2">
           <Tag bordered={false} color="success">
-            Created At: {exchangeItem.created_at}
-          </Tag>
-        </div>
-        <div className="my-2">
-          <Tag bordered={false}>User ID: {exchangeItem.user_id}</Tag>
-        </div>
-        <div className="my-2">
-          <Tag bordered={false}>
-            <p>Item Name: {exchangeItem.items.name}</p>
-          </Tag>
-        </div>
-        <div className="my-2">
-          <Tag bordered={false}>
-            <p>Item Points: {exchangeItem.items.points}</p>
+            Created At: {exchangeItem.created_at || ""}
           </Tag>
         </div>
       </Card>
@@ -86,7 +81,8 @@ export default function ProfileUserPage() {
       <NavbarComponent />
       <Layout>
         <Card className="mt-28 mx-10 my-10" bordered={true}>
-          {isLoading && <Skeleton />}
+          {userLoading && <Skeleton />}
+          {exchangeLoading && <Skeleton />}
           {isError && <p>Error loading user data</p>}
           {isSuccess && userData?.user && (
             <>
@@ -99,7 +95,8 @@ export default function ProfileUserPage() {
           )}
         </Card>
         <Card className="mx-10 mb-10" bordered={true}>
-          {isLoading && <Skeleton />}
+          {userLoading && <Skeleton />}
+          {exchangeLoading && <Skeleton />}
           {isError && <p>Error loading user data</p>}
           {isSuccess && userData?.user && (
             <>

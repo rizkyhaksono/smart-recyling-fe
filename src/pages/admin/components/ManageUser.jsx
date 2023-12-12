@@ -1,5 +1,4 @@
-import { Tabs, Space, Table, Tag } from "antd";
-const { Column, ColumnGroup } = Table;
+import { Space, Table, Tag } from "antd";
 
 const columns = [
   {

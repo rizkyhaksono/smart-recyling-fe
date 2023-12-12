@@ -5,7 +5,7 @@ import FooterComponent from "../../../components/FooterComponent";
 import { useGetUserQuery } from "../../../redux/api/userApi";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const { Header } = Layout;
 
 export default function ProfileAdminPage() {
@@ -20,22 +20,22 @@ export default function ProfileAdminPage() {
     {
       key: "1",
       label: "Username",
-      children: userData.user.name,
+      children: userData.user?.name || "",
     },
     {
       key: "2",
       label: "Email",
-      children: userData.user.email,
+      children: userData.user?.email || "",
     },
     {
       key: "3",
       label: "Role",
-      children: userData.user.role,
+      children: userData.user?.role || "",
     },
     {
       key: "4",
       label: "Points",
-      children: userData.user.points,
+      children: userData.user?.points || "",
     },
   ];
 
