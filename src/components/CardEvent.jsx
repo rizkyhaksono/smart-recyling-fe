@@ -1,22 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { Avatar, List, Space } from "antd";
-import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import { useGetEventsQuery } from "../redux/api/eventApi";
 
 export default function CardEvent() {
   const { data: eventData } = useGetEventsQuery();
 
-  useState(() => {
-    console.log(eventData);
-  });
+  const validEvents = eventData?.data[0] || [];
 
-  const data = (eventData?.data || []).map((item, i) => ({
-    href: "https://ant.design",
-    title: `${item.title}`,
+  console.log(validEvents);
+
+  const data = validEvents.map((item, i) => ({
+    id: item.id,
+    href: `https://example.com/events/${item.id}`,
+    title: item.title,
     avatar: `https://xsgames.co/randomusers/avatar.php?g=pixel&key=${i}`,
-    description: `${item.description}`,
-    content: `${item.description}`,
+    description: item.description,
+    content: item.description,
+    image: item.path_image,
+    created_at: item.created_at,
   }));
 
   const IconText = ({ icon, text }) => (
@@ -47,6 +49,8 @@ export default function CardEvent() {
           <List.Item key={item.title}>
             <List.Item.Meta avatar={<Avatar src={item.avatar} />} title={<a href={item.href}>{item.title}</a>} description={item.description} />
             {item.content}
+            <p>{item.image}</p>
+            <p>Created: {item.created_at}</p>
           </List.Item>
         )}
       />

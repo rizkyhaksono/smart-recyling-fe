@@ -10,7 +10,7 @@ export default function CardBlog() {
       title: "Test 1",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eius cumque ducimus distinctio libero sunt, cum amet mollitia ad quibusdam exercitationem architecto quidem minima a debitis voluptas aspernatur reiciendis odio rerum obcaecati iure omnis odit quam laboriosam?",
-      coverImage: "https://malang-post.com/wp-content/uploads/2021/02/Tumpukan-sampah-di-tempat-pembuangan-sampah-Pasar-Merjosari-tidak-diangkut-petugas-kebersihan.jpg",
+      coverImage: "https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/radarmalang/2023/05/ONLINE-Sampah-Suharto-Copy.jpg",
       avatarImage: "https://xsgames.co/randomusers/avatar.php?g=pixel&key=1",
     },
     {

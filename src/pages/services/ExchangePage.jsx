@@ -24,10 +24,9 @@ export default function ExchangePage() {
           <>
             <div className="text-center font-extrabold text-6xl text-primary max-[640px]:text-4xl">Exchange</div>
             <div className="text-center font-normal text-xl text-textColor mt-5 max-[640px]:text-lg">Information points to exchange good items</div>
-
-            <div className="grid max-w-screen-xl mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 my-10 lg:pt-8 xl:pt-24">
-              <div className=" lg:col-span-7 sm:pt-16 sm:text-center md:text-center lg:text-start xl:text-start pt-12 max-[640px]:px-12">
-                <div className="flex justify-center items-center justify-items-center justify-self-center mt-8 text-textColor font-normal sm:text-xl md:text-xl lg:text-xl xl:text-xl xl:px-0 lg:px-0 md:px-0 sm:px-12 max-[640px]:text-center max-[640px]:text-lg">
+            <div className="grid max-w-screen-xl mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 my-10 lg:pt-8 xl:pt-24 items-center justify-center justify-items-center justify-self-center ">
+              <div className="lg:col-span-6 sm:text-center md:text-center lg:text-start xl:text-start max-[640px]:px-12">
+                <div className="flex gap-3 mt-8 text-textColor font-normal sm:text-xl md:text-xl lg:text-xl xl:text-xl xl:px-0 lg:px-0 md:px-0 sm:px-12 max-[640px]:text-center max-[640px]:text-lg">
                   <span>
                     <img src="./icons/coin.png" alt="Illustration Coin" />
                   </span>

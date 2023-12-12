@@ -24,19 +24,6 @@ export default function CardExchange() {
 
   return (
     <>
-      <div>
-        {useExchange.data ? (
-          // Render each property of the object, or a specific property
-          <>
-            <p>ID: {useExchange.data.id}</p>
-            <p>Items ID: {useExchange.data.items_id}</p>
-            <p>User ID: {useExchange.data.user_id}</p>
-            {/* Add more properties as needed */}
-          </>
-        ) : (
-          "Data kosong"
-        )}
-      </div>
       <List
         itemLayout="vertical"
         size="large"

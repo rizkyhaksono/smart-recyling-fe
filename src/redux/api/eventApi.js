@@ -16,9 +16,10 @@ export const eventsApi = baseApi.enhanceEndpoints({}).injectEndpoints({
           url: `/events`,
           method: "POST",
           body: {
-            name: data.name,
-            email: data.email,
-            password: data.password,
+            title: data.name,
+            description: data.description,
+            path_image: data.path_image,
+            user_id: data.user_id,
           },
         }),
       }),
@@ -26,4 +27,4 @@ export const eventsApi = baseApi.enhanceEndpoints({}).injectEndpoints({
   },
 });
 
-export const { useGetEventsQuery } = eventsApi;
+export const { useGetEventsQuery, usePostEventsMutation } = eventsApi;

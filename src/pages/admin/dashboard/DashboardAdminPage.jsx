@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ProjectOutlined, CopyrightOutlined, BookOutlined, AppstoreOutlined } from "@ant-design/icons";
+import { ProjectOutlined, CopyrightOutlined, BookOutlined, UsergroupDeleteOutlined, AppstoreOutlined } from "@ant-design/icons";
 import { Layout, Menu, theme, Avatar, Dropdown } from "antd";
 import FooterComponent from "../../../components/FooterComponent";
 import { Link } from "react-router-dom";
@@ -8,6 +8,7 @@ import DashboardContent from "../components/DashboardContent";
 import ManageEventsContent from "../components/ManageEvent";
 import ManageReportsContent from "../components/ManageReport";
 import ManageExchangeContent from "../components/ManageExchange";
+import ManageUsersContent from "../components/ManageUser";
 const { Header, Sider, Content } = Layout;
 
 const itemSidebar = [
@@ -18,16 +19,21 @@ const itemSidebar = [
   },
   {
     key: "2",
+    icon: <UsergroupDeleteOutlined />,
+    label: "Manage Users",
+  },
+  {
+    key: "3",
     icon: <BookOutlined />,
     label: "Manage Events",
   },
   {
-    key: "3",
+    key: "4",
     icon: <ProjectOutlined />,
     label: "Manage Reports",
   },
   {
-    key: "4",
+    key: "5",
     icon: <CopyrightOutlined />,
     label: "Manage Exchange",
   },
@@ -132,9 +138,10 @@ export default function DashboardAdminPage() {
               }}
             >
               {selectedTab === "1" && <DashboardContent />}
-              {selectedTab === "2" && <ManageEventsContent />}
-              {selectedTab === "3" && <ManageReportsContent />}
-              {selectedTab === "4" && <ManageExchangeContent />}
+              {selectedTab === "2" && <ManageUsersContent />}
+              {selectedTab === "3" && <ManageEventsContent />}
+              {selectedTab === "4" && <ManageReportsContent />}
+              {selectedTab === "5" && <ManageExchangeContent />}
             </div>
           </Content>
         </Layout>
