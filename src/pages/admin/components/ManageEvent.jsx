@@ -57,6 +57,7 @@ const ManageEventsContent = () => {
   return (
     <>
       <div className="h-screen">
+        <p className="font-bold text-3xl text-textColor mt-3 mb-10">Manage Users</p>
         <Tabs defaultActiveKey="1" onChange={(key) => console.log(key)} indicatorSize={(origin) => origin - 16}>
           <TabPane tab="All Events" key="1">
             <Spin spinning={eventsLoading}>

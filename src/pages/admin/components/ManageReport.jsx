@@ -49,13 +49,14 @@ const ManageReportsContent = () => {
   return (
     <>
       <div className="h-screen">
+        <p className="font-bold text-3xl text-textColor mt-3 mb-10">Manage Reports</p>
         <Tabs defaultActiveKey="1" onChange={(key) => console.log(key)} indicatorSize={(origin) => origin - 16}>
-          <TabPane tab="All Events" key="1">
+          <TabPane tab="All Reports" key="1">
             <Spin spinning={reportLoading}>
               <Table columns={columns} dataSource={reportData ? reportData.data.flat() : []} />
             </Spin>
           </TabPane>
-          <TabPane tab="Input Events" key="2">
+          <TabPane tab="Input Report" key="2">
             <p>test</p>
           </TabPane>
         </Tabs>

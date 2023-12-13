@@ -23,13 +23,11 @@ export default function ManageUsersContent() {
   };
 
   const handleUpdate = () => {
-    // Implement your update logic here
     console.log("Updating user:", selectedUser);
     setIsModalVisible(false);
   };
 
   const handleDelete = () => {
-    // Implement your delete logic here
     console.log("Deleting user:", selectedUser);
     setIsModalVisible(false);
   };
@@ -97,6 +95,7 @@ export default function ManageUsersContent() {
           <p>Loading...</p>
         ) : (
           <>
+            <p className="font-bold text-3xl text-textColor mt-3 mb-10">Manage Users</p>
             <Table columns={columns} dataSource={usersData ? usersData.data : []} />
 
             <Modal
