@@ -4,16 +4,16 @@ import { useGetEventsQuery } from "../../../redux/api/eventApi";
 const { TabPane } = Tabs;
 
 const ManageEventsContent = () => {
-  const { data: allEventsData, isLoading: allEventsLoading } = useGetEventsQuery();
+  const { data: eventData, isLoading: eventLoading } = useGetEventsQuery();
   // const { data: inputEventsData, isLoading: inputEventsLoading } = useGetEventQuery({ type: "input" });
 
-  const eventsLoading = allEventsLoading;
+  const eventsLoading = eventLoading;
 
   if (eventsLoading) {
     return <Spin size="large" className="flex justify-center items-center" />;
   }
 
-  console.log(allEventsData);
+  console.log(eventData);
 
   const columns = [
     {
@@ -60,7 +60,7 @@ const ManageEventsContent = () => {
         <Tabs defaultActiveKey="1" onChange={(key) => console.log(key)} indicatorSize={(origin) => origin - 16}>
           <TabPane tab="All Events" key="1">
             <Spin spinning={eventsLoading}>
-              <Table columns={columns} dataSource={allEventsData ? allEventsData.data.flat() : []} />
+              <Table columns={columns} dataSource={eventData ? eventData.data.flat() : []} />
             </Spin>
           </TabPane>
           <TabPane tab="Input Events" key="2">
