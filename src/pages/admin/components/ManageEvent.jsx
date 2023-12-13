@@ -1,28 +1,75 @@
-import { Tabs } from "antd";
+import { Tabs, Table, Spin } from "antd";
+import { useGetEventsQuery } from "../../../redux/api/eventApi";
 
-const onChange = (key) => {
-  console.log(key);
+const { TabPane } = Tabs;
+
+const ManageEventsContent = () => {
+  const { data: allEventsData, isLoading: allEventsLoading } = useGetEventsQuery();
+  // const { data: inputEventsData, isLoading: inputEventsLoading } = useGetEventQuery({ type: "input" });
+
+  const eventsLoading = allEventsLoading;
+
+  if (eventsLoading) {
+    return <Spin size="large" className="flex justify-center items-center" />;
+  }
+
+  console.log(allEventsData);
+
+  const columns = [
+    {
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
+      responsive: ["lg"],
+    },
+    {
+      title: "Title",
+      dataIndex: "title",
+      key: "title",
+      responsive: ["xs", "sm"],
+    },
+    {
+      title: "Description",
+      dataIndex: "description",
+      key: "description",
+      responsive: ["xs", "sm", "lg"],
+    },
+    {
+      title: "Path Image",
+      dataIndex: "path_image",
+      key: "path_image",
+      responsive: ["lg"],
+    },
+    {
+      title: "Created At",
+      dataIndex: "created_at",
+      key: "created_at",
+      responsive: ["lg"],
+    },
+    {
+      title: "User ID",
+      dataIndex: "user_id",
+      key: "user_id",
+      responsive: ["lg"],
+    },
+  ];
+
+  return (
+    <>
+      <div className="h-screen">
+        <Tabs defaultActiveKey="1" onChange={(key) => console.log(key)} indicatorSize={(origin) => origin - 16}>
+          <TabPane tab="All Events" key="1">
+            <Spin spinning={eventsLoading}>
+              <Table columns={columns} dataSource={allEventsData ? allEventsData.data.flat() : []} />
+            </Spin>
+          </TabPane>
+          <TabPane tab="Input Events" key="2">
+            <p>test</p>
+          </TabPane>
+        </Tabs>
+      </div>
+    </>
+  );
 };
-
-const items = [
-  {
-    key: "1",
-    label: "All Events",
-    children: "Content of Tab Pane 1",
-  },
-  {
-    key: "2",
-    label: "Upload Events",
-    children: "Content of Tab Pane 2",
-  },
-];
-
-const ManageEventsContent = () => (
-  <>
-    <div className="h-screen">
-      <Tabs defaultActiveKey="1" items={items} onChange={onChange} indicatorSize={(origin) => origin - 16} />
-    </div>
-  </>
-);
 
 export default ManageEventsContent;

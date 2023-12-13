@@ -1,46 +1,151 @@
-import { Card } from "antd";
-import { useState, useEffect } from "react";
-import { Chart } from "primereact/chart";
+import { ArrowUpOutlined, UsergroupDeleteOutlined, CarryOutOutlined, FileTextOutlined, BarsOutlined } from "@ant-design/icons";
+import { Card, Col, Row, Statistic, Spin } from "antd";
+import { useGetAllUsersQuery } from "../../../redux/api/userApi";
+import { useGetReportsQuery } from "../../../redux/api/reportApi";
+import { useGetItemQuery } from "../../../redux/api/itemApi";
 
 export default function DashboardContent() {
-  const [chartData, setChartData] = useState({});
-  const [chartOptions, setChartOptions] = useState({});
+  const { data: usersData, isLoading: usersLoading } = useGetAllUsersQuery();
+  const { data: reportsData, isLoading: reportsLoading } = useGetReportsQuery();
+  const { data: itemsData, isLoading: itemsLoading } = useGetItemQuery();
 
-  useEffect(() => {
-    const data = {
-      labels: ["Q1", "Q2", "Q3", "Q4"],
-      datasets: [
-        {
-          label: "Sales",
-          data: [540, 325, 702, 620],
-          backgroundColor: ["rgba(255, 159, 64, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)"],
-          borderColor: ["rgb(255, 159, 64)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)"],
-          borderWidth: 1,
-        },
-      ],
-    };
-    const options = {
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    };
+  if (usersLoading || reportsLoading || itemsLoading) {
+    return <Spin size="large" className="flex justify-center items-center" />;
+  }
 
-    setChartData(data);
-    setChartOptions(options);
-  }, []);
+  const pengepulCount = usersData.data.reduce((count, user) => {
+    return count + (user.role === "PENGEPUL" ? 1 : 0);
+  }, 0);
 
   return (
     <>
+      <p className="font-bold text-3xl text-textColor mt-3 mb-10">Dashboard Admin Smart Recycling</p>
+      <p className="font-semibold text-xl text-textColor mb-2">Overview Users Data</p>
       <Card bordered={true}>
-        <Chart type="bar" data={chartData} options={chartOptions} />
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus sequi vel numquam nemo officia similique alias veritatis asperiores sit non, minima nostrum natus laudantium eius atque suscipit exercitationem sed repudiandae
-          nobis ullam labore corrupti vitae enim. Deleniti fugit similique expedita, explicabo ab necessitatibus quia eius voluptate voluptatem itaque maxime repellendus reiciendis minus dolorum. Sapiente tenetur molestiae magnam natus
-          harum repellendus sint sunt omnis provident, repellat voluptatum ducimus eos delectus quas nemo eius totam. Similique voluptas quaerat maxime neque odio laudantium, qui voluptate vero eligendi nesciunt maiores dolores quis fugit,
-          quos excepturi corrupti pariatur debitis iusto sint. Vitae asperiores veniam veritatis.
-        </p>
+        <Row gutter={16}>
+          <Col span={12}>
+            <Card bordered={false}>
+              <Statistic
+                title="Total Users"
+                value={usersData.data.length}
+                valueStyle={{
+                  color: "#3f8600",
+                }}
+                prefix={<UsergroupDeleteOutlined />}
+                suffix="users"
+              />
+            </Card>
+          </Col>
+          <Col span={12}>
+            <Card bordered={false}>
+              <Statistic
+                title="Total Pengepul"
+                value={pengepulCount}
+                valueStyle={{
+                  color: "#3f8600",
+                }}
+                prefix={<UsergroupDeleteOutlined />}
+                suffix="pengepul"
+              />
+            </Card>
+          </Col>
+        </Row>
+      </Card>
+      <p className="font-semibold text-xl text-textColor my-2">Overview Reports Data</p>
+      <Card bordered={true}>
+        <Row gutter={16}>
+          <Col span={12}>
+            <Card bordered={false}>
+              <Statistic
+                title="Total Reports"
+                value={reportsData.data.length}
+                valueStyle={{
+                  color: "#3f8600",
+                }}
+                prefix={<CarryOutOutlined />}
+                suffix="reports"
+              />
+            </Card>
+          </Col>
+          <Col span={12}>
+            <Card bordered={false}>
+              <Statistic
+                title=""
+                value={11.28}
+                precision={2}
+                valueStyle={{
+                  color: "#3f8600",
+                }}
+                prefix={<ArrowUpOutlined />}
+                suffix="%"
+              />
+            </Card>
+          </Col>
+        </Row>
+      </Card>
+      <p className="font-semibold text-xl text-textColor my-2">Overview Events Data</p>
+      <Card bordered={true}>
+        <Row gutter={16}>
+          <Col span={12}>
+            <Card bordered={false}>
+              <Statistic
+                title="Total Events"
+                value={usersData.data.length}
+                valueStyle={{
+                  color: "#3f8600",
+                }}
+                prefix={<FileTextOutlined />}
+                suffix="users"
+              />
+            </Card>
+          </Col>
+          <Col span={12}>
+            <Card bordered={false}>
+              <Statistic
+                title="Total Events"
+                value={11.28}
+                precision={2}
+                valueStyle={{
+                  color: "#3f8600",
+                }}
+                prefix={<ArrowUpOutlined />}
+                suffix="%"
+              />
+            </Card>
+          </Col>
+        </Row>
+      </Card>
+      <p className="font-semibold text-xl text-textColor my-2">Overview Items Data</p>
+      <Card bordered={true}>
+        <Row gutter={16}>
+          <Col span={12}>
+            <Card bordered={false}>
+              <Statistic
+                title="Total Items"
+                value={itemsData.data.length}
+                valueStyle={{
+                  color: "#3f8600",
+                }}
+                prefix={<BarsOutlined />}
+                suffix="items"
+              />
+            </Card>
+          </Col>
+          <Col span={12}>
+            <Card bordered={false}>
+              <Statistic
+                title="Total Events"
+                value={11.28}
+                precision={2}
+                valueStyle={{
+                  color: "#3f8600",
+                }}
+                prefix={<ArrowUpOutlined />}
+                suffix="%"
+              />
+            </Card>
+          </Col>
+        </Row>
       </Card>
     </>
   );

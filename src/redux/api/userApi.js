@@ -11,8 +11,15 @@ export const userApi = baseApi.enhanceEndpoints({}).injectEndpoints({
           headers: getUserAuthHeaderApi(),
         }),
       }),
+      getAllUsers: builder.query({
+        query: () => ({
+          url: `/users`,
+          method: "GET",
+          headers: getUserAuthHeaderApi(),
+        }),
+      }),
     };
   },
 });
 
-export const { useGetUserQuery } = userApi;
+export const { useGetUserQuery, useGetAllUsersQuery } = userApi;

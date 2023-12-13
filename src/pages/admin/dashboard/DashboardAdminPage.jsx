@@ -11,35 +11,35 @@ import ManageExchangeContent from "../components/ManageExchange";
 import ManageUsersContent from "../components/ManageUser";
 const { Header, Sider, Content } = Layout;
 
-const itemSidebar = [
-  {
-    key: "1",
-    icon: <AppstoreOutlined />,
-    label: "Dashboard",
-  },
-  {
-    key: "2",
-    icon: <UsergroupDeleteOutlined />,
-    label: "Manage Users",
-  },
-  {
-    key: "3",
-    icon: <BookOutlined />,
-    label: "Manage Events",
-  },
-  {
-    key: "4",
-    icon: <ProjectOutlined />,
-    label: "Manage Reports",
-  },
-  {
-    key: "5",
-    icon: <CopyrightOutlined />,
-    label: "Manage Exchange",
-  },
-];
-
 export default function DashboardAdminPage() {
+  const itemSidebar = [
+    {
+      key: "1",
+      icon: <AppstoreOutlined />,
+      label: "Dashboard",
+    },
+    {
+      key: "2",
+      icon: <UsergroupDeleteOutlined />,
+      label: "Manage Users",
+    },
+    {
+      key: "3",
+      icon: <BookOutlined />,
+      label: "Manage Events",
+    },
+    {
+      key: "4",
+      icon: <ProjectOutlined />,
+      label: "Manage Reports",
+    },
+    {
+      key: "5",
+      icon: <CopyrightOutlined />,
+      label: "Manage Exchange",
+    },
+  ];
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -103,7 +103,7 @@ export default function DashboardAdminPage() {
           }}
           theme="light"
         >
-          <div className="demo-logo-vertical" />
+          <div className="demo-logo-vertical text-center my-10 text-xl font-bold text-textColor">SR Admin</div>
           <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]} items={itemSidebar} onClick={handleMenuClick} selectedKeys={[selectedTab]} />
         </Sider>
         <Layout>

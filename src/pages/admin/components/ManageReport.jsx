@@ -12,7 +12,7 @@ const items = [
   },
   {
     key: "2",
-    label: "Upload Reports",
+    label: "Input Reports",
     children: "Content of Tab Pane 2",
   },
 ];
