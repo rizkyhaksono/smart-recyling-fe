@@ -13,18 +13,11 @@ import { Alert } from "antd";
 import { useState } from "react";
 
 export default function ReportPage() {
+  const [reportMutation] = usePostReportsMutation();
+
   const [buttonLoading, setButtonLoading] = useState(false);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-
-  const [reportMutation] = usePostReportsMutation();
-
-  const reportSchema = Yup.object().shape({
-    email: Yup.string().required("Email is required"),
-    subject: Yup.string().required("Subject is required"),
-    location: Yup.string().required("Location is required"),
-    user_id: Yup.string().required("User Id is required"),
-  });
 
   const defaultValues = {
     email: "",
@@ -32,6 +25,13 @@ export default function ReportPage() {
     location: "",
     user_id: "",
   };
+
+  const reportSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email format").required("Email is required"),
+    subject: Yup.string().required("Subject is required"),
+    location: Yup.string().required("Location is required"),
+    user_id: Yup.string().required("User Id is required"),
+  });
 
   const methods = useForm({
     resolver: yupResolver(reportSchema),
@@ -41,13 +41,13 @@ export default function ReportPage() {
   const { handleSubmit } = methods;
 
   const onSubmit = async (data) => {
+    console.log("Form submitted", data);
     console.log(data);
     setButtonLoading(true);
 
     try {
       const res = await reportMutation({ data }).unwrap();
       console.log(res);
-
       setShowSuccessAlert(true);
     } catch (error) {
       console.log(error);
@@ -55,6 +55,10 @@ export default function ReportPage() {
     } finally {
       setButtonLoading(false);
     }
+  };
+
+  const onClickBro = () => {
+    console.log("clicked");
   };
 
   return (
@@ -83,13 +87,11 @@ export default function ReportPage() {
               <RHFTextField name="email" label="Your email" type="email" helperText="name@gmail.com" />
               <RHFTextField name="subject" label="Your subject" type="text" helperText="I would like to pick up trash" />
               <RHFTextField name="location" label="Your location" type="text" helperText="https://www.google.com/maps/place/example" />
-              <button type="submit" className="w-60 px-5 py-3 text-base font-medium bg-primary hover:bg-green-700 text-white rounded-lg" disabled={buttonLoading}>
+              <button type="submit" onClick={handleSubmit(onSubmit)} className="w-60 px-5 py-3 text-base font-medium bg-primary hover:bg-green-700 text-white rounded-lg" disabled={buttonLoading}>
                 {buttonLoading ? "Sending your report..." : "Send Reports"}
               </button>
             </RHFProvider>
           </div>
-
-          <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-0 lg:space-y-0"></div>
         </div>
       </div>
       <FloatButton.BackTop />

@@ -1,19 +1,19 @@
 import { getUserAuthHeaderApi } from "../apiHelper";
 import { baseApi } from "../axiosBaseQuery";
 
-export const reportApi = baseApi.enhanceEndpoints({}).injectEndpoints({
+export const itemApi = baseApi.enhanceEndpoints({}).injectEndpoints({
   endpoints(builder) {
     return {
-      getReports: builder.query({
+      getItem: builder.query({
         query: () => ({
-          url: `/report`,
+          url: `/items`,
           method: "GET",
           headers: getUserAuthHeaderApi(),
         }),
       }),
-      postReports: builder.mutation({
+      postItem: builder.mutation({
         query: ({ data }) => ({
-          url: `/report`,
+          url: `/items`,
           method: "POST",
           body: {
             email: data.email,
@@ -27,4 +27,4 @@ export const reportApi = baseApi.enhanceEndpoints({}).injectEndpoints({
   },
 });
 
-export const { useGetReportsQuery, usePostReportsMutation } = reportApi;
+export const { useGetItemQuery, usePostItemMutation } = itemApi;

@@ -39,8 +39,8 @@ export default function ExchangePage() {
               </div>
             </div>
             <div>
-              <div className="text-center font-bold text-4xl text-primary max-[640px]:text-4xl">Goods that can be exchanged</div>
-              <div className="text-center font-normal text-xl text-textColor mt-5 max-[640px]:text-lg">There is a choice of items that can be exchanged for the points that have been collected</div>
+              <div className="text-center mx-4 font-bold text-4xl text-primary max-[640px]:text-4xl">Goods that can be exchanged</div>
+              <div className="text-center mx-4 font-normal text-xl text-textColor mt-5 max-[640px]:text-lg">There is a choice of items that can be exchanged for the points that have been collected</div>
             </div>
             <div className="justify-center mt-10">
               <CardExchange />

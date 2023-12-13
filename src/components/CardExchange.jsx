@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
-import { List, Modal, Input, Spin } from "antd";
-import { BsCoin } from "react-icons/bs";
-import { useGetExchangeQuery } from "../redux/api/exchangeApi";
+import { List, Modal, Spin } from "antd";
+import { useGetItemQuery } from "../redux/api/itemApi";
 
 export default function CardExchange() {
-  const { data: useExchange, isError, isLoading } = useGetExchangeQuery();
+  const { data: useItem, isError, isLoading } = useGetItemQuery();
   const [modalOpen, setModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
-  // const data = useExchange.map((item, i) => ({
-  //   imgUrl: `/exchange-${i}.png`,
-  //   title: item.items.name,
-  //   description: "Made from soft and environmentally friendly material, you can get this t-shirt with 100,000 coins.",
-  //   price: `1${i}0.000`,
-  // }));
+  useEffect(() => {
+    console.log(useItem);
+  });
 
   if (isLoading) {
     return <Spin size="large" />;
@@ -21,6 +18,16 @@ export default function CardExchange() {
   if (isError) {
     return <div>Error loading exchange data</div>;
   }
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setSelectedItem(null);
+  };
 
   return (
     <>
@@ -34,9 +41,27 @@ export default function CardExchange() {
           pageSize: 4,
         }}
         className="mb-5"
-        // dataSource={data}
-        renderItem={(item) => <div>test</div>}
+        dataSource={useItem.data}
+        renderItem={(item) => (
+          <List.Item key={item.id} onClick={() => handleItemClick(item)}>
+            <div>
+              {/* <img src={`/exchange-${item.id}.png`} alt={item.name} /> */}
+              <h3>{item.name}</h3>
+              <p>{`Points: ${item.points}`}</p>
+              <p>{`Total: ${item.total}`}</p>
+            </div>
+          </List.Item>
+        )}
       />
+
+      <Modal title={selectedItem ? selectedItem.name : ""} visible={modalOpen} onCancel={closeModal} footer={null}>
+        {selectedItem && (
+          <>
+            <p>{`Points: ${selectedItem.points}`}</p>
+            <p>{`Total: ${selectedItem.total}`}</p>
+          </>
+        )}
+      </Modal>
     </>
   );
 }
