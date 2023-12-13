@@ -7,48 +7,43 @@ export default function CardBlog() {
   const data = [
     {
       id: 1,
-      title: "Test 1",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eius cumque ducimus distinctio libero sunt, cum amet mollitia ad quibusdam exercitationem architecto quidem minima a debitis voluptas aspernatur reiciendis odio rerum obcaecati iure omnis odit quam laboriosam?",
+      title: "Kota Ramah Lingkungan",
+      description: "Inisiatif dan Kerjasama Masyarakat, Pemerintah, dan Industri untuk Mewujudkan Kota Bersih dan Sehat",
       coverImage: "https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/radarmalang/2023/05/ONLINE-Sampah-Suharto-Copy.jpg",
       avatarImage: "https://xsgames.co/randomusers/avatar.php?g=pixel&key=1",
     },
     {
       id: 2,
-      title: "Test 2",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eius cumque ducimus distinctio libero sunt, cum amet mollitia ad quibusdam exercitationem architecto quidem minima a debitis voluptas aspernatur reiciendis odio rerum obcaecati iure omnis odit quam laboriosam?",
+      title: "Aksi Gotong Royong Masyarakat",
+      description: "Peran Aktif Warga Malang dalam Menciptakan Kota Sehat dan Ramah Lingkungan",
       coverImage: "https://asset-2.tstatic.net/suryamalang/foto/bank/images/tumpukan-sampah-yang-berada-di-jalan-muharto-kota-malang.jpg",
       avatarImage: "https://xsgames.co/randomusers/avatar.php?g=pixel&key=2",
     },
     {
       id: 3,
-      title: "Test 3",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eius cumque ducimus distinctio libero sunt, cum amet mollitia ad quibusdam exercitationem architecto quidem minima a debitis voluptas aspernatur reiciendis odio rerum obcaecati iure omnis odit quam laboriosam?",
+      title: "Program Inovatif Pemerintah",
+      description: "Sampah Tanpa Tumpukan dan Langkah-Langkah Holistik Menuju Kota Hijau",
       coverImage: "https://static.gatra.com/foldershared/images/2019/fatikhin/11-Nov/IMG_20191102_183308.jpg",
       avatarImage: "https://xsgames.co/randomusers/avatar.php?g=pixel&key=3",
     },
     {
       id: 4,
-      title: "Test 4",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eius cumque ducimus distinctio libero sunt, cum amet mollitia ad quibusdam exercitationem architecto quidem minima a debitis voluptas aspernatur reiciendis odio rerum obcaecati iure omnis odit quam laboriosam?",
+      title: "Kesadaran Lingkungan di Malang",
+      description: "Edukasi Sosial dan Potensi Ekonomi dari Pengelolaan Sampah yang Bijak",
       coverImage: "https://static.republika.co.id/uploads/images/inpicture_slide/pemerintah-kota-pemkot-malang-bersama-sejumlah-instansi-melakukan-bersih-bersih-_191227143207-599.jpg",
       avatarImage: "https://xsgames.co/randomusers/avatar.php?g=pixel&key=4",
     },
     {
       id: 5,
-      title: "Test 5",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eius cumque ducimus distinctio libero sunt, cum amet mollitia ad quibusdam exercitationem architecto quidem minima a debitis voluptas aspernatur reiciendis odio rerum obcaecati iure omnis odit quam laboriosam?",
+      title: "Melangkah Bersama Malang",
+      description: "Dari Inisiatif Gotong Royong Hingga Pembentukan Kebijakan Berkelanjutan, Masyarakat Malang Membangun Fondasi Perubahan Positif",
       coverImage: "https://asset-2.tstatic.net/jogja/foto/bank/images/rahasia-kota-malang-sukses-kelola-sampah-lewat-sistem-yang-diadopsi-dari-warga-bantul.jpg",
       avatarImage: "https://xsgames.co/randomusers/avatar.php?g=pixel&key=5",
     },
   ];
 
   const cardComponents = data.map((item) => (
-    <Card className="flex flex-col items-center justify-center justify-items-center justify-self-center" key={item.id} cover={<img alt="example" src={item.coverImage} />}>
+    <Card className="flex flex-col items-center justify-center justify-items-center justify-self-center" key={item.id} cover={<img className="rounded-xl" alt="example" src={item.coverImage} />}>
       <Meta avatar={<Avatar src={item.avatarImage} />} title={item.title} description={item.description} />
     </Card>
   ));

@@ -1,7 +1,8 @@
 import React from "react";
-import { Avatar, List, Space } from "antd";
+import { Avatar, List, Space, Card } from "antd";
 import PropTypes from "prop-types";
 import { useGetEventsQuery } from "../redux/api/eventApi";
+import formatDate from "./utils/formatDate";
 
 export default function CardEvent() {
   const { data: eventData } = useGetEventsQuery();
@@ -12,7 +13,7 @@ export default function CardEvent() {
 
   const data = validEvents.map((item, i) => ({
     id: item.id,
-    href: `https://example.com/events/${item.id}`,
+    href: `event/${item.id}`,
     title: item.title,
     avatar: `https://xsgames.co/randomusers/avatar.php?g=pixel&key=${i}`,
     description: item.description,
@@ -47,10 +48,19 @@ export default function CardEvent() {
         dataSource={data}
         renderItem={(item) => (
           <List.Item key={item.title}>
-            <List.Item.Meta avatar={<Avatar src={item.avatar} />} title={<a href={item.href}>{item.title}</a>} description={item.description} />
-            {item.content}
-            <p>{item.image}</p>
-            <p>Created: {item.created_at}</p>
+            <List.Item.Meta
+              avatar={<Avatar src={item.avatar} />}
+              title={
+                <a className="font-semibold text-lg" href={item.href}>
+                  {item.title}
+                </a>
+              }
+            />
+            <Card>
+              <img src={item.image} alt="Event Image" className="container mb-5 rounded-xl" style={{ maxWidth: "100%" }} />
+              <p className="font-medium text-base text-textColor mb-5">{item.content}</p>
+              <p className="font-bold text-base text-textColor">Tanggal dan Waktu: {formatDate(item.created_at)}</p>
+            </Card>
           </List.Item>
         )}
       />

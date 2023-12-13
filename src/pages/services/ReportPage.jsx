@@ -57,10 +57,6 @@ export default function ReportPage() {
     }
   };
 
-  const onClickBro = () => {
-    console.log("clicked");
-  };
-
   return (
     <>
       <NavbarComponent />
@@ -91,6 +87,8 @@ export default function ReportPage() {
                 {buttonLoading ? "Sending your report..." : "Send Reports"}
               </button>
             </RHFProvider>
+            {showSuccessAlert && <Alert message="Report sent successfully!" type="success" showIcon onClose={() => setShowSuccessAlert(false)} />}
+            {showAlert && <Alert message="Failed to send report. Please try again later." type="error" showIcon onClose={() => setShowAlert(false)} />}
           </div>
         </div>
       </div>
