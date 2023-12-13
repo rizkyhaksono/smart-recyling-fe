@@ -1,10 +1,11 @@
 "use client";
 
-import { Card, Layout, Descriptions, Skeleton, Avatar, Tabs, FloatButton, Tag } from "antd";
+import { Card, Layout, Descriptions, Skeleton, Avatar, Tabs, FloatButton } from "antd";
 import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
 import { useGetUserQuery } from "../../redux/api/userApi";
 import { useGetExchangeByIdQuery } from "../../redux/api/exchangeApi";
+import ExchangeUser from "./components/ExchangeUser";
 
 export default function ProfileUserPage() {
   const { data: userData, isError, isLoading: userLoading, isSuccess } = useGetUserQuery();
@@ -34,35 +35,15 @@ export default function ProfileUserPage() {
     },
   ];
 
-  let exchangeItems = null;
-
-  if (exchangeData && exchangeData.data) {
-    exchangeItems = exchangeData.data.map((exchangeItem) => (
-      <Card key={exchangeItem.id} className="my-5">
-        <div className="my-2">
-          <Tag bordered={false}>User ID: {exchangeItem?.user_id}</Tag>
-        </div>
-        <div className="my-2">
-          <Tag bordered={false}>
-            <p>Item Name: {exchangeItem?.items_id || ""}</p>
-          </Tag>
-        </div>
-        <div className="my-2">
-          <Tag bordered={false} color="success">
-            Created At: {exchangeItem.created_at || ""}
-          </Tag>
-        </div>
-      </Card>
-    ));
-  } else {
-    exchangeItems = [];
-  }
-
   const dataActivities = [
     {
       key: "1",
       label: "Exchange",
-      children: <>{exchangeItems.length > 0 ? exchangeItems : <p>No exchange data available</p>}</>,
+      children: (
+        <>
+          <ExchangeUser exchangeData={exchangeData} />,
+        </>
+      ),
     },
     {
       key: "2",
