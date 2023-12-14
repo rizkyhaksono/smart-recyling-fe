@@ -34,8 +34,8 @@ export default function CardExchange() {
     setSelectedItem(null);
   };
 
-  const handleExchange = (selectedItem) => {
-    const user_id = userData;
+  const handleExchange = async (selectedItem) => {
+    const user_id = userData.user.uuid;
 
     Modal.confirm({
       title: "Confirm Exchange",
@@ -46,15 +46,23 @@ export default function CardExchange() {
         style: { backgroundColor: "#00AF5C", borderColor: "#52c41a", color: "#fffff" },
       },
       async onOk() {
-        console.log("Exchange item_id:", selectedItem.id, "user_id:", user_id);
         try {
+          const data = {
+            items_id: selectedItem.id,
+            user_id: user_id,
+          };
+
+          console.log(data);
+
           const res = await postExchangeMutation({ data }).unwrap();
           console.log(res);
+
+          notification.success({ message: "Exchange successful!" });
+          closeModal();
         } catch (error) {
           console.log(error);
+          notification.error({ message: "Exchange failed!" });
         }
-        notification.success({ message: "Exchange successful!" });
-        closeModal();
       },
       onCancel() {
         console.log("Exchange canceled");
