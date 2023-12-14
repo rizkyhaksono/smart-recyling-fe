@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
-import { List, Modal, Spin, Button, Card, Popover } from "antd";
+import { List, Modal, Spin, Button, Card, notification } from "antd";
 import { useGetItemQuery } from "../redux/api/itemApi";
+import { useGetUserQuery } from "../redux/api/userApi";
+import { usePostExchangeByIdMutation } from "../redux/api/exchangeApi";
 
 export default function CardExchange() {
   const { data: useItem, isError, isLoading } = useGetItemQuery();
+  const { data: userData } = useGetUserQuery();
+  const [postExchangeMutation] = usePostExchangeByIdMutation();
+
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -12,7 +17,7 @@ export default function CardExchange() {
   });
 
   if (isLoading) {
-    return <Spin size="large" />;
+    return <Spin size="large" className="flex justify-center items-center" />;
   }
 
   if (isError) {
@@ -29,13 +34,33 @@ export default function CardExchange() {
     setSelectedItem(null);
   };
 
-  const renderPopoverContent = (item) => (
-    <div className="text-base text-textColor">
-      <p className="font-semibold mb-3">{`Name: ${item.name}`}</p>
-      <p>{`Points: ${item.points}`}</p>
-      <p>{`Total: ${item.total}`}</p>
-    </div>
-  );
+  const handleExchange = (selectedItem) => {
+    const user_id = userData;
+
+    Modal.confirm({
+      title: "Confirm Exchange",
+      content: `Are you sure you want to exchange ${selectedItem.name}?`,
+      okText: "OK",
+      cancelText: "Cancel",
+      okButtonProps: {
+        style: { backgroundColor: "#00AF5C", borderColor: "#52c41a", color: "#fffff" },
+      },
+      async onOk() {
+        console.log("Exchange item_id:", selectedItem.id, "user_id:", user_id);
+        try {
+          const res = await postExchangeMutation({ data }).unwrap();
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+        }
+        notification.success({ message: "Exchange successful!" });
+        closeModal();
+      },
+      onCancel() {
+        console.log("Exchange canceled");
+      },
+    });
+  };
 
   return (
     <>
@@ -52,16 +77,14 @@ export default function CardExchange() {
         dataSource={useItem.data}
         renderItem={(item) => (
           <List.Item key={item.id} onClick={() => handleItemClick(item)}>
-            <Popover content={renderPopoverContent(item)} trigger="hover">
-              <div className="flex flex-row gap-5 items-center cursor-pointer" onClick={() => handleItemClick(item)}>
-                <img className="sm:w-40 md:w-56 lg:w-64 xl:w-1/3 max-[640px]:w-32 rounded-xl" src={`/exchange-${item.id}.png`} alt={item.name} />
-                <Card className="text-textColor font-medium">
-                  <p className="text-2xl">{item.name}</p>
-                  <p className="text-base mt-4">{`Points: ${item.points}`}</p>
-                  <p className="text-base">{`Total: ${item.total}`}</p>
-                </Card>
-              </div>
-            </Popover>
+            <div className="flex flex-row gap-5 items-center cursor-pointer" onClick={() => handleItemClick(item)}>
+              <img className="sm:w-40 md:w-56 lg:w-64 xl:w-1/3 max-[640px]:w-32 rounded-xl" src={`/exchange-${item.id}.png`} alt={item.name} />
+              <Card className="text-textColor font-medium w-full">
+                <p className="text-2xl">{item.name}</p>
+                <p className="text-base mt-4">{`Points: ${item.points}`}</p>
+                <p className="text-base">{`Total: ${item.total}`}</p>
+              </Card>
+            </div>
           </List.Item>
         )}
       />
@@ -71,14 +94,19 @@ export default function CardExchange() {
         open={modalOpen}
         onCancel={closeModal}
         footer={[
-          <Button key="close" onClick={closeModal}>
-            Close
-          </Button>,
+          <>
+            <Button className="gap-5" color="primary" key="close" onClick={closeModal}>
+              Close
+            </Button>
+            <Button className="" color="primary" key="exchange" onClick={() => handleExchange(selectedItem)}>
+              Exchange Now
+            </Button>
+          </>,
         ]}
       >
         {selectedItem && (
           <>
-            <img src={`/exchange-${selectedItem.id}.png`} alt={selectedItem.name} />
+            <img className="rounded-xl" src={`/exchange-${selectedItem.id}.png`} alt={selectedItem.name} />
             <p className="text-textColor text-lg font-medium mt-5">{`Points: ${selectedItem.points}`}</p>
             <p className="text-textColor text-lg font-medium">{`Total: ${selectedItem.total}`}</p>
           </>

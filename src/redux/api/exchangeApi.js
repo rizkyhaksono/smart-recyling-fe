@@ -6,20 +6,30 @@ export const exchangeApi = baseApi.enhanceEndpoints({}).injectEndpoints({
     return {
       getExchange: builder.query({
         query: () => ({
-          url: `exchange`,
+          url: `/exchange`,
           method: "GET",
           headers: getUserAuthHeaderApi(),
         }),
       }),
       getExchangeById: builder.query({
         query: (uuid) => ({
-          url: `exchange/${uuid}`,
+          url: `/exchange/${uuid}`,
           method: "GET",
           headers: getUserAuthHeaderApi(),
+        }),
+      }),
+      postExchangeById: builder.mutation({
+        query: ({ data }) => ({
+          url: `/exchange`,
+          method: "POST",
+          body: {
+            items_id: data.items_id,
+            user_id: data.user_id,
+          },
         }),
       }),
     };
   },
 });
 
-export const { useGetExchangeQuery, useGetExchangeByIdQuery } = exchangeApi;
+export const { useGetExchangeQuery, useGetExchangeByIdQuery, usePostExchangeByIdMutation } = exchangeApi;
