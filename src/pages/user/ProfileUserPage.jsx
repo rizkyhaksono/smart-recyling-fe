@@ -6,6 +6,8 @@ import FooterComponent from "../../components/FooterComponent";
 import { useGetUserQuery } from "../../redux/api/userApi";
 import { useGetExchangeByIdQuery } from "../../redux/api/exchangeApi";
 import ExchangeUser from "./components/ExchangeUser";
+import TransactionUser from "./components/TransactionUser";
+import PaymentUser from "./components/PaymentUser";
 
 export default function ProfileUserPage() {
   const { data: userData, isError, isLoading: userLoading, isSuccess } = useGetUserQuery();
@@ -47,13 +49,21 @@ export default function ProfileUserPage() {
     },
     {
       key: "2",
-      label: "Reports",
-      children: "Content of Tab Pane 1",
+      label: "Transaction",
+      children: (
+        <>
+          <TransactionUser />
+        </>
+      ),
     },
     {
       key: "3",
-      label: "Events",
-      children: "Content of Tab Pane 2",
+      label: "Payment",
+      children: (
+        <>
+          <PaymentUser />
+        </>
+      ),
     },
   ];
 

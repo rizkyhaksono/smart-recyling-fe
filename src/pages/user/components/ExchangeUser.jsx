@@ -37,7 +37,7 @@ const ExchangeUser = ({ exchangeData }) => {
     exchangeData?.data.map((exchangeItem) => ({
       key: exchangeItem.id,
       itemName: getItemNameById(exchangeItem.items_id),
-      createdAt: exchangeItem.created_at,
+      createdAt: exchangeItem.created_at, 
     })) || [];
 
   return (
