@@ -1,4 +1,4 @@
-import { Space, Table, Modal, Button, Form, Input } from "antd";
+import { Space, Table, Modal, Button, Form, Input, Spin } from "antd";
 import { useEffect, useState } from "react";
 import { useGetAllUsersQuery } from "../../../redux/api/userApi";
 
@@ -90,9 +90,9 @@ export default function ManageUsersContent() {
 
   return (
     <>
-      <div className="h-screen">
+      <div className="">
         {usersLoading ? (
-          <p>Loading...</p>
+          <Spin size="large" className="flex justify-center" />
         ) : (
           <>
             <p className="font-bold text-3xl text-textColor mt-3 mb-10">Manage Users</p>
@@ -121,7 +121,6 @@ export default function ManageUsersContent() {
                 <Form.Item label="Email" name="email">
                   <Input />
                 </Form.Item>
-                {/* Add other form fields as needed */}
               </Form>
             </Modal>
           </>

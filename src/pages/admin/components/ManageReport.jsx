@@ -48,7 +48,7 @@ const ManageReportsContent = () => {
 
   return (
     <>
-      <div className="h-screen">
+      <div className="">
         <p className="font-bold text-3xl text-textColor mt-3 mb-10">Manage Reports</p>
         <Tabs defaultActiveKey="1" onChange={(key) => console.log(key)} indicatorSize={(origin) => origin - 16}>
           <TabPane tab="All Reports" key="1">
