@@ -2,35 +2,32 @@
 
 import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
-import { usePostReportsMutation } from "../../redux/api/reportApi";
 import { useForm } from "react-hook-form";
 import RHFProvider from "../../components/hook-form/RHFProvider";
 import RHFTextField from "../../components/hook-form/RHFTextField";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FloatButton } from "antd";
-import { Alert } from "antd";
+import { FloatButton, notification, Spin } from "antd";
 import { useState } from "react";
+import { usePostReportsMutation } from "../../redux/api/reportApi";
+import { useGetUserQuery } from "../../redux/api/userApi";
 
 export default function ReportPage() {
+  const { data: userData, loading: userLoading } = useGetUserQuery();
   const [reportMutation] = usePostReportsMutation();
 
   const [buttonLoading, setButtonLoading] = useState(false);
-  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
 
   const defaultValues = {
     email: "",
     subject: "",
     location: "",
-    user_id: "",
   };
 
   const reportSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email format").required("Email is required"),
     subject: Yup.string().required("Subject is required"),
     location: Yup.string().required("Location is required"),
-    user_id: Yup.string().required("User Id is required"),
   });
 
   const methods = useForm({
@@ -38,20 +35,56 @@ export default function ReportPage() {
     defaultValues,
   });
 
+  let uuid;
+
+  if (userLoading) {
+    return (
+      <>
+        <Spin size="large" className="flex justify-center" />
+      </>
+    );
+  } else if (!userData || !userData.user) {
+    return (
+      <>
+        <Spin size="large" className="flex justify-center" />
+      </>
+    );
+  } else {
+    uuid = userData.user.uuid;
+  }
+
   const { handleSubmit } = methods;
 
   const onSubmit = async (data) => {
     console.log("Form submitted", data);
-    console.log(data);
     setButtonLoading(true);
 
     try {
-      const res = await reportMutation({ data }).unwrap();
+      const dataWithUserId = {
+        ...data,
+        user_id: uuid,
+      };
+
+      const res = await reportMutation({ data: dataWithUserId }).unwrap();
       console.log(res);
-      setShowSuccessAlert(true);
+
+      if (res.status === 200 || res.status === 201) {
+        notification.success({
+          message: "Report submitted successfully!",
+          duration: 3,
+        });
+      } else {
+        notification.error({
+          message: "Failed to submit report. Please try again later.",
+          duration: 3,
+        });
+      }
     } catch (error) {
       console.log(error);
-      setShowAlert(true);
+      notification.error({
+        message: "Failed to submit report. Please try again later.",
+        duration: 3,
+      });
     } finally {
       setButtonLoading(false);
     }
@@ -83,12 +116,10 @@ export default function ReportPage() {
               <RHFTextField name="email" label="Your email" type="email" helperText="name@gmail.com" />
               <RHFTextField name="subject" label="Your subject" type="text" helperText="I would like to pick up trash" />
               <RHFTextField name="location" label="Your location" type="text" helperText="https://www.google.com/maps/place/example" />
-              <button type="submit" onClick={handleSubmit(onSubmit)} className="w-60 px-5 py-3 text-base font-medium bg-primary hover:bg-green-700 text-white rounded-lg" disabled={buttonLoading}>
+              <button type="submit" className="w-60 px-5 py-3 text-base font-medium bg-primary hover:bg-green-700 text-white rounded-lg" disabled={buttonLoading}>
                 {buttonLoading ? "Sending your report..." : "Send Reports"}
               </button>
             </RHFProvider>
-            {showSuccessAlert && <Alert message="Report sent successfully!" type="success" showIcon onClose={() => setShowSuccessAlert(false)} />}
-            {showAlert && <Alert message="Failed to send report. Please try again later." type="error" showIcon onClose={() => setShowAlert(false)} />}
           </div>
         </div>
       </div>
