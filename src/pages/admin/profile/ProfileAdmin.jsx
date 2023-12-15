@@ -5,7 +5,8 @@ import FooterComponent from "../../../components/FooterComponent";
 import { useGetUserQuery } from "../../../redux/api/userApi";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import ExchangeAdmin from "./components/ExchangeAdmin";
 const { Header } = Layout;
 
 export default function ProfileAdminPage() {
@@ -35,24 +36,28 @@ export default function ProfileAdminPage() {
     {
       key: "4",
       label: "Points",
-      children: userData.user?.points || "",
+      children: userData.user?.points || "0",
     },
   ];
 
   const dataActivities = [
     {
       key: "1",
-      label: "Reports",
-      children: "Content of Tab Pane 1",
+      label: "Exchange",
+      children: (
+        <>
+          <ExchangeAdmin />
+        </>
+      ),
     },
     {
       key: "2",
-      label: "Events",
+      label: "Transaction",
       children: "Content of Tab Pane 2",
     },
     {
       key: "3",
-      label: "Exchange",
+      label: "Payment",
       children: "Content of Tab Pane 3",
     },
   ];
@@ -112,7 +117,7 @@ export default function ProfileAdminPage() {
           </Dropdown>
         </Header>
         <Card className="mt-10 mx-10 my-10" bordered={true}>
-          <p>{userData.user.name ? <p className="font-bold text-2xl text-center mb-4">My Profile</p> : <Skeleton />}</p>
+          <p>{userData.user.name ? <p className="font-bold text-2xl text-center mb-4">My Profile</p> : <Skeleton active />}</p>
           <div className="flex items-center justify-center">
             <Avatar size={100} src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
           </div>

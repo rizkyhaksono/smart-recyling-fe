@@ -23,7 +23,20 @@ export default function DashboardContent() {
       <p className="font-semibold text-xl text-textColor mb-2">Overview Users Data</p>
       <Card bordered={true}>
         <Row gutter={16}>
-          <Col span={12}>
+          <Col span={6}>
+            <Card bordered={false}>
+              <Statistic
+                title="Total Records"
+                value={usersData.data.length}
+                valueStyle={{
+                  color: "#3f8600",
+                }}
+                prefix={<UsergroupDeleteOutlined />}
+                suffix="records"
+              />
+            </Card>
+          </Col>
+          <Col span={6}>
             <Card bordered={false}>
               <Statistic
                 title="Total Users"
@@ -36,7 +49,7 @@ export default function DashboardContent() {
               />
             </Card>
           </Col>
-          <Col span={12}>
+          <Col span={6}>
             <Card bordered={false}>
               <Statistic
                 title="Total Pengepul"
@@ -46,6 +59,19 @@ export default function DashboardContent() {
                 }}
                 prefix={<UsergroupDeleteOutlined />}
                 suffix="pengepul"
+              />
+            </Card>
+          </Col>
+          <Col span={6}>
+            <Card bordered={false}>
+              <Statistic
+                title="Total Admin"
+                value={pengepulCount}
+                valueStyle={{
+                  color: "#3f8600",
+                }}
+                prefix={<UsergroupDeleteOutlined />}
+                suffix="admin"
               />
             </Card>
           </Col>

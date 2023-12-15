@@ -33,7 +33,7 @@ export default function ProfileUserPage() {
     {
       key: "4",
       label: "Points",
-      children: userData?.user?.points || "",
+      children: userData?.user?.points || "0",
     },
   ];
 
