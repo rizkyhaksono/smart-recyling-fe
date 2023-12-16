@@ -5,29 +5,45 @@ import FooterComponent from "../../../components/FooterComponent";
 import MarqueeComponent from "../../../components/MarqueeComponent";
 import { FloatButton } from "antd";
 import { Link } from "react-router-dom";
+import { motion, useScroll } from "framer-motion";
+import "./styles.css";
 
 export default function HomePage() {
+  const { scrollYProgress } = useScroll();
+
   return (
     <>
       <main className="min-h-screen">
         <NavbarComponent />
+        <motion.div className="progress-bar" style={{ scaleX: scrollYProgress }} />
         <div className="container mx-auto">
           <div className="grid max-w-screen-xl mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 my-10 lg:pt-8 xl:pt-24">
             <div className="lg:col-span-7 sm:pt-16 sm:text-center md:text-center lg:text-start xl:text-start pt-12 max-[640px]:px-12">
-              <div className="font-black text-primary sm:text-5xl md:text-5xl lg:text-7xl xl:text-7xl text-5xl max-[640px]:text-center max-[640px]:text-3xl">Recycling Made Easier</div>
+              <motion.div
+                className="font-black text-primary sm:text-5xl md:text-5xl lg:text-7xl xl:text-7xl text-5xl max-[640px]:text-center max-[640px]:text-3xl"
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                Recycling Made Easier
+              </motion.div>
               <div className="mt-8 text-textColor font-normal sm:text-xl md:text-xl lg:text-xl xl:text-xl xl:px-0 lg:px-0 md:px-0 sm:px-12 max-[640px]:text-center max-[640px]:text-lg">
                 Welcome to our website, a space where we encourage positive transformation by repurposing waste, contributing to the preservation of our planets green and sustainable future.
               </div>
             </div>
-
-            <div className="flex justify-center items-center justify-items-center justify-self-center md:my-12 sm:mx-12 sm:my-12 md:mx-12 lg:mx-12 xl:mx-12 lg:mt-0 lg:col-span-5 max-[640px]:px-12 max-[640px]:pb-8">
+            <motion.div
+              className="flex justify-center items-center justify-items-center justify-self-center md:my-12 sm:mx-12 sm:my-12 md:mx-12 lg:mx-12 xl:mx-12 lg:mt-0 lg:col-span-5 max-[640px]:px-12 max-[640px]:pb-8"
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
               <img src="/illustration.png" alt="Smart Recycling Logo" width={700} height={700} />
-            </div>
+            </motion.div>
           </div>
           <MarqueeComponent />
         </div>
 
-        <section className="bg-gray-50">
+        <motion.section className="bg-gray-50">
           <div className=" text-center py-24 px-6">
             <figure className="">
               <svg className="h-12 mx-auto mb-3 text-gray-400" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +62,7 @@ export default function HomePage() {
               </figcaption>
             </figure>
           </div>
-        </section>
+        </motion.section>
 
         <section className="object-none bg-[url('https://assets.ayobandung.com/crop/0x0:0x0/750x500/webp/photo/2023/05/28/Desain-tanpa-judul-2023-05-28T115130481-2054438804.png')] bg-gray-700 bg-blend-multiply">
           <div className="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
@@ -94,7 +110,6 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-
       <FloatButton.BackTop />
       <FooterComponent />
     </>
