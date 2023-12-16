@@ -3,14 +3,24 @@
 import { Card, Layout, Descriptions, Skeleton, Avatar, Tabs, FloatButton, theme, Dropdown } from "antd";
 import FooterComponent from "../../../components/FooterComponent";
 import { useGetUserQuery } from "../../../redux/api/userApi";
+import { useGetExchangeByIdQuery } from "../../../redux/api/exchangeApi";
+import { useGetTransactionByIdQuery } from "../../../redux/api/transactionApi";
+import { useGetPaymentByIdQuery } from "../../../redux/api/paymentApi";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { useState } from "react";
 import ExchangeAdmin from "./components/ExchangeAdmin";
+import PaymentAdmin from "./components/PaymentAdmin";
+import TransactionAdmin from "./components/TransactionAdmin";
 const { Header } = Layout;
 
 export default function ProfileAdminPage() {
-  const { data: userData } = useGetUserQuery();
+  const { data: userData, isLoading: userLoading } = useGetUserQuery();
+  const userUuid = userData?.user?.uuid;
+  const { data: exchangeData } = useGetExchangeByIdQuery(userUuid);
+  const { data: transactionData } = useGetTransactionByIdQuery(userUuid);
+  const { data: paymentData } = useGetPaymentByIdQuery(userUuid);
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -44,21 +54,17 @@ export default function ProfileAdminPage() {
     {
       key: "1",
       label: "Exchange",
-      children: (
-        <>
-          <ExchangeAdmin />
-        </>
-      ),
+      children: <ExchangeAdmin exchangeData={exchangeData} />,
     },
     {
       key: "2",
       label: "Transaction",
-      children: "Content of Tab Pane 2",
+      children: <TransactionAdmin transactionData={transactionData} />,
     },
     {
       key: "3",
       label: "Payment",
-      children: "Content of Tab Pane 3",
+      children: <PaymentAdmin paymentData={paymentData} />,
     },
   ];
 
@@ -89,7 +95,7 @@ export default function ProfileAdminPage() {
       key: "2",
       label: (
         <Link to={"/"} onClick={logOut}>
-          <p>Logout</p>
+          Logout
         </Link>
       ),
     },
@@ -117,15 +123,31 @@ export default function ProfileAdminPage() {
           </Dropdown>
         </Header>
         <Card className="mt-10 mx-10 my-10" bordered={true}>
-          <p>{userData.user.name ? <p className="font-bold text-2xl text-center mb-4">My Profile</p> : <Skeleton active />}</p>
-          <div className="flex items-center justify-center">
-            <Avatar size={100} src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
-          </div>
-          <Descriptions title="User Info" items={dataProfile} />
+          {userLoading ? (
+            <Skeleton active />
+          ) : (
+            userData.user.name && (
+              <>
+                <p className="font-bold text-2xl text-center mb-4">My Profile</p>
+                <div className="flex items-center justify-center">
+                  <Avatar size={100} src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+                </div>
+                <Descriptions title="User Info" items={dataProfile} />
+              </>
+            )
+          )}
         </Card>
         <Card className="mx-10 mb-10" bordered={true}>
-          <p>{userData.user.name ? <p className="font-bold text-2xl text-center mb-4">Your Activities</p> : <Skeleton />}</p>
-          <Tabs defaultActiveKey="1" items={dataActivities} />
+          {userLoading ? (
+            <Skeleton />
+          ) : (
+            userData.user.name && (
+              <>
+                <p className="font-bold text-2xl text-center mb-4">Your Activities</p>
+                <Tabs defaultActiveKey="1" items={dataActivities} />
+              </>
+            )
+          )}
         </Card>
       </Layout>
       <FloatButton.BackTop />

@@ -45,29 +45,17 @@ export default function ProfileUserPage() {
     {
       key: "1",
       label: "Exchange",
-      children: (
-        <>
-          <ExchangeUser exchangeData={exchangeData} />,
-        </>
-      ),
+      children: <ExchangeUser exchangeData={exchangeData} />,
     },
     {
       key: "2",
       label: "Transaction",
-      children: (
-        <>
-          <TransactionUser transactionData={transactionData} />
-        </>
-      ),
+      children: <TransactionUser transactionData={transactionData} />,
     },
     {
       key: "3",
       label: "Payment",
-      children: (
-        <>
-          <PaymentUser paymentData={paymentData} />
-        </>
-      ),
+      children: <PaymentUser paymentData={paymentData} />,
     },
   ];
 

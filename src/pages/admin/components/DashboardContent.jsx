@@ -22,8 +22,8 @@ export default function DashboardContent() {
       <p className="font-bold text-3xl text-textColor mt-3 mb-10">Dashboard Admin Smart Recycling</p>
       <p className="font-semibold text-xl text-textColor mb-2">Overview Users Data</p>
       <Card bordered={true}>
-        <Row gutter={16}>
-          <Col span={6}>
+        <Row gutter={[16, 16]}>
+          <Col xs={24} sm={12} md={6} lg={6}>
             <Card bordered={false}>
               <Statistic
                 title="Total Records"
@@ -36,7 +36,7 @@ export default function DashboardContent() {
               />
             </Card>
           </Col>
-          <Col span={6}>
+          <Col xs={24} sm={12} md={6} lg={6}>
             <Card bordered={false}>
               <Statistic
                 title="Total Users"
@@ -49,7 +49,7 @@ export default function DashboardContent() {
               />
             </Card>
           </Col>
-          <Col span={6}>
+          <Col xs={24} sm={12} md={6} lg={6}>
             <Card bordered={false}>
               <Statistic
                 title="Total Pengepul"
@@ -62,7 +62,7 @@ export default function DashboardContent() {
               />
             </Card>
           </Col>
-          <Col span={6}>
+          <Col xs={24} sm={12} md={6} lg={6}>
             <Card bordered={false}>
               <Statistic
                 title="Total Admin"
@@ -79,8 +79,8 @@ export default function DashboardContent() {
       </Card>
       <p className="font-semibold text-xl text-textColor my-2">Overview Reports Data</p>
       <Card bordered={true}>
-        <Row gutter={16}>
-          <Col span={12}>
+        <Row gutter={[16, 16]}>
+          <Col xs={24} sm={12} md={6} lg={6}>
             <Card bordered={false}>
               <Statistic
                 title="Total Reports"
@@ -93,7 +93,7 @@ export default function DashboardContent() {
               />
             </Card>
           </Col>
-          <Col span={12}>
+          <Col xs={24} sm={12} md={6} lg={6}>
             <Card bordered={false}>
               <Statistic
                 title=""
@@ -111,8 +111,8 @@ export default function DashboardContent() {
       </Card>
       <p className="font-semibold text-xl text-textColor my-2">Overview Events Data</p>
       <Card bordered={true}>
-        <Row gutter={16}>
-          <Col span={12}>
+        <Row gutter={[16, 16]}>
+          <Col xs={24} sm={12} md={6} lg={6}>
             <Card bordered={false}>
               <Statistic
                 title="Total Events"
@@ -125,7 +125,7 @@ export default function DashboardContent() {
               />
             </Card>
           </Col>
-          <Col span={12}>
+          <Col xs={24} sm={12} md={6} lg={6}>
             <Card bordered={false}>
               <Statistic
                 title="Total Events"
@@ -143,8 +143,8 @@ export default function DashboardContent() {
       </Card>
       <p className="font-semibold text-xl text-textColor my-2">Overview Items Data</p>
       <Card bordered={true}>
-        <Row gutter={16}>
-          <Col span={12}>
+        <Row gutter={[16, 16]}>
+          <Col xs={24} sm={12} md={6} lg={12}>
             <Card bordered={false}>
               <Statistic
                 title="Total Items"
@@ -157,7 +157,7 @@ export default function DashboardContent() {
               />
             </Card>
           </Col>
-          <Col span={12}>
+          <Col xs={24} sm={12} md={6} lg={12}>
             <Card bordered={false}>
               <Statistic
                 title="Total Events"
