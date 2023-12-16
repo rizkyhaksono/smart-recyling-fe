@@ -1,4 +1,4 @@
-import { Tabs, Table, Spin } from "antd";
+import { Table, Spin } from "antd";
 import { useGetReportsQuery } from "../../../redux/api/reportApi";
 import formatDate from "../../../components/utils/formatDate";
 
@@ -51,16 +51,9 @@ const ManageReportsContent = () => {
     <>
       <div className="">
         <p className="font-bold text-3xl text-textColor mt-3 mb-10">Manage Reports</p>
-        <Tabs defaultActiveKey="1" onChange={(key) => console.log(key)} indicatorSize={(origin) => origin - 16}>
-          <Tabs.Item key="1" tab="All Reports">
-            <Spin spinning={reportLoading}>
-              <Table columns={columns} dataSource={reportData ? reportData.data.flat() : []} />
-            </Spin>
-          </Tabs.Item>
-          <Tabs.Item key="2" tab="Input Report">
-            <p>test</p>
-          </Tabs.Item>
-        </Tabs>
+        <Spin spinning={reportLoading}>
+          <Table columns={columns} dataSource={reportData ? reportData.data.flat() : []} />
+        </Spin>
       </div>
     </>
   );

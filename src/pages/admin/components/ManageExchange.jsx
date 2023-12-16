@@ -1,4 +1,4 @@
-import { Tabs, Table, Spin } from "antd";
+import { Table, Spin } from "antd";
 import { useGetExchangeQuery } from "../../../redux/api/exchangeApi";
 import formatDate from "../../../components/utils/formatDate";
 
@@ -43,7 +43,7 @@ const ManageExchangeContent = () => {
       title: "User ID",
       dataIndex: "user_id",
       key: "user_id",
-      responsive: ["lg"],
+      responsive: ["xs", "sm", "lg"],
     },
   ];
 
@@ -51,16 +51,9 @@ const ManageExchangeContent = () => {
     <>
       <div className="">
         <p className="font-bold text-3xl text-textColor mt-3 mb-10">Manage Exchanges</p>
-        <Tabs defaultActiveKey="1" onChange={(key) => console.log(key)} indicatorSize={(origin) => origin - 16}>
-          <Tabs.Item key="1" tab="All Exchanges">
-            <Spin spinning={exchangeLoading}>
-              <Table columns={columns} dataSource={exchangeData ? exchangeData.data.flat() : []} />
-            </Spin>
-          </Tabs.Item>
-          <Tabs.Item key="2" tab="Input Exchange">
-            <p>test</p>
-          </Tabs.Item>
-        </Tabs>
+        <Spin spinning={exchangeLoading}>
+          <Table columns={columns} dataSource={exchangeData ? exchangeData.data.flat() : []} />
+        </Spin>
       </div>
     </>
   );

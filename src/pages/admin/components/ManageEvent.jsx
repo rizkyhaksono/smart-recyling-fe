@@ -1,9 +1,10 @@
-import { Tabs, Table, Spin } from "antd";
-import { useGetEventsQuery } from "../../../redux/api/eventApi";
+import { Tabs, Table, Spin, Form, Input, Button, message } from "antd";
+import { useGetEventsQuery, usePostEventsMutation } from "../../../redux/api/eventApi";
 import formatDate from "../../../components/utils/formatDate";
 
 const ManageEventsContent = () => {
   const { data: eventData, isLoading: eventLoading } = useGetEventsQuery();
+  const [postEvent] = usePostEventsMutation();
 
   const eventsLoading = eventLoading;
 
@@ -53,20 +54,57 @@ const ManageEventsContent = () => {
 
   return (
     <>
-      <div className="">
-        <p className="font-bold text-3xl text-textColor mt-3 mb-10">Manage Events</p>
-        <Tabs defaultActiveKey="1" onChange={(key) => console.log(key)} indicatorSize={(origin) => origin - 16}>
-          <Tabs.Item key="1" tab="All Events">
-            <Spin spinning={eventsLoading}>
-              <Table columns={columns} dataSource={eventData ? eventData.data[0].flatMap((item) => item) : []} />
-            </Spin>
-          </Tabs.Item>
-          <Tabs.Item key="2" tab="Input Events">
-            <p>test</p>
-          </Tabs.Item>
-        </Tabs>
-      </div>
+      <p className="font-bold text-3xl text-textColor mt-3 mb-10">Manage Events</p>
+      <Tabs defaultActiveKey="1" onChange={(key) => console.log(key)} indicatorSize={(origin) => origin - 16}>
+        <Tabs.Item key="1" tab="All Events">
+          <Spin spinning={eventsLoading}>
+            <Table columns={columns} dataSource={eventData ? eventData.data[0].flatMap((item) => item) : []} />
+          </Spin>
+        </Tabs.Item>
+        <Tabs.Item key="2" tab="Input Events">
+          <EventForm postEvent={postEvent} />
+        </Tabs.Item>
+      </Tabs>
     </>
+  );
+};
+
+const EventForm = ({ postEvent }) => {
+  const [form] = Form.useForm();
+
+  const handleFinish = async (values) => {
+    try {
+      const result = await postEvent(values);
+
+      if (result.data) {
+        message.success("Event submitted successfully");
+        form.resetFields();
+      } else {
+        message.error("Failed to submit event");
+      }
+    } catch (error) {
+      console.error("Error posting event:", error);
+      message.error("Failed to submit event");
+    }
+  };
+
+  return (
+    <Form form={form} onFinish={handleFinish} layout="vertical">
+      <Form.Item label="Title" name="title" rules={[{ required: true, message: "Please enter the event title" }]}>
+        <Input placeholder="Enter the event title" />
+      </Form.Item>
+      <Form.Item label="Description" name="description" rules={[{ required: true, message: "Please enter the event description" }]}>
+        <Input.TextArea placeholder="Enter the event description" />
+      </Form.Item>
+      <Form.Item label="Path Image" name="path_image" rules={[{ required: true, message: "Please enter the path to the event image" }]}>
+        <Input placeholder="Enter the path to the event image" />
+      </Form.Item>
+      <Form.Item>
+        <Button className="bg-primary text-white" type="text" htmlType="submit">
+          Submit Event
+        </Button>
+      </Form.Item>
+    </Form>
   );
 };
 

@@ -1,4 +1,4 @@
-import { Space, Table, Modal, Button, Form, Input, Spin } from "antd";
+import { Space, Table, Modal, Button, Form, Input, Spin, message, Popconfirm } from "antd";
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import formatDate from "../../../components/utils/formatDate";
@@ -9,6 +9,7 @@ export default function ManageUsersContent() {
   const [selectedUser, setSelectedUser] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
+  const [pointsForm] = Form.useForm();
   const { mutate: changeRole } = useChangeRoleUserMutation();
   const { mutate: inputPoints } = useInputPointsMutation();
 
@@ -22,19 +23,20 @@ export default function ManageUsersContent() {
     setIsModalVisible(false);
   };
 
-  const handleDelete = async () => {
-    try {
-      await inputPoints({ uuid: selectedUser.uuid, points: 0 });
-      setIsModalVisible(false);
-    } catch (error) {
-      console.error("Error deleting user:", error);
-    }
-  };
-
   const handleUpdatePoints = async () => {
     try {
-      await inputPoints({ uuid: selectedUser.uuid, points: 0 });
-      setIsModalVisible(false);
+      // await inputPoints({ uuid: selectedUser.uuid, points: 0 });
+      await pointsForm.validateFields();
+      Modal.confirm({
+        title: `Update Points for ${selectedUser.name}`,
+        content: "Are you sure you want to update points?",
+        okButtonProps: { style: { backgroundColor: "#1890ff", borderColor: "#1890ff" } },
+        onOk: async () => {
+          await inputPoints({ uuid: selectedUser.uuid, points: pointsForm.getFieldValue("points") });
+          setIsModalVisible(false);
+          message.success("Points updated successfully");
+        },
+      });
     } catch (error) {
       console.error("Error updating points:", error);
     }
@@ -42,9 +44,18 @@ export default function ManageUsersContent() {
 
   const handleUpdateRole = async () => {
     try {
-      const values = await form.validateFields();
-      await changeRole({ uuid: selectedUser.uuid, newRole: values.role });
-      setIsModalVisible(false);
+      await form.validateFields();
+      Modal.confirm({
+        title: `Update Role for ${selectedUser.name}`,
+        content: "Are you sure you want to update the role?",
+        okButtonProps: { style: { backgroundColor: "#1890ff", borderColor: "#1890ff" } },
+        onOk: async () => {
+          const values = form.getFieldsValue();
+          await changeRole({ uuid: selectedUser.uuid, newRole: values.role });
+          setIsModalVisible(false);
+          message.success("Role updated successfully");
+        },
+      });
     } catch (error) {
       console.error("Error updating user role:", error);
     }
@@ -61,7 +72,7 @@ export default function ManageUsersContent() {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      responsive: ["md"],
+      responsive: ["xs", "sm", "md"],
     },
     {
       title: "Email",
@@ -73,26 +84,26 @@ export default function ManageUsersContent() {
       title: "Role",
       dataIndex: "role",
       key: "role",
-      responsive: ["lg"],
+      responsive: ["sm", "md", "lg"],
     },
     {
       title: "Points",
       dataIndex: "points",
       key: "points",
-      responsive: ["lg"],
+      responsive: ["xs", "sm", "md", "lg"],
     },
     {
       title: "Created At",
       dataIndex: "created_at",
       key: "created_at",
-      responsive: ["lg"],
+      responsive: ["xl"],
       render: (created_at) => formatDate(created_at),
     },
     {
       title: "Updated At",
       dataIndex: "updated_at",
       key: "updated_at",
-      responsive: ["lg"],
+      responsive: ["xl"],
       render: (updated_at) => formatDate(updated_at),
     },
     {
@@ -136,9 +147,6 @@ export default function ManageUsersContent() {
               <Button className="bg-blue-500" key="update" type="primary" onClick={handleUpdateRole}>
                 Update Role
               </Button>,
-              <Button className="bg-red-500 text-white hover:bg-red-800" key="delete" type="danger" onClick={handleDelete}>
-                Delete
-              </Button>,
             ]}
           >
             <Form form={form} name="editUserForm">
@@ -150,6 +158,12 @@ export default function ManageUsersContent() {
               </Form.Item>
               <Form.Item label="Role" name="role">
                 <Input />
+              </Form.Item>
+            </Form>
+
+            <Form form={pointsForm} name="updatePointsForm">
+              <Form.Item label="Points" name="points" rules={[{ required: true, message: "Please input points!" }]}>
+                <Input type="number" />
               </Form.Item>
             </Form>
           </Modal>
