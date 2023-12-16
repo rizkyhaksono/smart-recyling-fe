@@ -1,5 +1,6 @@
 import { Tabs, Table, Spin } from "antd";
 import { useGetExchangeQuery } from "../../../redux/api/exchangeApi";
+import formatDate from "../../../components/utils/formatDate";
 
 const ManageExchangeContent = () => {
   const { data: exchangeData, isLoading: exchangeLoading } = useGetExchangeQuery();
@@ -36,6 +37,7 @@ const ManageExchangeContent = () => {
       dataIndex: "created_at",
       key: "created_at",
       responsive: ["lg"],
+      render: (created_at) => formatDate(created_at),
     },
     {
       title: "User ID",

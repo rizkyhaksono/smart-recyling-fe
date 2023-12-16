@@ -1,6 +1,7 @@
 import { Space, Table, Modal, Button, Form, Input, Spin } from "antd";
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import formatDate from "../../../components/utils/formatDate";
 import { useGetAllUsersQuery, useChangeRoleUserMutation, useInputPointsMutation } from "../../../redux/api/userApi";
 
 export default function ManageUsersContent() {
@@ -21,22 +22,31 @@ export default function ManageUsersContent() {
     setIsModalVisible(false);
   };
 
-  const handleUpdate = async () => {
-    try {
-      const values = await form.validateFields();
-      await changeRole({ uuid: selectedUser.uuid, newRole: values.role });
-      setIsModalVisible(false);
-    } catch (error) {
-      console.error("Error updating user:", error);
-    }
-  };
-
   const handleDelete = async () => {
     try {
       await inputPoints({ uuid: selectedUser.uuid, points: 0 });
       setIsModalVisible(false);
     } catch (error) {
       console.error("Error deleting user:", error);
+    }
+  };
+
+  const handleUpdatePoints = async () => {
+    try {
+      await inputPoints({ uuid: selectedUser.uuid, points: 0 });
+      setIsModalVisible(false);
+    } catch (error) {
+      console.error("Error updating points:", error);
+    }
+  };
+
+  const handleUpdateRole = async () => {
+    try {
+      const values = await form.validateFields();
+      await changeRole({ uuid: selectedUser.uuid, newRole: values.role });
+      setIsModalVisible(false);
+    } catch (error) {
+      console.error("Error updating user role:", error);
     }
   };
 
@@ -76,12 +86,14 @@ export default function ManageUsersContent() {
       dataIndex: "created_at",
       key: "created_at",
       responsive: ["lg"],
+      render: (created_at) => formatDate(created_at),
     },
     {
       title: "Updated At",
       dataIndex: "updated_at",
       key: "updated_at",
       responsive: ["lg"],
+      render: (updated_at) => formatDate(updated_at),
     },
     {
       title: "Action",
@@ -102,7 +114,6 @@ export default function ManageUsersContent() {
       ) : (
         <>
           <p className="font-bold text-3xl text-textColor mt-3 mb-10">Manage Users</p>
-          {/* <Table columns={columns} dataSource={usersData ? usersData.data : []} /> */}
           <Table
             columns={columns.map((column) => ({
               ...column,
@@ -119,11 +130,14 @@ export default function ManageUsersContent() {
               <Button key="cancel" onClick={handleCancel}>
                 Cancel
               </Button>,
+              <Button className="bg-blue-500" key="delete" type="primary" onClick={handleUpdatePoints}>
+                Update Points
+              </Button>,
+              <Button className="bg-blue-500" key="update" type="primary" onClick={handleUpdateRole}>
+                Update Role
+              </Button>,
               <Button className="bg-red-500 text-white hover:bg-red-800" key="delete" type="danger" onClick={handleDelete}>
                 Delete
-              </Button>,
-              <Button className="bg-blue-500" key="update" type="primary" onClick={handleUpdate}>
-                Update
               </Button>,
             ]}
           >

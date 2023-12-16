@@ -1,5 +1,6 @@
 import { Tabs, Table, Spin } from "antd";
 import { useGetReportsQuery } from "../../../redux/api/reportApi";
+import formatDate from "../../../components/utils/formatDate";
 
 const ManageReportsContent = () => {
   const { data: reportData, isLoading: reportLoading } = useGetReportsQuery();
@@ -36,6 +37,7 @@ const ManageReportsContent = () => {
       dataIndex: "created_at",
       key: "created_at",
       responsive: ["lg"],
+      render: (created_at) => formatDate(created_at),
     },
     {
       title: "User ID",

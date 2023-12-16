@@ -1,5 +1,6 @@
 import { Tabs, Table, Spin } from "antd";
 import { useGetEventsQuery } from "../../../redux/api/eventApi";
+import formatDate from "../../../components/utils/formatDate";
 
 const ManageEventsContent = () => {
   const { data: eventData, isLoading: eventLoading } = useGetEventsQuery();
@@ -40,6 +41,7 @@ const ManageEventsContent = () => {
       dataIndex: "created_at",
       key: "created_at",
       responsive: ["lg"],
+      render: (created_at) => formatDate(created_at),
     },
     {
       title: "User ID",
