@@ -4,11 +4,11 @@ import { Layout, Menu, theme, Avatar, Dropdown } from "antd";
 import FooterComponent from "../../../components/FooterComponent";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
-import DashboardContent from "../components/DashboardContent";
-import ManageEventsContent from "../components/ManageEvent";
-import ManageReportsContent from "../components/ManageReport";
-import ManageExchangeContent from "../components/ManageExchange";
-import ManageUsersContent from "../components/ManageUser";
+import DashboardContent from "../components/DashboardContent.jsx";
+import ManageEventsContent from "../components/ManageEvent.jsx";
+import ManageReportsContent from "../components/ManageReport.jsx";
+import ManageExchangeContent from "../components/ManageExchange.jsx";
+import ManageUsersContent from "../components/ManageUser.jsx";
 const { Header, Sider, Content } = Layout;
 
 export default function DashboardAdminPage() {

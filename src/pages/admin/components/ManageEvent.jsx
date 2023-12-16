@@ -1,19 +1,14 @@
 import { Tabs, Table, Spin } from "antd";
 import { useGetEventsQuery } from "../../../redux/api/eventApi";
 
-const { TabPane } = Tabs;
-
 const ManageEventsContent = () => {
   const { data: eventData, isLoading: eventLoading } = useGetEventsQuery();
-  // const { data: inputEventsData, isLoading: inputEventsLoading } = useGetEventQuery({ type: "input" });
 
   const eventsLoading = eventLoading;
 
   if (eventsLoading) {
     return <Spin size="large" className="flex justify-center items-center" />;
   }
-
-  console.log(eventData);
 
   const columns = [
     {
@@ -59,14 +54,14 @@ const ManageEventsContent = () => {
       <div className="">
         <p className="font-bold text-3xl text-textColor mt-3 mb-10">Manage Events</p>
         <Tabs defaultActiveKey="1" onChange={(key) => console.log(key)} indicatorSize={(origin) => origin - 16}>
-          <TabPane tab="All Events" key="1">
+          <Tabs.Item key="1" tab="All Events">
             <Spin spinning={eventsLoading}>
               <Table columns={columns} dataSource={eventData ? eventData.data[0].flatMap((item) => item) : []} />
             </Spin>
-          </TabPane>
-          <TabPane tab="Input Events" key="2">
+          </Tabs.Item>
+          <Tabs.Item key="2" tab="Input Events">
             <p>test</p>
-          </TabPane>
+          </Tabs.Item>
         </Tabs>
       </div>
     </>

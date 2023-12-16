@@ -6,7 +6,7 @@ const ExchangeUser = ({ exchangeData }) => {
   const getItemNameById = (itemId) => {
     switch (itemId) {
       case 1:
-        return "Kaos";
+        return "T-Shirt";
       case 2:
         return "Totebag";
       case 3:

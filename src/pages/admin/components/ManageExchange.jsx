@@ -1,8 +1,6 @@
 import { Tabs, Table, Spin } from "antd";
 import { useGetExchangeQuery } from "../../../redux/api/exchangeApi";
 
-const { TabPane } = Tabs;
-
 const ManageExchangeContent = () => {
   const { data: exchangeData, isLoading: exchangeLoading } = useGetExchangeQuery();
 
@@ -10,7 +8,7 @@ const ManageExchangeContent = () => {
 
   const getItemName = (itemId) => {
     const itemMappings = {
-      1: "Kaos",
+      1: "T-Shirt",
       2: "Totebag",
       3: "Bottle",
       4: "Cutlery",
@@ -52,14 +50,14 @@ const ManageExchangeContent = () => {
       <div className="">
         <p className="font-bold text-3xl text-textColor mt-3 mb-10">Manage Exchanges</p>
         <Tabs defaultActiveKey="1" onChange={(key) => console.log(key)} indicatorSize={(origin) => origin - 16}>
-          <TabPane tab="All Exchanges" key="1">
+          <Tabs.Item key="1" tab="All Exchanges">
             <Spin spinning={exchangeLoading}>
               <Table columns={columns} dataSource={exchangeData ? exchangeData.data.flat() : []} />
             </Spin>
-          </TabPane>
-          <TabPane tab="Input Exchange" key="2">
+          </Tabs.Item>
+          <Tabs.Item key="2" tab="Input Exchange">
             <p>test</p>
-          </TabPane>
+          </Tabs.Item>
         </Tabs>
       </div>
     </>

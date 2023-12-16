@@ -28,8 +28,18 @@ export const userApi = baseApi.enhanceEndpoints({}).injectEndpoints({
           },
         }),
       }),
+      inputPoints: builder.mutation({
+        query: ({ data }) => ({
+          url: `/user/points`,
+          method: "POST",
+          body: {
+            uuid: data.uuid,
+            points: data.points,
+          },
+        }),
+      }),
     };
   },
 });
 
-export const { useGetUserQuery, useGetAllUsersQuery, useChangeRoleUserMutation } = userApi;
+export const { useGetUserQuery, useGetAllUsersQuery, useChangeRoleUserMutation, useInputPointsMutation } = userApi;

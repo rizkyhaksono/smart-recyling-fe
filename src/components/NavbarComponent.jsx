@@ -96,7 +96,7 @@ export default function NavbarComponent() {
     return () => {
       window.removeEventListener("resize", checkMobileView);
     };
-  }, []);
+  }, [userSuccess]);
 
   return (
     <nav className={`fixed w-full z-20 top-0 left-0 border-b border-gray-300 bg-white ${isMobileView ? "md:hidden" : ""}`}>
