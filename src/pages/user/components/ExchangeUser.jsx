@@ -20,16 +20,22 @@ const ExchangeUser = ({ exchangeData }) => {
 
   const columns = [
     {
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
+      render: (text, record) => <p>{record.key}</p>,
+    },
+    {
       title: "Item Name",
       dataIndex: "itemName",
       key: "itemName",
-      render: (text, record) => <p className="font-semibold text-base">{record.itemName}</p>,
+      render: (text, record) => <p>{record.itemName}</p>,
     },
     {
       title: "Created At",
       dataIndex: "createdAt",
       key: "createdAt",
-      render: (text, record) => <p className="font-semibold text-base">{formatDate(record.createdAt)}</p>,
+      render: (text, record) => <p>{formatDate(record.createdAt)}</p>,
     },
   ];
 
@@ -37,7 +43,7 @@ const ExchangeUser = ({ exchangeData }) => {
     exchangeData?.data.map((exchangeItem) => ({
       key: exchangeItem.id,
       itemName: getItemNameById(exchangeItem.items_id),
-      createdAt: exchangeItem.created_at, 
+      createdAt: exchangeItem.created_at,
     })) || [];
 
   return (

@@ -5,6 +5,8 @@ import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
 import { useGetUserQuery } from "../../redux/api/userApi";
 import { useGetExchangeByIdQuery } from "../../redux/api/exchangeApi";
+import { useGetTransactionByIdQuery } from "../../redux/api/transactionApi";
+import { useGetPaymentByIdQuery } from "../../redux/api/paymentApi";
 import ExchangeUser from "./components/ExchangeUser";
 import TransactionUser from "./components/TransactionUser";
 import PaymentUser from "./components/PaymentUser";
@@ -13,6 +15,8 @@ export default function ProfileUserPage() {
   const { data: userData, isError, isLoading: userLoading, isSuccess } = useGetUserQuery();
   const userUuid = userData?.user?.uuid;
   const { data: exchangeData, isLoading: exchangeLoading } = useGetExchangeByIdQuery(userUuid);
+  const { data: transactionData, isLoading: transactionLoading } = useGetTransactionByIdQuery(userUuid);
+  const { data: paymentData, isLoading: paymentLoading } = useGetPaymentByIdQuery(userUuid);
 
   const dataProfile = [
     {
@@ -52,7 +56,7 @@ export default function ProfileUserPage() {
       label: "Transaction",
       children: (
         <>
-          <TransactionUser />
+          <TransactionUser transactionData={transactionData} />
         </>
       ),
     },
@@ -61,7 +65,7 @@ export default function ProfileUserPage() {
       label: "Payment",
       children: (
         <>
-          <PaymentUser />
+          <PaymentUser paymentData={paymentData} />
         </>
       ),
     },
@@ -72,9 +76,9 @@ export default function ProfileUserPage() {
       <NavbarComponent />
       <Layout>
         <Card className="mt-28 mx-10 my-10" bordered={true}>
-          {userLoading && <Skeleton />}
-          {exchangeLoading && <Skeleton />}
+          {(userLoading && <Skeleton />) || (exchangeLoading && <Skeleton />) || (transactionLoading && <Skeleton />) || (paymentLoading && <Skeleton />)}
           {isError && <p>Error loading user data</p>}
+
           {isSuccess && userData?.user && (
             <>
               <p className="font-bold text-2xl text-center mb-4 text-textColor">My Profile</p>
