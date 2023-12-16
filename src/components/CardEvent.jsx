@@ -56,7 +56,7 @@ export default function CardEvent() {
                 </a>
               }
             />
-            <Card>
+            <Card className="hover:shadow-md transition-transform transform-gpu hover:translate-y-1">
               <img src={item.image} alt="Event Image" className="container mb-5 rounded-xl" style={{ maxWidth: "100%" }} />
               <p className="font-medium text-base text-textColor mb-5">{item.content}</p>
               <p className="font-bold text-base text-textColor">Tanggal dan Waktu: {formatDate(item.created_at)}</p>

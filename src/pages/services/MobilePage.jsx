@@ -19,7 +19,7 @@ export default function MobilePage() {
           </div>
 
           <Link to={"#"}>
-            <button className="my-5 flex gap-2 justify-center items-center rounded-full bg-primary pl-4 pr-4 pt-2 pb-2 text-white font-medium text-base hover:bg-green-500">
+            <button className="my-5 flex gap-2 justify-center items-center rounded-full bg-primary px-7 py-3 text-white font-medium text-base hover:bg-green-500">
               PlayStore <BsAndroid size={20} />
             </button>
           </Link>

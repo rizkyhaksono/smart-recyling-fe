@@ -87,7 +87,7 @@ export default function CardExchange() {
           <List.Item key={item.id} onClick={() => handleItemClick(item)}>
             <div className="flex flex-row gap-5 items-center cursor-pointer" onClick={() => handleItemClick(item)}>
               <img className="sm:w-40 md:w-56 lg:w-64 xl:w-1/3 max-[640px]:w-32 rounded-xl" src={`/exchange-${item.id}.png`} alt={item.name} />
-              <Card className="text-textColor font-medium w-full">
+              <Card className="text-textColor font-medium w-full hover:shadow-md transition-transform transform-gpu hover:translate-y-1">
                 <p className="text-2xl">{item.name}</p>
                 <p className="text-base mt-4">{`Points: ${item.points}`}</p>
                 <p className="text-base">{`Total: ${item.total}`}</p>

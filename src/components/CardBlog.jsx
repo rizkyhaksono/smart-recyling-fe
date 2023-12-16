@@ -43,7 +43,11 @@ export default function CardBlog() {
   ];
 
   const cardComponents = data.map((item) => (
-    <Card className="flex flex-col items-center justify-center justify-items-center justify-self-center" key={item.id} cover={<img className="rounded-xl" alt="example" src={item.coverImage} />}>
+    <Card
+      className="flex flex-col items-center justify-center justify-items-center justify-self-center hover:shadow-md transition-transform transform-gpu hover:translate-y-1"
+      key={item.id}
+      cover={<img className="rounded-xl" alt="example" src={item.coverImage} />}
+    >
       <Meta avatar={<Avatar src={item.avatarImage} />} title={item.title} description={item.description} />
     </Card>
   ));

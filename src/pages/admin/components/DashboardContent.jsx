@@ -3,19 +3,21 @@ import { Card, Col, Row, Statistic, Spin } from "antd";
 import { useGetAllUsersQuery } from "../../../redux/api/userApi";
 import { useGetReportsQuery } from "../../../redux/api/reportApi";
 import { useGetItemQuery } from "../../../redux/api/itemApi";
+import { useGetEventsQuery } from "../../../redux/api/eventApi";
 
 export default function DashboardContent() {
   const { data: usersData, isLoading: usersLoading } = useGetAllUsersQuery();
   const { data: reportsData, isLoading: reportsLoading } = useGetReportsQuery();
   const { data: itemsData, isLoading: itemsLoading } = useGetItemQuery();
+  const { data: evenstData, isLoading: eventLoading } = useGetEventsQuery();
 
-  if (usersLoading || reportsLoading || itemsLoading) {
+  if (usersLoading || reportsLoading || itemsLoading || eventLoading) {
     return <Spin size="large" className="flex justify-center items-center" />;
   }
 
-  const pengepulCount = usersData.data.reduce((count, user) => {
-    return count + (user.role === "PENGEPUL" ? 1 : 0);
-  }, 0);
+  const adminCount = usersData.data.reduce((count, user) => count + (user.role === "ADMIN" ? 1 : 0), 0);
+  const userCount = usersData.data.reduce((count, user) => count + (user.role === "USER" ? 1 : 0), 0);
+  const pengepulCount = usersData.data.reduce((count, user) => count + (user.role === "PENGEPUL" ? 1 : 0), 0);
 
   return (
     <>
@@ -24,7 +26,7 @@ export default function DashboardContent() {
       <Card bordered={true}>
         <Row gutter={[16, 16]}>
           <Col xs={24} sm={12} md={6} lg={6}>
-            <Card bordered={false}>
+            <Card bordered={false} className="hover:shadow-md transition-transform transform-gpu hover:translate-y-1">
               <Statistic
                 title="Total Records"
                 value={usersData.data.length}
@@ -37,10 +39,10 @@ export default function DashboardContent() {
             </Card>
           </Col>
           <Col xs={24} sm={12} md={6} lg={6}>
-            <Card bordered={false}>
+            <Card bordered={false} className="hover:shadow-md transition-transform transform-gpu hover:translate-y-1">
               <Statistic
                 title="Total Users"
-                value={usersData.data.length}
+                value={userCount}
                 valueStyle={{
                   color: "#3f8600",
                 }}
@@ -50,7 +52,7 @@ export default function DashboardContent() {
             </Card>
           </Col>
           <Col xs={24} sm={12} md={6} lg={6}>
-            <Card bordered={false}>
+            <Card bordered={false} className="hover:shadow-md transition-transform transform-gpu hover:translate-y-1">
               <Statistic
                 title="Total Pengepul"
                 value={pengepulCount}
@@ -63,10 +65,10 @@ export default function DashboardContent() {
             </Card>
           </Col>
           <Col xs={24} sm={12} md={6} lg={6}>
-            <Card bordered={false}>
+            <Card bordered={false} className="hover:shadow-md transition-transform transform-gpu hover:translate-y-1">
               <Statistic
                 title="Total Admin"
-                value={pengepulCount}
+                value={adminCount}
                 valueStyle={{
                   color: "#3f8600",
                 }}
@@ -80,8 +82,8 @@ export default function DashboardContent() {
       <p className="font-semibold text-xl text-textColor my-2">Overview Reports Data</p>
       <Card bordered={true}>
         <Row gutter={[16, 16]}>
-          <Col xs={24} sm={12} md={6} lg={6}>
-            <Card bordered={false}>
+          <Col xs={24} sm={12} md={12} lg={12}>
+            <Card bordered={false} className="hover:shadow-md transition-transform transform-gpu hover:translate-y-1">
               <Statistic
                 title="Total Reports"
                 value={reportsData.data.length}
@@ -93,17 +95,17 @@ export default function DashboardContent() {
               />
             </Card>
           </Col>
-          <Col xs={24} sm={12} md={6} lg={6}>
-            <Card bordered={false}>
+          <Col xs={24} sm={12} md={12} lg={12}>
+            <Card bordered={false} className="hover:shadow-md transition-transform transform-gpu hover:translate-y-1">
               <Statistic
-                title=""
+                title="Total Location In Malang"
                 value={11.28}
                 precision={2}
                 valueStyle={{
                   color: "#3f8600",
                 }}
                 prefix={<ArrowUpOutlined />}
-                suffix="%"
+                suffix="in Malang"
               />
             </Card>
           </Col>
@@ -112,21 +114,21 @@ export default function DashboardContent() {
       <p className="font-semibold text-xl text-textColor my-2">Overview Events Data</p>
       <Card bordered={true}>
         <Row gutter={[16, 16]}>
-          <Col xs={24} sm={12} md={6} lg={6}>
-            <Card bordered={false}>
+          <Col xs={24} sm={12} md={12} lg={12}>
+            <Card bordered={false} className="hover:shadow-md transition-transform transform-gpu hover:translate-y-1">
               <Statistic
                 title="Total Events"
-                value={usersData.data.length}
+                value={evenstData.data.length}
                 valueStyle={{
                   color: "#3f8600",
                 }}
                 prefix={<FileTextOutlined />}
-                suffix="users"
+                suffix="events"
               />
             </Card>
           </Col>
-          <Col xs={24} sm={12} md={6} lg={6}>
-            <Card bordered={false}>
+          <Col xs={24} sm={12} md={12} lg={12}>
+            <Card bordered={false} className="hover:shadow-md transition-transform transform-gpu hover:translate-y-1">
               <Statistic
                 title="Total Events"
                 value={11.28}
@@ -144,8 +146,8 @@ export default function DashboardContent() {
       <p className="font-semibold text-xl text-textColor my-2">Overview Items Data</p>
       <Card bordered={true}>
         <Row gutter={[16, 16]}>
-          <Col xs={24} sm={12} md={6} lg={12}>
-            <Card bordered={false}>
+          <Col xs={24} sm={12} md={12} lg={12}>
+            <Card bordered={false} className="hover:shadow-md transition-transform transform-gpu hover:translate-y-1">
               <Statistic
                 title="Total Items"
                 value={itemsData.data.length}
@@ -157,17 +159,59 @@ export default function DashboardContent() {
               />
             </Card>
           </Col>
-          <Col xs={24} sm={12} md={6} lg={12}>
-            <Card bordered={false}>
+          <Col xs={24} sm={12} md={12} lg={12}>
+            <Card bordered={false} className="hover:shadow-md transition-transform transform-gpu hover:translate-y-1">
               <Statistic
-                title="Total Events"
+                title="Total T-Shirt"
                 value={11.28}
                 precision={2}
                 valueStyle={{
                   color: "#3f8600",
                 }}
                 prefix={<ArrowUpOutlined />}
-                suffix="%"
+                suffix="items"
+              />
+            </Card>
+          </Col>
+          <Col xs={24} sm={12} md={12} lg={12}>
+            <Card bordered={false} className="hover:shadow-md transition-transform transform-gpu hover:translate-y-1">
+              <Statistic
+                title="Total Totebag"
+                value={11.28}
+                precision={2}
+                valueStyle={{
+                  color: "#3f8600",
+                }}
+                prefix={<ArrowUpOutlined />}
+                suffix="items"
+              />
+            </Card>
+          </Col>
+          <Col xs={24} sm={12} md={12} lg={12}>
+            <Card bordered={false} className="hover:shadow-md transition-transform transform-gpu hover:translate-y-1">
+              <Statistic
+                title="Total Bottle"
+                value={11.28}
+                precision={2}
+                valueStyle={{
+                  color: "#3f8600",
+                }}
+                prefix={<ArrowUpOutlined />}
+                suffix="items"
+              />
+            </Card>
+          </Col>
+          <Col xs={24} sm={12} md={12} lg={12}>
+            <Card bordered={false} className="hover:shadow-md transition-transform transform-gpu hover:translate-y-1">
+              <Statistic
+                title="Total Cutlery"
+                value={11.28}
+                precision={2}
+                valueStyle={{
+                  color: "#3f8600",
+                }}
+                prefix={<ArrowUpOutlined />}
+                suffix="items"
               />
             </Card>
           </Col>
