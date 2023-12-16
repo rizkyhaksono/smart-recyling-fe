@@ -23,8 +23,16 @@ export const itemApi = baseApi.enhanceEndpoints({}).injectEndpoints({
           },
         }),
       }),
+      putItem: builder.mutation({
+        query: ({ itemId, data }) => ({
+          url: `/items/${itemId}`,
+          method: "PUT",
+          body: data,
+          headers: getUserAuthHeaderApi(),
+        }),
+      }),
     };
   },
 });
 
-export const { useGetItemQuery, usePostItemMutation } = itemApi;
+export const { useGetItemQuery, usePostItemMutation, usePutItemMutation } = itemApi;

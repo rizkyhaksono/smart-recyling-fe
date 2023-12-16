@@ -18,8 +18,18 @@ export const userApi = baseApi.enhanceEndpoints({}).injectEndpoints({
           headers: getUserAuthHeaderApi(),
         }),
       }),
+      changeRoleUser: builder.mutation({
+        query: ({ data }) => ({
+          url: `/user/change-role`,
+          method: "POST",
+          body: {
+            uuid: data.uuid,
+            newRole: data.newRole,
+          },
+        }),
+      }),
     };
   },
 });
 
-export const { useGetUserQuery, useGetAllUsersQuery } = userApi;
+export const { useGetUserQuery, useGetAllUsersQuery, useChangeRoleUserMutation } = userApi;
