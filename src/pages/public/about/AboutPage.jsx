@@ -59,7 +59,6 @@ export default function AboutPage() {
       <ScrollCarousel autoplay autoplaySpeed={1} speed={7} className="container mx-auto pt-5">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((item) => (
           <div key={item} className="bg-green-300/20 border-2 border-green-300/70 rounded">
-            {/* {item} */}
             <img src="/illustration.png" alt="Carousel" />
           </div>
         ))}
