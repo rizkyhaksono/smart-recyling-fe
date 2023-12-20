@@ -14,7 +14,7 @@ export default function CardTeamWeb() {
           </Link>
         </Col>
         <Col xs={24} sm={12} md={8} lg={6} xl={4} className="pr-2 pb-5">
-          <Card hoverable cover={<img alt="profile" src="/team/default.png" />}>
+          <Card hoverable cover={<img alt="profile" src="/team/web5.jpg" />}>
             <Meta title="Nailul Faiz Hidayatullah" description="Hacker / Scrum Master" />
           </Card>
         </Col>
@@ -24,7 +24,7 @@ export default function CardTeamWeb() {
           </Card>
         </Col>
         <Col xs={24} sm={12} md={8} lg={6} xl={4} className="pr-2 pb-5">
-          <Card hoverable cover={<img alt="profile" src="/team/default.png" />}>
+          <Card hoverable cover={<img alt="profile" src="/team/web4.jpeg" />}>
             <Meta title="Rafidatun Najwa" description="Hustler / PM" />
           </Card>
         </Col>
