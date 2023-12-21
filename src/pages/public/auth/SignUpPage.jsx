@@ -6,7 +6,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import RHFProvider from "../../../components/hook-form/RHFProvider";
 import RHFTextField from "../../../components/hook-form/RHFTextField";
 import { Link, useNavigate } from "react-router-dom";
-import { Alert } from "antd";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string().required("Nama diperlukan"),
