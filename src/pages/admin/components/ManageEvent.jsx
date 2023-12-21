@@ -1,14 +1,17 @@
 import { Tabs, Table, Spin, Form, Input, Button, message } from "antd";
 import { useGetEventsQuery, usePostEventsMutation } from "../../../redux/api/eventApi";
+import { useGetUserQuery } from "../../../redux/api/userApi";
 import formatDate from "../../../components/utils/formatDate";
+import PropTypes from "prop-types";
 
 const ManageEventsContent = () => {
   const { data: eventData, isLoading: eventLoading } = useGetEventsQuery();
+  const { data: userData, isLoading: userLoading } = useGetUserQuery();
   const [postEvent] = usePostEventsMutation();
 
   const eventsLoading = eventLoading;
 
-  if (eventsLoading) {
+  if (eventsLoading || userLoading) {
     return <Spin size="large" className="flex justify-center items-center" />;
   }
 
@@ -62,20 +65,22 @@ const ManageEventsContent = () => {
           </Spin>
         </Tabs.Item>
         <Tabs.Item key="2" tab="Input Events">
-          <EventForm postEvent={postEvent} />
+          <EventForm postEvent={postEvent} userData={userData} />
         </Tabs.Item>
       </Tabs>
     </>
   );
 };
 
-const EventForm = ({ postEvent }) => {
+const EventForm = ({ postEvent, userData }) => {
   const [form] = Form.useForm();
 
   const handleFinish = async (values) => {
     try {
-      const result = await postEvent(values);
-
+      console.log(values);
+      console.log(userData?.user?.uuid);
+      const result = await postEvent({ ...values, user_id: userData?.user?.uuid });
+      console.log(result);
       if (result.data) {
         message.success("Event submitted successfully");
         form.resetFields();
@@ -106,6 +111,11 @@ const EventForm = ({ postEvent }) => {
       </Form.Item>
     </Form>
   );
+};
+
+EventForm.propTypes = {
+  postEvent: PropTypes.func.isRequired,
+  userData: PropTypes.object.isRequired,
 };
 
 export default ManageEventsContent;

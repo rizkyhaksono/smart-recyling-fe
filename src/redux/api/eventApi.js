@@ -12,11 +12,11 @@ export const eventsApi = baseApi.enhanceEndpoints({}).injectEndpoints({
         }),
       }),
       postEvents: builder.mutation({
-        query: ({ data }) => ({
+        query: (data) => ({
           url: `/events`,
           method: "POST",
           body: {
-            title: data.name,
+            title: data.title,
             description: data.description,
             path_image: data.path_image,
             user_id: data.user_id,
