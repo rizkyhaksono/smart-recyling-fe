@@ -1,4 +1,5 @@
-import { Space, Table, Modal, Button, Form, Input, Spin, message, Popconfirm } from "antd";
+import { Space, Table, Modal, Button, Form, Input, Spin, message, Select } from "antd";
+const { Option } = Select;
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import formatDate from "../../../components/utils/formatDate";
@@ -10,8 +11,10 @@ export default function ManageUsersContent() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
   const [pointsForm] = Form.useForm();
-  const { mutate: changeRole } = useChangeRoleUserMutation();
-  const { mutate: inputPoints } = useInputPointsMutation();
+  const [changeRole] = useChangeRoleUserMutation();
+  const [inputPoints] = useInputPointsMutation();
+
+  const roles = ["ADMIN", "USER", "PENGEPUL"];
 
   const showModal = (user) => {
     setSelectedUser(user);
@@ -25,14 +28,21 @@ export default function ManageUsersContent() {
 
   const handleUpdatePoints = async () => {
     try {
-      // await inputPoints({ uuid: selectedUser.uuid, points: 0 });
       await pointsForm.validateFields();
       Modal.confirm({
         title: `Update Points for ${selectedUser.name}`,
         content: "Are you sure you want to update points?",
         okButtonProps: { style: { backgroundColor: "#1890ff", borderColor: "#1890ff" } },
         onOk: async () => {
-          await inputPoints({ uuid: selectedUser.uuid, points: pointsForm.getFieldValue("points") });
+          const values = pointsForm.getFieldsValue();
+          console.log({
+            uuid: selectedUser.id,
+            points: values.points,
+          });
+          await inputPoints({
+            uuid: selectedUser.id,
+            points: values.points,
+          });
           setIsModalVisible(false);
           message.success("Points updated successfully");
         },
@@ -51,7 +61,14 @@ export default function ManageUsersContent() {
         okButtonProps: { style: { backgroundColor: "#1890ff", borderColor: "#1890ff" } },
         onOk: async () => {
           const values = form.getFieldsValue();
-          await changeRole({ uuid: selectedUser.uuid, newRole: values.role });
+          console.log({
+            uuid: selectedUser.id,
+            newRole: values.role,
+          });
+          await changeRole({
+            uuid: selectedUser.id,
+            role: values.role,
+          });
           setIsModalVisible(false);
           message.success("Role updated successfully");
         },
@@ -157,7 +174,13 @@ export default function ManageUsersContent() {
                 <Input disabled />
               </Form.Item>
               <Form.Item label="Role" name="role">
-                <Input />
+                <Select>
+                  {roles.map((role) => (
+                    <Option key={role} value={role}>
+                      {role}
+                    </Option>
+                  ))}
+                </Select>
               </Form.Item>
             </Form>
 

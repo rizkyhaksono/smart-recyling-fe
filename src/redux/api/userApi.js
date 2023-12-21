@@ -1,7 +1,7 @@
 import { getUserAuthHeaderApi } from "../apiHelper";
 import { baseApi } from "../axiosBaseQuery";
 
-export const userApi = baseApi.enhanceEndpoints({}).injectEndpoints({
+export const userApi = baseApi.enhanceEndpoints({ addTagTypes: ["userTag"] }).injectEndpoints({
   endpoints(builder) {
     return {
       getUser: builder.query({
@@ -10,6 +10,7 @@ export const userApi = baseApi.enhanceEndpoints({}).injectEndpoints({
           method: "GET",
           headers: getUserAuthHeaderApi(),
         }),
+        providesTags: ["userTag"],
       }),
       getAllUsers: builder.query({
         query: () => ({
@@ -17,26 +18,29 @@ export const userApi = baseApi.enhanceEndpoints({}).injectEndpoints({
           method: "GET",
           headers: getUserAuthHeaderApi(),
         }),
+        providesTags: ["userTag"],
       }),
       changeRoleUser: builder.mutation({
-        query: ({ data }) => ({
+        query: ({ uuid, role }) => ({
           url: `/user/change-role`,
           method: "POST",
           body: {
-            uuid: data.uuid,
-            newRole: data.newRole,
+            uuid,
+            newRole: role,
           },
         }),
+        invalidatesTags: ["userTag"],
       }),
       inputPoints: builder.mutation({
-        query: ({ data }) => ({
+        query: ({ uuid, points }) => ({
           url: `/user/points`,
           method: "POST",
           body: {
-            uuid: data.uuid,
-            points: data.points,
+            uuid,
+            points,
           },
         }),
+        invalidatesTags: ["userTag"],
       }),
     };
   },
