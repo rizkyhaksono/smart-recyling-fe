@@ -1,10 +1,5 @@
-require("@babel/preset-react");
-require("@babel/preset-env");
-
+/** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-  testEnvironment: "jsdom",
-  moduleNameMapper: {
-    "\\.(css|less|scss)$": "identity-obj-proxy",
-  },
-  setupFiles: ["./jest.setup.js"],
+  preset: "ts-jest",
+  testEnvironment: "node",
 };
