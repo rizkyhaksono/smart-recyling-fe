@@ -19,10 +19,11 @@ import ProfileUserPage from "./pages/user/ProfileUserPage";
 import ProfileAdminPage from "./pages/admin/profile/ProfileAdmin";
 
 function App() {
+  const cookies = new Cookies();
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { data: userData, isSuccess: userSuccess } = useGetUserQuery();
 
-  const cookies = new Cookies();
 
   useEffect(() => {
     if (cookies.get("access_token") && cookies.get("refresh_token")) {
