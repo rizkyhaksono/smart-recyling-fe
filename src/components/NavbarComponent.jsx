@@ -27,11 +27,13 @@ const items = [
 ];
 
 export default function NavbarComponent() {
-  const { data: userData, isSuccess: userSuccess } = useGetUserQuery();
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const cookies = new Cookies();
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const location = useLocation();
-  const cookies = new Cookies();
+
+  const { data: userData } = useGetUserQuery();
 
   const [state, setState] = useState({
     ACCESS_TOKEN: cookies.get("access_token"),
@@ -57,7 +59,7 @@ export default function NavbarComponent() {
   };
 
   const toggleDropdown = () => {
-    setDropdownOpen(!isDropdownOpen);
+    setDropdownOpen(!dropdownOpen);
   };
 
   const checkMobileView = () => {
@@ -67,7 +69,7 @@ export default function NavbarComponent() {
   const itemsProfile = [
     {
       key: "1",
-      label: <p className="font-bold text-textColor">Hello {userData && userData.user ? userData.user.name || "User" : "User"}!</p>,
+      label: <p className="font-bold text-textColor">Hello {userData?.user ? userData?.user?.name || "User" : "User"}!</p>,
     },
     {
       key: "2",
@@ -89,14 +91,11 @@ export default function NavbarComponent() {
 
   useEffect(() => {
     checkMobileView();
-    console.log(userSuccess);
-
     window.addEventListener("resize", checkMobileView);
-
     return () => {
       window.removeEventListener("resize", checkMobileView);
     };
-  }, [userSuccess]);
+  }, []);
 
   return (
     <nav className={`fixed w-full z-20 top-0 left-0 border-b border-gray-300 bg-white ${isMobileView ? "md:hidden" : ""}`}>
@@ -106,11 +105,9 @@ export default function NavbarComponent() {
         </Link>
         <div className="flex md:order-2">
           {isLoggedIn ? (
-            <>
-              <Dropdown menu={{ items: itemsProfile }} placement="bottom" arrow>
-                <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
-              </Dropdown>
-            </>
+            <Dropdown menu={{ items: itemsProfile }} placement="bottom" arrow>
+              <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+            </Dropdown>
           ) : (
             <>
               <Link to={"/signup"}>
@@ -126,7 +123,7 @@ export default function NavbarComponent() {
             </>
           )}
         </div>
-        <div className={`w-full md:block md:w-auto ${isDropdownOpen ? "block" : "hidden"}`}>
+        <div className={`w-full md:block md:w-auto ${dropdownOpen ? "block" : "hidden"}`}>
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white items-center">
             <li>
               <Link to={"/"}>
@@ -143,12 +140,12 @@ export default function NavbarComponent() {
                 ${location.pathname === "/report" || location.pathname === "/mobile" || location.pathname === "/blog" || location.pathname === "/exchange" ? "text-primary" : ""}`}
               >
                 Services{" "}
-                <svg className={`w-2.5 h-2.5 ml-2.5 ${isDropdownOpen ? "rotate-0" : "rotate-180"}`} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <svg className={`w-2.5 h-2.5 ml-2.5 ${dropdownOpen ? "rotate-0" : "rotate-180"}`} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                 </svg>
               </button>
 
-              <div id="dropdownNavbar" className={`absolute z-10 ${isDropdownOpen ? "block" : "hidden"} font-normal bg-white divide-y divide-gray-100 rounded-lg shadow mt-2`}>
+              <div id="dropdownNavbar" className={`absolute z-10 ${dropdownOpen ? "block" : "hidden"} font-normal bg-white divide-y divide-gray-100 rounded-lg shadow mt-2`}>
                 <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownNavbarLink">
                   <li>
                     <Link to={"/report"}>

@@ -8,9 +8,10 @@ RHFTextField.propTypes = {
   label: PropTypes.string,
   type: PropTypes.string,
   helperText: PropTypes.node,
+  dataCy: PropTypes.string,
 };
 
-export default function RHFTextField({ name, label, helperText, type }) {
+export default function RHFTextField({ name, label, helperText, type, dataCy }) {
   const { control } = useFormContext();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -33,11 +34,23 @@ export default function RHFTextField({ name, label, helperText, type }) {
                 type={type === "password" && showPassword ? "text" : type}
                 placeholder={helperText}
                 value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
+                data-cy={dataCy}
               />
               {type === "password" && (
-                <div className="absolute top-2 right-2 cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
+                <button
+                  className="absolute top-2 right-2 cursor-pointer"
+                  onClick={() => setShowPassword(!showPassword)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      setShowPassword(!showPassword);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
                   {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
-                </div>
+                </button>
               )}
             </div>
           </>
