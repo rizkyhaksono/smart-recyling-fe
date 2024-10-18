@@ -12,7 +12,7 @@ RHFTextField.propTypes = {
 };
 
 export default function RHFTextField({ name, label, helperText, type, dataCy }) {
-  const { control } = useFormContext();
+  const { control, formState: { errors } } = useFormContext(); 
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -53,6 +53,7 @@ export default function RHFTextField({ name, label, helperText, type, dataCy }) 
                 </button>
               )}
             </div>
+            {errors[name] && <span className="text-red-500 text-sm mt-1">{errors[name].message}</span>}
           </>
         )}
       />
