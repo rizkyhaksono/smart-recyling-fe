@@ -17,11 +17,6 @@ context("Authentication Modules", () => {
 
       cy.get('[data-cy="submit"]').click();
       cy.contains("Email is required");
-      // cy.get('[data-cy="email"]').should("have.class", "border-red-500");
-      // cy.get('span').contains('Email is required').should('be.visible');
-      // cy.get('[data-cy="email"]').invoke('attr', 'class').then(classList => {
-      //   expect(classList).to.contain('border-red-500');
-      // });
     });
   });
 
