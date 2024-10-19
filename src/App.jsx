@@ -1,8 +1,4 @@
-"use client";
-
 import Cookies from "universal-cookie";
-import { useEffect, useState } from "react";
-import { useGetUserQuery } from "./redux/api/userApi";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/public/home/HomePage";
 import ContactPage from "./pages/public/contact/ContactPage";
@@ -17,25 +13,11 @@ import SignUpPage from "./pages/public/auth/SignUpPage";
 import DashboardAdminPage from "./pages/admin/dashboard/DashboardAdminPage";
 import ProfileUserPage from "./pages/user/ProfileUserPage";
 import ProfileAdminPage from "./pages/admin/profile/ProfileAdmin";
+import useCheckToken from "./components/utils/checkToken";
 
 function App() {
   const cookies = new Cookies();
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { data: userData, isSuccess: userSuccess } = useGetUserQuery();
-
-
-  useEffect(() => {
-    if (cookies.get("access_token") && cookies.get("refresh_token")) {
-      setIsLoggedIn(true);
-    }
-
-    if (userSuccess) {
-      cookies.set("user_role", userData.user.role);
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userSuccess, userData]);
+  const isLoggedIn = useCheckToken();
 
   return (
     <BrowserRouter>
@@ -44,7 +26,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
 
-        {isLoggedIn && userSuccess ? (
+        {isLoggedIn ? (
           <>
             {cookies.get("user_role") === "ADMIN" ? (
               <>

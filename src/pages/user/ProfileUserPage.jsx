@@ -18,6 +18,8 @@ export default function ProfileUserPage() {
   const { data: transactionData, isLoading: transactionLoading } = useGetTransactionByIdQuery(userUuid);
   const { data: paymentData, isLoading: paymentLoading } = useGetPaymentByIdQuery(userUuid);
 
+  console.log(paymentData)
+
   const dataProfile = [
     {
       key: "1",

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { List, Modal, Spin, Button, Card, notification } from "antd";
 import { useGetItemQuery } from "../redux/api/itemApi";
 import { useGetUserQuery } from "../redux/api/userApi";
@@ -11,10 +11,6 @@ export default function CardExchange() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-
-  useEffect(() => {
-    console.log(useItem);
-  });
 
   if (isLoading) {
     return <Spin size="large" className="flex justify-center items-center" />;

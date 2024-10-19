@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import NavbarComponent from "../../components/NavbarComponent";
 import FooterComponent from "../../components/FooterComponent";
 import { useGetUserQuery } from "../../redux/api/userApi";
@@ -6,11 +5,7 @@ import CardExchange from "../../components/CardExchange";
 import { FloatButton, Spin } from "antd";
 
 export default function ExchangePage() {
-  const { data: userData, isError, isLoading, isFetching } = useGetUserQuery();
-
-  useEffect(() => {
-    console.log(isLoading);
-  }, [userData, isError, isLoading, isFetching]);
+  const { data: userData, isError, isLoading } = useGetUserQuery();
 
   return (
     <>

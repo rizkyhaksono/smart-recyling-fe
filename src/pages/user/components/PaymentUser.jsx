@@ -68,7 +68,7 @@ const PaymentUser = ({ paymentData }) => {
     },
   ];
 
-  const data = Array.isArray(paymentData.data) ? paymentData.data.map((item) => ({ ...item, key: item.id })) : [];
+  const data = Array.isArray(paymentData?.data) ? paymentData?.data.map((item) => ({ ...item, key: item.id })) : [];
 
   return (
     <Card className="my-5">
