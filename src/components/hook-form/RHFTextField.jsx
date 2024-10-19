@@ -8,11 +8,10 @@ RHFTextField.propTypes = {
   label: PropTypes.string,
   type: PropTypes.string,
   helperText: PropTypes.node,
-  dataCy: PropTypes.string,
 };
 
-export default function RHFTextField({ name, label, helperText, type, dataCy }) {
-  const { control, formState: { errors } } = useFormContext(); 
+export default function RHFTextField({ name, label, helperText, type }) {
+  const { control, formState: { errors } } = useFormContext();
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -34,7 +33,6 @@ export default function RHFTextField({ name, label, helperText, type, dataCy }) 
                 type={type === "password" && showPassword ? "text" : type}
                 placeholder={helperText}
                 value={typeof field.value === "number" && field.value === 0 ? "" : field.value}
-                data-cy={dataCy}
               />
               {type === "password" && (
                 <button

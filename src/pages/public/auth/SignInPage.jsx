@@ -84,13 +84,12 @@ export default function SignInPage() {
             {showAlert && <Alert message="Error" description="There was an issue with the login. Please check your email and password." type="error" showIcon closable onClose={() => setShowAlert(false)} />}
             {showSuccessAlert && <Alert message="Success" description="You have successfully logged in." type="success" showIcon closable onClose={() => setShowSuccessAlert(false)} />}
             <RHFProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-              <RHFTextField name="email" label="Your email" type="email" helperText="name@gmail.com" dataCy="email" />
-              <RHFTextField name="password" label="Your password" type="password" helperText="••••••••" dataCy="password" />
+              <RHFTextField name="email" label="Your email" type="email" helperText="name@gmail.com" />
+              <RHFTextField name="password" label="Your password" type="password" helperText="••••••••" />
               <button
                 type="submit"
                 className="w-full px-5 py-3 text-base font-medium text-center bg-primary hover:bg-green-700 text-white rounded-lg"
                 disabled={buttonLoading}
-                data-cy="submit"
               >
                 {buttonLoading ? "Signing In..." : "Sign in your account"}
               </button>
