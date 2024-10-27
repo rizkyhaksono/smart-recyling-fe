@@ -53,6 +53,7 @@ export default function SignInPage() {
       cookies.set("access_token", res.access_token);
       cookies.set("refresh_token", res.refresh_token);
       navigate("/");
+      window.location.reload();
       setShowSuccessAlert(true);
     } catch (error) {
       console.log(error);
