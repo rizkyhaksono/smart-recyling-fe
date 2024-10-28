@@ -136,9 +136,9 @@ const ManageReportsContent = () => {
         <Table columns={columns} dataSource={reportData ? reportData.data.flat() : []} />
       </Spin>
       <Modal title={isEditing ? "Edit Data" : "Add Data"} open={isModalOpen} onOk={onSubmit} onCancel={handleCancel}>
-        <Input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <Input placeholder="Subject" className="mt-2" value={subject} onChange={(e) => setSubject(e.target.value)} />
-        <Input placeholder="Location" className="mt-2" value={location} onChange={(e) => setLocation(e.target.value)} />
+        <Input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} aria-label="email_report" alt="email_report" />
+        <Input placeholder="Subject" className="mt-2" value={subject} onChange={(e) => setSubject(e.target.value)} aria-label="subject_report" alt="subject_report" />
+        <Input placeholder="Location" className="mt-2" value={location} onChange={(e) => setLocation(e.target.value)} aria-label="location_report" alt="location_report" />
       </Modal>
     </>
   );
