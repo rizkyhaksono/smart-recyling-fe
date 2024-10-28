@@ -23,8 +23,28 @@ export const reportApi = baseApi.enhanceEndpoints({}).injectEndpoints({
           },
         }),
       }),
+      updateReport: builder.mutation({
+        query: ({ id, data }) => ({
+          url: `/report/${id}`,
+          method: "PUT",
+          body: {
+            email: data.email,
+            subject: data.subject,
+            location: data.location,
+            user_id: data.user_id,
+          },
+          headers: getUserAuthHeaderApi(),
+        }),
+      }),
+      deleteReport: builder.mutation({
+        query: (id) => ({
+          url: `/report/${id}`,
+          method: "DELETE",
+          headers: getUserAuthHeaderApi(),
+        }),
+      }),
     };
   },
 });
 
-export const { useGetReportsQuery, usePostReportsMutation } = reportApi;
+export const { useGetReportsQuery, usePostReportsMutation, useDeleteReportMutation, useUpdateReportMutation } = reportApi;

@@ -29,10 +29,7 @@ export default function DashboardContent() {
 
   const countByRole = (role) => usersData.data.reduce((count, user) => count + (user.role === role ? 1 : 0), 0);
 
-  const uniqueLocationsInMalang = reportsData.data
-    .filter((report) => report.location.toLowerCase() === "malang")
-    .map((report) => report.location)
-    .filter((value, index, self) => self.indexOf(value) === index);
+  const uniqueLocationsInMalang = 1;
   const totalUniqueLocationsInMalang = uniqueLocationsInMalang.length;
 
   const calculateTotalForEachItem = (itemsData) => {
