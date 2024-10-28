@@ -1,8 +1,13 @@
 import { useState } from "react";
-import { Table, Spin, Button, Modal, Input, notification } from "antd";
+import { Table, Spin, Button, Modal, notification } from "antd";
 import { useGetReportsQuery, usePostReportsMutation, useUpdateReportMutation, useDeleteReportMutation } from "../../../redux/api/reportApi";
 import { useGetUserQuery } from "../../../redux/api/userApi";
 import formatDate from "../../../components/utils/formatDate";
+import RHFProvider from "../../../components/hook-form/RHFProvider";
+import RHFTextField from "../../../components/hook-form/RHFTextField";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
 const ManageReportsContent = () => {
   const { data: reportData, isLoading: reportLoading } = useGetReportsQuery();
@@ -14,52 +19,63 @@ const ManageReportsContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [currentReport, setCurrentReport] = useState(null);
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [location, setLocation] = useState("");
+
+  const defaultValues = {
+    email: "",
+    subject: "",
+    location: "",
+  };
+
+  const reportSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email format").required("Email is required"),
+    subject: Yup.string().required("Subject is required"),
+    location: Yup.string().required("Location is required"),
+  });
+
+  const methods = useForm({
+    resolver: yupResolver(reportSchema),
+    defaultValues,
+  });
+
+  const { handleSubmit, reset } = methods;
 
   const showModal = (report = null) => {
     if (report) {
       setIsEditing(true);
       setCurrentReport(report);
-      setEmail(report.email);
-      setSubject(report.subject);
-      setLocation(report.location);
+      reset({
+        email: report.email,
+        subject: report.subject,
+        location: report.location,
+      });
     } else {
       setIsEditing(false);
       setCurrentReport(null);
-      setEmail("");
-      setSubject("");
-      setLocation("");
+      reset(defaultValues);
     }
     setIsModalOpen(true);
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
-    setEmail("");
-    setSubject("");
-    setLocation("");
-    setCurrentReport(null);
+    reset(defaultValues);
   };
 
   let uuid = userData?.user?.uuid;
 
-  const onSubmit = async () => {
+  const onSubmit = async (formData) => {
     try {
-      const dataWithUserId = { email, subject, location, user_id: uuid };
+      const dataWithUserId = { ...formData, user_id: uuid };
 
       if (isEditing && currentReport) {
-        // Update existing report
         await updateReport({ id: currentReport.id, data: dataWithUserId }).unwrap();
         notification.success({ message: "Report updated successfully!", duration: 3 });
       } else {
-        // Create new report
         await postReport({ data: dataWithUserId }).unwrap();
         notification.success({ message: "Report submitted successfully!", duration: 3 });
       }
 
-      handleCancel(); // Close modal after submit
+      handleCancel();
     } catch (error) {
       console.error(error);
       notification.error({ message: "Failed to submit report. Please try again later.", duration: 3 });
@@ -135,10 +151,15 @@ const ManageReportsContent = () => {
       <Spin spinning={reportLoading}>
         <Table columns={columns} dataSource={reportData ? reportData.data.flat() : []} />
       </Spin>
-      <Modal title={isEditing ? "Edit Data" : "Add Data"} open={isModalOpen} onOk={onSubmit} onCancel={handleCancel}>
-        <Input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} aria-label="email_report" alt="email_report" />
-        <Input placeholder="Subject" className="mt-2" value={subject} onChange={(e) => setSubject(e.target.value)} aria-label="subject_report" alt="subject_report" />
-        <Input placeholder="Location" className="mt-2" value={location} onChange={(e) => setLocation(e.target.value)} aria-label="location_report" alt="location_report" />
+      <Modal title={isEditing ? "Edit Data" : "Add Data"} open={isModalOpen} onCancel={handleCancel} footer={null}>
+        <RHFProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+          <RHFTextField name="email" label="Email" type="email" helperText="name@gmail.com" />
+          <RHFTextField name="subject" label="Subject" type="text" helperText="Describe the issue or request" />
+          <RHFTextField name="location" label="Location" type="text" helperText="https://www.google.com/maps/place/example" />
+          <Button type="primary" htmlType="submit" className="w-full mt-4">
+            {isEditing ? "Update Report" : "Submit Report"}
+          </Button>
+        </RHFProvider>
       </Modal>
     </>
   );
