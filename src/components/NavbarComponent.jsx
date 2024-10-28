@@ -73,11 +73,14 @@ const NavbarComponent = () => {
     </Link>
   );
 
+  const isAdmin = isLoggedIn?.user?.role === "ADMIN";
+
   const itemsProfile = [
     { key: "1", label: <p className="font-bold text-textColor">{isLoggedIn ? isLoggedIn?.user?.name : "Hello User"}</p> },
-    { key: "2", label: <Link to={"/user/profile"}>My Profile</Link> },
+    { key: "2", label: <Link to={isAdmin ? "/admin/profile" : "/user/profile"}>My Profile</Link> },
     { key: "3", label: <Link to={"/"} onClick={logOut}>Logout</Link> },
   ];
+
 
   return (
     <nav className={`fixed w-full z-20 top-0 left-0 border-b border-gray-300 bg-white ${isMobileView ? "md:hidden" : ""}`}>
