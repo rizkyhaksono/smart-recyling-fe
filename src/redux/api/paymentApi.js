@@ -6,7 +6,7 @@ export const paymentApi = baseApi.enhanceEndpoints({}).injectEndpoints({
     return {
       getPaymentById: builder.query({
         query: (uuid) => ({
-          url: `/payment-history/${uuid}`,
+          url: `/transaction-history/${uuid}`,
           method: "GET",
           headers: getUserAuthHeaderApi(),
         }),

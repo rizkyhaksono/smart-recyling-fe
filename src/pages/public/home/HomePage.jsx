@@ -37,7 +37,7 @@ export default function HomePage() {
               whileTap={{ scale: 0.9 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <img src="/illustration.png" alt="Smart Recycling Logo" width={700} height={700} />
+              <img src="/illustration.svg" alt="Smart Recycling Logo" width={700} height={700} />
             </motion.div>
           </div>
           <MarqueeComponent />
@@ -54,7 +54,13 @@ export default function HomePage() {
               </svg>
               <p className="text-xl font-medium text-textColor md:text-2xl">It is horrifying that we have to fight our own government to save the environment.</p>
               <figcaption className="flex items-center justify-center mt-6 space-x-3">
-                <img src={"https://cdn.shopify.com/s/files/1/0251/0939/7584/files/1-Ansel-Adams-479x500_large.jpg?v=1570145018?"} alt="Picture of the author" width={100} height={100} className="w-10 h-10 rounded-full" />
+                <img
+                  src={"https://cdn.shopify.com/s/files/1/0251/0939/7584/files/1-Ansel-Adams-479x500_large.jpg?v=1570145018?"}
+                  alt="author"
+                  width={100}
+                  height={100}
+                  className="w-10 h-10 rounded-full"
+                />
                 <div className="flex items-center divide-x-2 divide-gray-500">
                   <div className="pr-3 font-medium text-textColor">Ansel Adam</div>
                   <div className="pl-3 text-sm font-light text-gray-500">American landscape photographer</div>
@@ -66,7 +72,7 @@ export default function HomePage() {
 
         <section className="object-none bg-[url('https://assets.ayobandung.com/crop/0x0:0x0/750x500/webp/photo/2023/05/28/Desain-tanpa-judul-2023-05-28T115130481-2054438804.png')] bg-gray-700 bg-blend-multiply">
           <div className="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
-            <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">We invest in the world’s potential</h1>
+            <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">{`We invest in the world’s potential`}</h1>
             <p className="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
               At Smart Recycling, our primary commitment lies in revolutionizing rubbish disposal through the power of technology, innovation, and strategic investment.
             </p>

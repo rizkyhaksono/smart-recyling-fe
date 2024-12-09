@@ -2,11 +2,10 @@
 
 import NavbarComponent from "../../../components/NavbarComponent";
 import FooterComponent from "../../../components/FooterComponent";
-import { Collapse } from "antd";
+import { Collapse, FloatButton } from "antd";
 import ScrollCarousel from "scroll-carousel-react";
 import CardTeamWeb from "../../../components/CardTeanWeb";
 import CardTeamMobile from "../../../components/CardTeamMobile";
-import { FloatButton } from "antd";
 
 const items = [
   {
@@ -59,7 +58,7 @@ export default function AboutPage() {
       <ScrollCarousel autoplay autoplaySpeed={1} speed={7} className="container mx-auto pt-5">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((item) => (
           <div key={item} className="bg-green-300/20 border-2 border-green-300/70 rounded">
-            <img src="/illustration.png" alt="Carousel" />
+            <img src="/illustration.svg" alt="Carousel" />
           </div>
         ))}
       </ScrollCarousel>

@@ -27,7 +27,7 @@ const TransactionUser = ({ transactionData }) => {
     },
   ];
 
-  const data = Array.isArray(transactionData?.data) ? transactionData.data.map((item) => ({ ...item, key: item.id })) : [];
+  const data = Array.isArray(transactionData?.data) ? transactionData?.data.map((item) => ({ ...item, key: item.id })) : [];
 
   return (
     <Card className="my-5">
