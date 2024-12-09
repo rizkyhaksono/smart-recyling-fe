@@ -68,7 +68,11 @@ export default function SignInPage() {
       <div className="container py-8 px-4 mx-auto max-w-screen lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
         <div className="flex flex-col justify-center">
           <div className="flex flex-row gap-5 items-center xl:justify-start lg:justify-start md:justify-center sm:justify-center max-[640px]:justify-center">
-            <img src="/logo.png" alt="Logo" width={40} height={40} />
+            <img
+              src="/logo.png"
+              alt="Smart Recycling Logo"
+              className="h-8 w-auto mr-3 bg-white rounded p-1"
+            />
             <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-textColor md:text-5xl lg:text-6xl">Welcome Back!</h1>
           </div>
           <p className="mb-4 mt-2 text-lg font-normal text-gray-500 lg:text-xl xl:text-start lg:text-start md:text-center sm:text-center max-[640px]:text-center">Let us sign you in</p>

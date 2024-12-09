@@ -1,34 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Smart Recyling</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-    <script>
-      (function (m, a, z, e) {
-        var s, t;
-        try {
-          t = m.sessionStorage.getItem("maze-us");
-        } catch (err) {}
 
-        if (!t) {
-          t = new Date().getTime();
-          try {
-            m.sessionStorage.setItem("maze-us", t);
-          } catch (err) {}
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Title -->
+  <title>Smart Recycling</title>
+
+  <!-- Description -->
+  <meta name="description"
+    content="Join Smart Recycling to contribute to sustainable waste management. Discover innovative recycling solutions that promote environmental sustainability." />
+
+  <!-- Keywords -->
+  <meta name="keywords"
+    content="recycling, sustainable solutions, waste management, eco-friendly, green planet, smart recycling" />
+
+  <!-- Author -->
+  <meta name="author" content="Smart Recycling Team" />
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Smart Recycling" />
+  <meta property="og:description"
+    content="Join Smart Recycling to contribute to sustainable waste management. Discover innovative recycling solutions that promote environmental sustainability." />
+  <meta property="og:image" content="/logo.png" />
+  <meta property="og:url" content="https://smartrecycling.natee.me" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Smart Recycling" />
+  <meta name="twitter:description"
+    content="Join Smart Recycling to contribute to sustainable waste management. Discover innovative recycling solutions that promote environmental sustainability." />
+  <meta name="twitter:image" content="/logo.png" />
+  <meta name="twitter:site" content="@SmartRecycling" />
+
+  <!-- Robots -->
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://smartrecycling.natee.me" />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "Smart Recycling",
+        "url": "https://smartrecycling.natee.me",
+        "logo": "https://smartrecycling.natee.me/logo.png",
+        "description": "Join Smart Recycling to contribute to sustainable waste management. Discover innovative recycling solutions that promote environmental sustainability.",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-800-555-5555",
+            "contactType": "Customer Service"
         }
-
-        s = a.createElement("script");
-        s.src = z + "?apiKey=" + e;
-        s.async = true;
-        a.getElementsByTagName("head")[0].appendChild(s);
-        m.mazeUniversalSnippetApiKey = e;
-      })(window, document, "https://snippet.maze.co/maze-universal-loader.js", "4d1feeb4-65e4-4cd1-963f-c0335b1e6f8e");
+    }
     </script>
-  </body>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+  <script>
+    (function (m, a, z, e) {
+      var s, t;
+      try {
+        t = m.sessionStorage.getItem("maze-us");
+      } catch (err) { }
+
+      if (!t) {
+        t = new Date().getTime();
+        try {
+          m.sessionStorage.setItem("maze-us", t);
+        } catch (err) { }
+      }
+
+      s = a.createElement("script");
+      s.src = z + "?apiKey=" + e;
+      s.async = true;
+      a.getElementsByTagName("head")[0].appendChild(s);
+      m.mazeUniversalSnippetApiKey = e;
+    })(window, document, "https://snippet.maze.co/maze-universal-loader.js", "4d1feeb4-65e4-4cd1-963f-c0335b1e6f8e");
+  </script>
+</body>
+
 </html>

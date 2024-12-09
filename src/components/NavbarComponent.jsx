@@ -60,8 +60,8 @@ const NavbarComponent = () => {
       <button
         className={
           type === "login"
-            ? "text-white bg-primary hover:bg-secondary rounded"
-            : "text-primary bg-white border border-gray-300 hover:text-primary rounded mr-2"
+            ? "text-white bg-primary hover:bg-secondary rounded px-8 py-16"
+            : "text-gray-800 bg-white border border-gray-300 hover:bg-gray-100 rounded mr-2"
         }
         style={{
           padding: '8px 16px',
@@ -86,7 +86,11 @@ const NavbarComponent = () => {
     <nav className={`fixed w-full z-20 top-0 left-0 border-b border-gray-300 bg-white ${isMobileView ? "md:hidden" : ""}`}>
       <div className="max-w-screen-xl flex flex-wrap items-center mx-auto p-4 justify-between">
         <Link to={"/"}>
-          <img src="/logo.png" className="flex items-start h-8 mr-3" alt="Smart Recycling Logo" />
+          <img
+            src="/logo.png"
+            alt="Smart Recycling Logo"
+            className="h-8 w-auto mr-3 bg-white rounded p-1"
+          />
         </Link>
         <div className="flex md:order-2">
           {isLoggedIn ? (

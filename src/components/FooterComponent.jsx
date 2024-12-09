@@ -11,7 +11,11 @@ export default function FooterComponent() {
         <div className="sm:flex sm:items-center sm:justify-between">
           <Link to={"#"}>
             <div className="flex items-center mb-4 sm:mb-0">
-              <img src="/logo.png" alt="Smart Recycling Logo" className="h-8 mr-3 bg-white rounded p-1" width={30} height={30} />
+              <img
+                src="/logo.png"
+                alt="Smart Recycling Logo"
+                className="h-8 w-auto mr-3 bg-white rounded p-1"
+              />
               <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Smart Recycling</span>
             </div>
           </Link>

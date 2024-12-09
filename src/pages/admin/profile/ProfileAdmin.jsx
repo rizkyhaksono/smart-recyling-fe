@@ -116,7 +116,11 @@ export default function ProfileAdminPage() {
           }}
         >
           <Link to={"/admin/dashboard"}>
-            <img src="/logo.png" className="flex items-start h-8 mr-3" alt="Smart Recycling Logo" />
+            <img
+              src="/logo.png"
+              alt="Smart Recycling Logo"
+              className="h-8 w-auto mr-3 bg-white rounded p-1"
+            />
           </Link>
           <Dropdown menu={{ items: itemsAdmin }} placement="bottom" arrow={{ pointAtCenter: true }}>
             <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
